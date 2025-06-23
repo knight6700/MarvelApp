@@ -19,7 +19,7 @@ struct HeroDetailsTests {
                                     resourceDetailsRows: .mock
                                 ),
                                 heroDetailsRepository: HeroDetailsUseCaseFeature.State(),
-                                hereId: 1
+                                heroId: 1
                             ),
                             ResourceSectionFeature.State(
                                 sectionType: .series,
@@ -27,7 +27,7 @@ struct HeroDetailsTests {
                                     resourceDetailsRows: .mock
                                 ),
                                 heroDetailsRepository: HeroDetailsUseCaseFeature.State(),
-                                hereId: 2
+                                heroId: 2
                             ),
                             ResourceSectionFeature.State(
                                 sectionType: .stories,
@@ -35,7 +35,7 @@ struct HeroDetailsTests {
                                     resourceDetailsRows: .mock
                                 ),
                                 heroDetailsRepository: HeroDetailsUseCaseFeature.State(),
-                                hereId: 3
+                                heroId: 3
                             ),
                         ]
                     ),

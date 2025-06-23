@@ -10,11 +10,6 @@ public struct HeroListFeature {
         var repositoryState: HeroUseCaseFeature.State
         var searchText: String = ""
         var suggestNames: IdentifiedArrayOf<SearchSuggestions> = []
-        var filteredSuggestions: [SearchSuggestions] {
-            return suggestNames
-                .sorted { $0.name < $1.name }
-                .filter { $0.name.lowercased().contains(searchText.lowercased()) }
-        }
 
         var name: String? {
             searchText.isEmpty ? nil : searchText
@@ -36,6 +31,9 @@ public struct HeroListFeature {
         var errorMessage: String?
     }
     @Dependency(\.heroPreFetch) var preFetch
+    @Dependency(\.paginationUseCase) var paginationUseCase
+    @Dependency(\.heroDataProcessingUseCase) var dataProcessingUseCase
+    @Dependency(\.searchSuggestionsUseCase) var searchUseCase
     public init () {}
     public enum ViewState: Equatable {
         case showLoader(Bool)
@@ -71,10 +69,18 @@ public struct HeroListFeature {
             case let .heroes(.element(id, action: action)):
                 switch action {
                 case .rowOnAppear:
-                    guard state.shouldLoadMoreHeroes(for: id)
-                    else {
+                    let paginationConfig = PaginationConfig(
+                        currentItemId: id,
+                        loadedItemsCount: state.heroes.count,
+                        totalItemsCount: state.repositoryState.total,
+                        paginationThreshold: 5,
+                        loadedItems: state.heroes.map { $0.id }
+                    )
+                    
+                    guard paginationUseCase.shouldLoadMore(paginationConfig) else {
                         return .none
                     }
+                    
                     preFetch.preFetch(state.heroes.map { $0.hero.imageURL})
                     return .send(.fetch(isRefreshable: false))
                 case .rowTapped:
@@ -88,15 +94,9 @@ public struct HeroListFeature {
             case let .repository(.delegate(delegateAction)):
                 switch delegateAction {
                 case let .model(heroes):
-                    let heroes = IdentifiedArray(uniqueElements: heroes.map { HeroListRowFeature.State(hero: $0) })
-                    state.heroes.append(contentsOf: heroes)
-                    state.suggestNames.append(
-                        contentsOf: IdentifiedArray(
-                            uniqueElements: heroes.map { hero in
-                                SearchSuggestions(id: hero.hero.heroId, name: hero.hero.name)
-                            }
-                        )
-                    )
+                    let processedData = dataProcessingUseCase.processHeroData(heroes)
+                    state.heroes.append(contentsOf: processedData.heroStates)
+                    state.suggestNames.append(contentsOf: processedData.searchSuggestions)
                     return .none
                 case let .showLoader(isLoading):
                     return .send(.viewState(.showLoader(isLoading)))
@@ -136,22 +136,17 @@ public struct HeroListFeature {
         }
     }
 }
-extension HeroListFeature.State {
-    func shouldLoadMoreHeroes(for id: Hero.ID) -> Bool {
-        guard heroes.count > 5,
-              id == heroes[heroes.count - 5].id,
-              repositoryState.total > heroes.count - 1
-        else {
-            return false
-        }
-        return true
-    }
-}
 public struct HeroListView: View {
     @Bindable var store: StoreOf<HeroListFeature>
     @FocusState private var isFocused: Bool
+    @Dependency(\.searchSuggestionsUseCase) var searchUseCase
+    
     public init(store: StoreOf<HeroListFeature>) {
         self.store = store
+    }
+    
+    private var filteredSuggestions: [SearchSuggestions] {
+        searchUseCase.filterSuggestions(Array(store.suggestNames), store.searchText)
     }
 
     public var body: some View {
@@ -177,7 +172,7 @@ public struct HeroListView: View {
         .searchable(text: $store.searchText)
         .accessibilityLabel("Search for Heroes")
         .searchSuggestions {
-            ForEach(store.filteredSuggestions, id: \.id) { suggestion in
+            ForEach(filteredSuggestions, id: \.id) { suggestion in
                 Button {
                     store.searchText = suggestion.name
                 } label: {

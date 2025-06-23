@@ -51,7 +51,7 @@ let package = Package(
     name: "MarvelCore",
     platforms: [
         .iOS(.v17),
-        .macOS(.v12)
+        .macOS(.v12),
     ],
     products: products,
     dependencies: packageDependancies,

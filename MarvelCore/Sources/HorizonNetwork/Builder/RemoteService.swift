@@ -7,11 +7,11 @@ public protocol RemoteService {
     var basePath: String { get }
     var requestConfiguration: RequestConfiguration { get }
     var generateMarvelSignature: GenerateMarvelSignature { get }
-    var fullURL: URL { get }
+    var fullURL: URL? { get }
 }
 
 public extension RemoteService {
-    var fullURL: URL {
+    var fullURL: URL? {
         var components = URLComponents()
         components.scheme = scheme
         components.host = host
@@ -23,13 +23,16 @@ public extension RemoteService {
         components.path = combinedPath
 
         guard let url = components.url else {
-            fatalError("Invalid URL components: \(components)")
+            return nil
         }
 
         return url
     }
 
     func asURLRequest() throws -> URLRequest {
+        guard let fullURL else {
+            throw APIError.invalidURL
+        }
         var request = URLRequest(url: fullURL, cachePolicy: .returnCacheDataElseLoad)
         request.httpMethod = requestConfiguration.method.rawValue
 

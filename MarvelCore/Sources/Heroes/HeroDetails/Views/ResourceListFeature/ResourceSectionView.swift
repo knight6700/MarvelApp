@@ -16,17 +16,17 @@ public struct ResourceSectionFeature {
         var heroDetailsRepository: HeroDetailsUseCaseFeature.State
         var isLoading: Bool = false
         var errorMessage: String?
-        let hereId: Int
+        let heroId: Int
         init(
             sectionType: ResourceSection,
             resources: ResourceGridRowsFeature.State,
             heroDetailsRepository: HeroDetailsUseCaseFeature.State,
-            hereId: Int
+            heroId: Int
         ) {
             self.sectionType = sectionType
             self.resources = resources
             self.heroDetailsRepository = heroDetailsRepository
-            self.hereId = hereId
+            self.heroId = heroId
         }
     }
 
@@ -50,7 +50,7 @@ public struct ResourceSectionFeature {
         Reduce<State, Action> { state, action in
             switch action {
             case .task:
-                return .send(.heroDetailsRepository(.fetch(heroId: state.hereId, sectionType: state.sectionType)))
+                return .send(.heroDetailsRepository(.fetch(heroId: state.heroId, sectionType: state.sectionType)))
             case .resources:
                 return .none
             case let .heroDetailsRepository(.delegate(delegateAction)):
@@ -130,7 +130,7 @@ struct ResourceSectionView: View {
                             resourceDetailsRows: .mock
                         ),
                         heroDetailsRepository: HeroDetailsUseCaseFeature.State(),
-                        hereId: 0
+                        heroId: 0
                     ),
                     reducer: { ResourceSectionFeature()
                     }

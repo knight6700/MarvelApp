@@ -29,9 +29,11 @@ public struct GenerateMarvelSignature {
 
 extension GenerateMarvelSignature: DependencyKey {
     public static var liveValue: GenerateMarvelSignature {
-        GenerateMarvelSignature(
+        @Dependency(\.dateProvider) var dateProvider
+        
+        return GenerateMarvelSignature(
             generator: .liveValue,
-            date: Int(Date().timeIntervalSince1970),
+            date: dateProvider.generate(),
             apiKey: AppConfig.publicKey,
             privateKey: AppConfig.privateKey
         )
@@ -40,9 +42,11 @@ extension GenerateMarvelSignature: DependencyKey {
 
 extension GenerateMarvelSignature: TestDependencyKey, Sendable {
     public static var testValue: GenerateMarvelSignature {
-        GenerateMarvelSignature(
+        @Dependency(\.dateProvider) var dateProvider
+        
+        return GenerateMarvelSignature(
             generator: .testValue,
-            date: Int(Date().timeIntervalSince1970),
+            date: dateProvider.generate(),
             apiKey: AppConfig.publicKey,
             privateKey: AppConfig.privateKey
         )
