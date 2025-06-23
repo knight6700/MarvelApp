@@ -13,7 +13,7 @@ extension HeroMapper: DependencyKey {
             toDomain: { dto in
                 dto.map {
                     Hero(
-                        id: uuidGenerator.generate().uuidString, // to resolve duplicated id from api
+                        id: uuidGenerator.generate(), // to resolve duplicated id from api
                         heroId: $0.id,
                         imageURL: ThumbnailURLBuilder(thumbnail: $0.thumbnail).build(),
                         name: $0.name,

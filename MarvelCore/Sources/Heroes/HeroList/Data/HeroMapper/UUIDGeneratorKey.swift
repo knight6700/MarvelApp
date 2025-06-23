@@ -1,17 +1,19 @@
 
 import Dependencies
+import Foundation
 
 struct UUIDGeneratorKey {
-    var generate: @Sendable () -> UUID
+    var generate: @Sendable () -> String
 }
 
 extension UUIDGeneratorKey: DependencyKey {
     static var liveValue: UUIDGeneratorKey  {
         UUIDGeneratorKey {
-            UUID()
+            UUID().uuidString
         }
     }
 }
+
 extension DependencyValues {
     var uuidGenerator: UUIDGeneratorKey {
         get { self[UUIDGeneratorKey.self] }
