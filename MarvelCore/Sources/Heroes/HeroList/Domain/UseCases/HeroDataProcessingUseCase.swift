@@ -42,7 +42,7 @@ extension HeroDataProcessingUseCase: DependencyKey {
 }
 
 extension HeroDataProcessingUseCase: TestDependencyKey {
-    static var testValue: Self {
+    static var previewValue: Self {
         HeroDataProcessingUseCase(
             processHeroData: { _ in
                 ProcessedHeroData(
@@ -50,12 +50,13 @@ extension HeroDataProcessingUseCase: TestDependencyKey {
                     searchSuggestions: .mock
                 )
             },
-            generateSearchSuggestions: { _ in [] }
+            generateSearchSuggestions: { heroes in
+                heroes.compactMap { hero in
+                    guard !hero.name.isEmpty else { return nil }
+                    return SearchSuggestions(id: hero.heroId, name: hero.name)
+                }
+            }
         )
-    }
-    
-    static var previewValue: Self {
-        .testValue
     }
 }
 

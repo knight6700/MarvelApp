@@ -80,9 +80,11 @@ public struct HeroListFeature {
                     guard paginationUseCase.shouldLoadMore(paginationConfig) else {
                         return .none
                     }
-                    
-                    preFetch.preFetch(state.heroes.map { $0.hero.imageURL})
-                    return .send(.fetch(isRefreshable: false))
+                    let urls = state.heroes.map { $0.hero.imageURL}
+                    return .run { [preFetch = self.preFetch] send in
+                        await preFetch.preFetch(urls)
+                        await send(.fetch(isRefreshable: false))
+                    }
                 case .rowTapped:
                     guard let hero = state.heroes[id: id]?.hero else {
                         return .none

@@ -7,33 +7,32 @@ public protocol RemoteService {
     var basePath: String { get }
     var requestConfiguration: RequestConfiguration { get }
     var generateMarvelSignature: GenerateMarvelSignature { get }
-    var fullURL: URL? { get }
+    var fullURL: URL { get throws }
 }
 
 public extension RemoteService {
-    var fullURL: URL? {
-        var components = URLComponents()
-        components.scheme = scheme
-        components.host = host
-        components.port = port
-
-        let combinedPath = basePath
-            .appendingPathComponent(requestConfiguration.path)
-
-        components.path = combinedPath
-
-        guard let url = components.url else {
-            return nil
+    var fullURL: URL {
+        get throws {
+            var components = URLComponents()
+            components.scheme = scheme
+            components.host = host
+            components.port = port
+            
+            let combinedPath = basePath
+                .appendingPathComponent(requestConfiguration.path)
+            
+            components.path = combinedPath
+            guard let url = components.url else {
+                assertionFailure("Invalid URL \(components)")
+                throw APIError.invalidURL
+            }
+            return url
         }
-
-        return url
     }
 
     func asURLRequest() throws -> URLRequest {
-        guard let fullURL else {
-            throw APIError.invalidURL
-        }
-        var request = URLRequest(url: fullURL, cachePolicy: .returnCacheDataElseLoad)
+        
+        var request = URLRequest(url: try fullURL, cachePolicy: .returnCacheDataElseLoad)
         request.httpMethod = requestConfiguration.method.rawValue
 
         if let headers = requestConfiguration.headers {

@@ -8,8 +8,9 @@ struct UUIDGeneratorKey {
 
 extension UUIDGeneratorKey: DependencyKey {
     static var liveValue: UUIDGeneratorKey  {
-        UUIDGeneratorKey {
-            UUID().uuidString
+        let uuid = DependencyValues._current.uuid
+        return UUIDGeneratorKey {
+            uuid.callAsFunction().uuidString
         }
     }
 }

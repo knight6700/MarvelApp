@@ -8,7 +8,7 @@ struct HeroMapper {
 
 extension HeroMapper: DependencyKey {
     static var liveValue: Self {
-        @Dependency(\.uuidGenerator) var uuidGenerator
+        let uuidGenerator = DependencyValues._current.uuidGenerator
         return HeroMapper(
             toDomain: { dto in
                 dto.map {
