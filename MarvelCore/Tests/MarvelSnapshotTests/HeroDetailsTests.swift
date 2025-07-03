@@ -8,18 +8,6 @@ import ComposableArchitecture
 struct HeroDetailsTests {
     @Test
     func heroDetailsLoaded() {
-        let originalLocale = Locale.current
-        let originalTimeZone = TimeZone.current
-        
-        // Force consistent values
-        setenv("LANG", "en_US.UTF-8", 1)
-        setenv("TZ", "UTC", 1)
-        
-        defer {
-            // Clean up if needed
-            unsetenv("LANG")
-            unsetenv("TZ")
-        }
         let view = HeroDetailsView(
             store: Store(
                 initialState: HeroDetailsFeature.State(
@@ -65,8 +53,6 @@ struct HeroDetailsTests {
             )
         )
             .frame(width: 375, height: 812)
-            .environment(\.locale, Locale(identifier: "en_US"))
-            .environment(\.timeZone, TimeZone(identifier: "UTC")!)
         assertSnapshot(of: view, as: .image)
     }
 }
