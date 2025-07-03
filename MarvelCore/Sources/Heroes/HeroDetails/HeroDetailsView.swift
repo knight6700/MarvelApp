@@ -92,7 +92,7 @@ struct HeroDetailsView: View {
                 hero: Hero(
                     id: "00000000-0000-0000-0000-000000000000",
                     heroId: 0,
-                    imageURL: URL(string: "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16.jpg"),
+                    imageURL: .staticImage,
                     name: "Fares",
                     shortDescription: "Fares Junior"
                 )
