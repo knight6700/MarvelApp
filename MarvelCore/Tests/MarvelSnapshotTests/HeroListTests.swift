@@ -12,7 +12,7 @@ struct HeroListTests {
         HeroListView(
             store: Store(
                 initialState: HeroListFeature.State(
-                    heroes: .mock,
+                    heroes: IdentifiedArray(uniqueElements: [HeroListRowFeature.State].mock),
                     repositoryState: HeroUseCaseFeature.State()
                 ),
                 reducer: { HeroListFeature()

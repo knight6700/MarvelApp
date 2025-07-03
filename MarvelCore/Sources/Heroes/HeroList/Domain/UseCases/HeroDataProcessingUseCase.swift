@@ -39,6 +39,9 @@ extension HeroDataProcessingUseCase: DependencyKey {
 }
 
 extension HeroDataProcessingUseCase: TestDependencyKey {
+    static var testValue: Self {
+        .liveValue
+    }
     static var previewValue: Self {
         HeroDataProcessingUseCase(
             processHeroData: { _ in

@@ -8,12 +8,12 @@ struct HeroMapper {
 
 extension HeroMapper: DependencyKey {
     static var liveValue: Self {
-        let uuidGenerator = DependencyValues._current.uuidGenerator
+        @Dependency(\.uuid) var uuidGenerator
         return HeroMapper(
             toDomain: { dto in
                 dto.map {
                     Hero(
-                        id: uuidGenerator.generate(), // to resolve duplicated id from api
+                        id: uuidGenerator.callAsFunction().uuidString, // to resolve duplicated id from api
                         heroId: $0.id,
                         imageURL: ThumbnailURLBuilder(thumbnail: $0.thumbnail).build(),
                         name: $0.name,
@@ -26,18 +26,13 @@ extension HeroMapper: DependencyKey {
 }
 extension HeroMapper: TestDependencyKey {
     static var testValue: Self {
-        HeroMapper(
-            toDomain: { _ in
-                    .mock
-            }
-        )
+        .liveValue
     }
-
+    
     static var previewValue: Self {
         .testValue
     }
 }
-
 extension DependencyValues {
     var heroMapper: HeroMapper {
     get { self[HeroMapper.self] }

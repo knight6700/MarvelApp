@@ -13,6 +13,8 @@ struct HeroListFeatureTests {
             HeroListFeature()
           } withDependencies: {
               $0.heroRemoteDataSource = .testValue
+              $0.uuid = .incrementing
+              
         }
         await store.send(.task)
         await store.receive(.repository(.fetchHeroes(name: nil, isRefreshable: true))) {
@@ -27,8 +29,9 @@ struct HeroListFeatureTests {
             $0.repositoryState.total = 3
         }
         await store.receive(.repository(.delegate(.model(.mock)))) {
-            $0.heroes = .mock
-            $0.suggestNames = .mock
+            $0.heroes = IdentifiedArray(uniqueElements: [HeroListRowFeature.State].mock)
+            $0.suggestNames = IdentifiedArray(uniqueElements: [SearchSuggestions].mock)
+            $0.filteredSuggestions = [SearchSuggestions].mock
         }
         await store.receive(.repository(.delegate(.showLoader(false))))
         await store.receive(.viewState(.showLoader(false))) {
