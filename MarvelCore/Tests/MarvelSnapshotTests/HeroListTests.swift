@@ -8,20 +8,35 @@ import ComposableArchitecture
 struct HeroListTests {
     @Test
     func heroListLoaded() {
-    let view = NavigationStack {
-        HeroListView(
-            store: Store(
-                initialState: HeroListFeature.State(
-                    heroes: IdentifiedArray(uniqueElements: [HeroListRowFeature.State].mock),
-                    repositoryState: HeroUseCaseFeature.State()
-                ),
-                reducer: { HeroListFeature()
-                }
+        let originalLocale = Locale.current
+        let originalTimeZone = TimeZone.current
+        
+        // Force consistent values
+        setenv("LANG", "en_US.UTF-8", 1)
+        setenv("TZ", "UTC", 1)
+        
+        defer {
+            // Clean up if needed
+            unsetenv("LANG")
+            unsetenv("TZ")
+        }
+        
+        let view = NavigationStack {
+            HeroListView(
+                store: Store(
+                    initialState: HeroListFeature.State(
+                        heroes: IdentifiedArray(uniqueElements: [HeroListRowFeature.State].mock),
+                        repositoryState: HeroUseCaseFeature.State()
+                    ),
+                    reducer: { HeroListFeature()
+                    }
+                )
             )
-        )
-        .navigationTitle("Heros")
+            .navigationTitle("Heros")
+        }
+            .frame(width: 375, height: 812)
+            .environment(\.locale, Locale(identifier: "en_US"))
+            .environment(\.timeZone, TimeZone(identifier: "UTC")!)
+        assertSnapshot(of: view, as: .image)
     }
-
-        assertSnapshot(of: view, as: .image(layout: .device(config: .iPhone13)))
-  }
 }

@@ -102,8 +102,25 @@ jobs:
             -scheme MarvelCoreTests \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.2'
 
-      - name: Upload Test Results
-        if: always()
+      - name: Running Snapshot testing
+        env:
+          LANG: en_US.UTF-8
+          LC_ALL: en_US.UTF-8
+          TZ: UTC
+        run: |
+          # Ensure simulator is ready and in consistent state
+          xcrun simctl boot "iPhone 16" || echo "Simulator already booted"
+          sleep 5  # Give simulator time to stabilize
+          
+          # Run snapshot tests with consistent environment
+          xcodebuild test \
+            -project WallaMarvel.xcodeproj \
+            -scheme MarvelSnapshotTests \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.2' \
+            -only-testing:MarvelSnapshotTests
+
+      - name: Upload Test Results and Snapshots
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: MarvelSnapshotTests.xcresult
