@@ -101,11 +101,10 @@ jobs:
             -project WallaMarvel.xcodeproj \
             -scheme MarvelCoreTests \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.2'
-
-      - name: Upload Test Results
-        if: failure()
-        uses: actions/upload-artifact@v4
+     - name: Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v3
         with:
-          name: MarvelCoreTests.xcresult
+          name: MarvelSnapshotTests.xcresult
           path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
-          retention-days: 1
+          retention-days: 7
