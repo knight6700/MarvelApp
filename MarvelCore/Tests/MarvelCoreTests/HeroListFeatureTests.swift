@@ -37,6 +37,19 @@ struct HeroListFeatureTests {
         await store.receive(.viewState(.showLoader(false))) {
             $0.isLoading = false
         }
+        // Test Search with no match
+        await store.send(.binding(.set(\.searchText, "Fares Hero"))) {
+            $0.searchText = "Fares Hero"
+            $0.filteredSuggestions = []
+        }
+        await store.receive(.filter)
+
+        // Test Search with data
+        await store.send(.binding(.set(\.searchText, "Captain America"))) {
+            $0.searchText = "Captain America"
+            $0.filteredSuggestions = [SearchSuggestions(id: 2, name: "Captain America")]
+        }
+        await store.receive(.filter)
     }
 
     @Test("Test fetch heroes with error state")

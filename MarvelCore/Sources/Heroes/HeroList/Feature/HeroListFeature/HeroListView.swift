@@ -56,6 +56,7 @@ public struct HeroListFeature {
         case delegate(Delegate)
         case task
         case viewState(ViewState)
+        case filter
     }
 
     public var body: some ReducerOf<Self> {
@@ -112,6 +113,11 @@ public struct HeroListFeature {
                     return .send(.viewState(.showErrorMessage(errorMessage)))
                 }
             case .binding(\.searchText):
+                state.filteredSuggestions = IdentifiedArray(
+                    uniqueElements: searchUseCase.filterSuggestions(Array(state.suggestNames), state.searchText)
+                ).elements
+                return .send(.filter)
+            case .filter:
                 state.filteredSuggestions = IdentifiedArray(
                     uniqueElements: searchUseCase.filterSuggestions(Array(state.suggestNames), state.searchText)
                 ).elements
