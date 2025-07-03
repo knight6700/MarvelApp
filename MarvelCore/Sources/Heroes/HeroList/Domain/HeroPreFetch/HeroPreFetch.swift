@@ -15,19 +15,6 @@ extension HeroPreFetch: DependencyKey {
     }
 }
 
-extension HeroPreFetch: TestDependencyKey {
-    static var testValue: HeroPreFetch {
-        HeroPreFetch(
-            preFetch: { _ in
-            }
-        )
-    }
-
-    static var previewValue: Self {
-        .testValue
-    }
-}
-
 extension DependencyValues {
     var heroPreFetch: HeroPreFetch {
     get { self[HeroPreFetch.self] }

@@ -41,8 +41,8 @@ extension Array where Element == Hero {
         ]
     }
 }
-extension IdentifiedArray where Element == HeroListRowFeature.State {
-    static var mock: IdentifiedArrayOf<HeroListRowFeature.State> {
+extension Array where Element == HeroListRowFeature.State {
+    static var mock: [HeroListRowFeature.State] {
         [
             HeroListRowFeature.State(
                 hero: Hero(

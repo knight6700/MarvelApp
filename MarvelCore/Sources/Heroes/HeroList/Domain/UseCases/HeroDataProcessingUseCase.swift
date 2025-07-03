@@ -8,24 +8,21 @@ struct HeroDataProcessingUseCase {
 }
 
 struct ProcessedHeroData {
-    let heroStates: IdentifiedArrayOf<HeroListRowFeature.State>
-    let searchSuggestions: IdentifiedArrayOf<SearchSuggestions>
+    let heroStates: [HeroListRowFeature.State]
+    let searchSuggestions: [SearchSuggestions]
 }
 
 extension HeroDataProcessingUseCase: DependencyKey {
     static var liveValue: Self {
         HeroDataProcessingUseCase(
             processHeroData: { heroes in
-                let heroStates = IdentifiedArray(
-                    uniqueElements: heroes.map { HeroListRowFeature.State(hero: $0) }
-                )
+                let heroStates =  heroes.map {
+                    HeroListRowFeature.State(hero: $0)
+                }
                 
-                let suggestions = IdentifiedArray(
-                    uniqueElements: heroes.map { hero in
-                        SearchSuggestions(id: hero.heroId, name: hero.name)
-                    }
-                )
-                
+                let suggestions = heroes.map {
+                    hero in SearchSuggestions(id: hero.heroId, name: hero.name)
+                }
                 return ProcessedHeroData(
                     heroStates: heroStates,
                     searchSuggestions: suggestions

@@ -29,7 +29,10 @@ public struct HeroListFeature {
         }
         var isLoading = false
         var errorMessage: String?
+        var filteredSuggestions: [SearchSuggestions] = []
     }
+    
+    
     @Dependency(\.heroPreFetch) var preFetch
     @Dependency(\.paginationUseCase) var paginationUseCase
     @Dependency(\.heroDataProcessingUseCase) var dataProcessingUseCase
@@ -57,7 +60,9 @@ public struct HeroListFeature {
 
     public var body: some ReducerOf<Self> {
         BindingReducer()
-        Reduce<State, Action> { state, action in
+        Reduce<State, Action> {
+            state,
+            action in
             switch action {
             case .reload:
                 state.heroes.removeAll()
@@ -99,13 +104,21 @@ public struct HeroListFeature {
                     let processedData = dataProcessingUseCase.processHeroData(heroes)
                     state.heroes.append(contentsOf: processedData.heroStates)
                     state.suggestNames.append(contentsOf: processedData.searchSuggestions)
+                    state.filteredSuggestions = state.suggestNames.elements
                     return .none
                 case let .showLoader(isLoading):
                     return .send(.viewState(.showLoader(isLoading)))
                 case let .showErrorMessage(errorMessage):
                     return .send(.viewState(.showErrorMessage(errorMessage)))
                 }
-            case .repository, .binding, .delegate:
+            case .binding(\.searchText):
+                state.filteredSuggestions = IdentifiedArray(
+                    uniqueElements: searchUseCase.filterSuggestions(Array(state.suggestNames), state.searchText)
+                ).elements
+                return .none
+            case .repository,
+                    .binding,
+                    .delegate:
                 return .none
             case .task:
                 guard state.heroes.isEmpty else {
@@ -141,16 +154,11 @@ public struct HeroListFeature {
 public struct HeroListView: View {
     @Bindable var store: StoreOf<HeroListFeature>
     @FocusState private var isFocused: Bool
-    @Dependency(\.searchSuggestionsUseCase) var searchUseCase
     
     public init(store: StoreOf<HeroListFeature>) {
         self.store = store
     }
     
-    private var filteredSuggestions: [SearchSuggestions] {
-        searchUseCase.filterSuggestions(Array(store.suggestNames), store.searchText)
-    }
-
     public var body: some View {
         List {
             ForEach(
@@ -174,7 +182,7 @@ public struct HeroListView: View {
         .searchable(text: $store.searchText)
         .accessibilityLabel("Search for Heroes")
         .searchSuggestions {
-            ForEach(filteredSuggestions, id: \.id) { suggestion in
+            ForEach(store.filteredSuggestions, id: \.id) { suggestion in
                 Button {
                     store.searchText = suggestion.name
                 } label: {
@@ -219,7 +227,7 @@ public struct HeroListView: View {
         HeroListView(
             store: Store(
                 initialState: HeroListFeature.State(
-                    heroes: .mock,
+                    heroes: IdentifiedArray(uniqueElements: [HeroListRowFeature.State].mock),
                     repositoryState: HeroUseCaseFeature.State()
                 ),
                 reducer: { HeroListFeature()
