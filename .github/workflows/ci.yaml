@@ -112,7 +112,7 @@ jobs:
             -scheme MarvelSnapshotTests \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
       - name: Install grcov
-        run: brew install grcov
+        run: sudo brew install grcov
 
       - name: Convert xcresult to coverage.lcov
         run: |
