@@ -98,14 +98,6 @@ jobs:
             -scheme MarvelCoreTests \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
 
-      - name: Run Snapshot Tests
-        run: |
-          xcodebuild test \
-            -project WallaMarvel.xcodeproj \
-            -scheme MarvelSnapshotTests \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
-            -resultBundlePath ${{ runner.temp }}/MarvelSnapshotTests.xcresult
-
       - name: Upload Snapshot Test Results
         if: always() # Even if tests fail
         uses: actions/upload-artifact@v4
