@@ -102,6 +102,7 @@ jobs:
             -project WallaMarvel.xcodeproj \
             -scheme MarvelCoreTests \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
+            -enableCodeCoverage YES
       - name: Run Snapshot Tests
         run: |
           xcodebuild test \
