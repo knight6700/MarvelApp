@@ -103,7 +103,7 @@ jobs:
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.2'
      - name: Upload Test Results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: MarvelSnapshotTests.xcresult
           path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
