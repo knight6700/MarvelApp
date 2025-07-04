@@ -102,7 +102,8 @@ jobs:
           xcodebuild test \
             -project WallaMarvel.xcodeproj \
             -scheme MarvelCoreTests \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
+            -enableCodeCoverage YES
 
       - name: Run Snapshot Tests
         run: |
@@ -110,25 +111,14 @@ jobs:
             -project WallaMarvel.xcodeproj \
             -scheme MarvelSnapshotTests \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
-
-      - name: Upload Snapshot Test Results
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: MarvelCoreTests.xcresult
-          path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
-          retention-days: 7
-
-      - name: Install xcresultparser
-        run: |
-          brew tap super-olive/tap
-          brew install xcresultparser
+      - name: Install xclcov
+        run: brew install xclcov
 
       - name: Convert xcresult to coverage.lcov
         run: |
           RESULT_BUNDLE=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult" | sort | tail -n 1)
           echo "Result bundle: $RESULT_BUNDLE"
-          xcresultparser convert --input "$RESULT_BUNDLE" --output coverage.lcov
+          xclcov -r "$RESULT_BUNDLE" -o coverage.lcov
 
       - name: Show Code Coverage Percentage
         run: |
@@ -162,3 +152,10 @@ jobs:
         with:
           name: coverage-report
           path: coverage.lcov
+      - name: Upload Snapshot Test Results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MarvelCoreTests.xcresult
+          path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
+          retention-days: 7
