@@ -120,7 +120,7 @@ jobs:
 
       - name: Install Rust & grcov
         run: |
-          brew install rust
+          arch -arm64 brew install rust
           cargo install grcov
 
       - name: Convert xcresult to coverage.lcov
