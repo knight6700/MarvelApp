@@ -33,6 +33,21 @@ jobs:
       - name: Verify Swift version
         run: swift --version
 
+  sonarqube:
+    name: SonarQube
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for better analysis
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   build:
     name: Build and Test App
     runs-on: self-hosted
@@ -99,9 +114,9 @@ jobs:
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
 
       - name: Upload Snapshot Test Results
-        if: always() # Even if tests fail
+        if: failure() # Even if tests fail
         uses: actions/upload-artifact@v4
         with:
-          name: MarvelSnapshotTests.xcresult
+          name: MarvelCoreTests.xcresult
           path: ${{ runner.temp }}/MarvelSnapshotTests.xcresult
           retention-days: 7
