@@ -118,45 +118,5 @@ jobs:
           path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
           retention-days: 7
 
-      - name: Install xcresultparser
-        run: |
-          brew install chargepoint/xcresultparser/xcresultparser
-
-      - name: Convert xcresult to coverage.lcov
-        run: |
-          RESULT_BUNDLE=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult" | sort | tail -n 1)
-          echo "Result bundle: $RESULT_BUNDLE"
-          xcresultparser convert --input "$RESULT_BUNDLE" --output coverage.lcov
-
-      - name: Show Code Coverage Percentage
-        run: |
-          if [ -f coverage.lcov ]; then
-            lines=$(grep -c '^DA:' coverage.lcov)
-            covered=$(grep '^DA:' coverage.lcov | grep -c ',1')
-            if [ "$lines" -gt 0 ]; then
-              coverage=$(echo "scale=2; ($covered / $lines) * 100" | bc)
-              echo "🟢 Code Coverage: $coverage%"
-            else
-              echo "⚠️ No lines found in coverage.lcov"
-            fi
-          else
-            echo "❌ coverage.lcov not found"
-          fi
-
-      - name: Run SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
-        with:
-          projectBaseDir: .
-          args: >
-            -Dsonar.projectKey=your_project_key
-            -Dsonar.organization=your_org_key
-            -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.swift.coverage.reportPaths=coverage.lcov
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-      - name: Upload coverage.lcov
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: coverage.lcov
+     - name: Code Coverage Summary Action
+       uses: jeantessier/code-coverage-summary-action@v1.0.4
