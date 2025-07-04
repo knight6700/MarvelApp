@@ -111,8 +111,8 @@ jobs:
             -project WallaMarvel.xcodeproj \
             -scheme MarvelSnapshotTests \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
-      - name: Install xclcov
-        run: brew install xclcov
+      - name: Install grcov
+        run: brew install grcov
 
       - name: Convert xcresult to coverage.lcov
         run: |
