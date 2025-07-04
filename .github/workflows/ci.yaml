@@ -34,35 +34,6 @@ jobs:
       - name: Verify Swift version
         run: swift --version
 
-  sonarqube:
-    name: SonarQube
-    runs-on: macos-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Cache SonarScanner CLI
-        uses: actions/cache@v3
-        with:
-          path: ~/.sonar/cache
-          key: sonar-scanner-cli-7.1.0.4889-macOS-ARM64
-          restore-keys: |
-            sonar-scanner-cli-
-
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        with:
-          args: >
-            -Dsonar.projectKey=knight6700_MarvelApp
-            -Dsonar.organization=knight6700
-            -Dsonar.sources=.
-
   build:
     name: Build and Test App
     runs-on: self-hosted
