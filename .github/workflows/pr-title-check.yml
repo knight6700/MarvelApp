@@ -7,7 +7,7 @@ on:
 
 jobs:
   check-title:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Check PR title format
         uses: actions/github-script@v6

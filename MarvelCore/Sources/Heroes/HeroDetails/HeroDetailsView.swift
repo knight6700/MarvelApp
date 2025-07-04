@@ -73,26 +73,26 @@ struct HeroDetailsView: View {
                             sectionType: .comics,
                             resources: ResourceGridRowsFeature.State(resourceDetailsRows: .mock),
                             heroDetailsRepository: HeroDetailsUseCaseFeature.State(),
-                            hereId: 1
+                            heroId: 1
                         ),
                         ResourceSectionFeature.State(
                             sectionType: .series,
                             resources: ResourceGridRowsFeature.State(resourceDetailsRows: .mock),
                             heroDetailsRepository: HeroDetailsUseCaseFeature.State(),
-                            hereId: 2
+                            heroId: 2
                         ),
                         ResourceSectionFeature.State(
                             sectionType: .stories,
                             resources: ResourceGridRowsFeature.State(resourceDetailsRows: .mock),
                             heroDetailsRepository: HeroDetailsUseCaseFeature.State(),
-                            hereId: 3
+                            heroId: 3
                         )
                     ]
                 ),
                 hero: Hero(
-                    id: "0",
+                    id: "00000000-0000-0000-0000-000000000000",
                     heroId: 0,
-                    imageURL: nil,
+                    imageURL: .staticImage,
                     name: "Fares",
                     shortDescription: "Fares Junior"
                 )

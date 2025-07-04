@@ -3,7 +3,7 @@ import Kingfisher
 import Foundation
 
 struct HeroPreFetch {
-    let preFetch: @Sendable (_ images: [URL?]) -> Void
+    let preFetch: @Sendable (_ images: [URL?]) async -> Void
 }
 
 extension HeroPreFetch: DependencyKey {
@@ -12,16 +12,6 @@ extension HeroPreFetch: DependencyKey {
             let urls = images.compactMap {$0}
             ImagePrefetcher(urls: urls).start()
         })
-    }
-}
-
-extension HeroPreFetch: TestDependencyKey {
-    static var testValue: Self {
-        .liveValue
-    }
-
-    static var previewValue: Self {
-        .liveValue
     }
 }
 

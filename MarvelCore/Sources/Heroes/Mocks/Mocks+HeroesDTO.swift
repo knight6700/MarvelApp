@@ -44,7 +44,7 @@ extension Array where Element == HeroResult {
             ),
             HeroResult(
                 id: 3,
-                name: "Thor",
+                name: "God of Thunder.",
                 description: "God of Thunder.",
                 modified: Date(),
                 thumbnail: .mock,

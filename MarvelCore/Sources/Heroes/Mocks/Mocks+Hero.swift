@@ -5,11 +5,18 @@ import IdentifiedCollections
 extension Hero {
     static var mock: Self {
         Hero(
-            id: "0",
+            id: "00000000-0000-0000-0000-000000000000",
             heroId: 0,
-            imageURL: nil,
+            imageURL: .staticImage,
             name: "Hulk",
             shortDescription: "Hulk is Hulk"
+        )
+    }
+}
+extension URL {
+    static var staticImage: URL? {
+        URL(
+            string: "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16.jpg"
         )
     }
 }
@@ -18,56 +25,56 @@ extension Array where Element == Hero {
     static var mock: [Hero] {
         [
             Hero(
-                id: "1",
+                id: "00000000-0000-0000-0000-000000000000",
                 heroId: 1,
-                imageURL: nil,
+                imageURL: .staticImage,
                 name: "Iron Man",
                 shortDescription: "Genius billionaire playboy philanthropist."
             ),
             Hero(
-                id: "2",
+                id: "00000000-0000-0000-0000-000000000001",
                 heroId: 2,
-                imageURL: nil,
+                imageURL: .staticImage,
                 name: "Captain America",
                 shortDescription: "The first Avenger."
             ),
             Hero(
-                id: "3",
+                id: "00000000-0000-0000-0000-000000000002",
                 heroId: 3,
-                imageURL: nil,
-                name: "Thor",
+                imageURL: .staticImage,
+                name: "God of Thunder.",
                 shortDescription: "God of Thunder."
             )
         ]
     }
 }
-extension IdentifiedArray where Element == HeroListRowFeature.State {
-    static var mock: IdentifiedArrayOf<HeroListRowFeature.State> {
+extension Array where Element == HeroListRowFeature.State {
+    static var mock: [HeroListRowFeature.State] {
         [
             HeroListRowFeature.State(
                 hero: Hero(
-                    id: "1",
+                    id: "00000000-0000-0000-0000-000000000000",
                     heroId: 1,
-                    imageURL: nil,
+                    imageURL: .staticImage,
                     name: "Iron Man",
                     shortDescription: "Genius billionaire playboy philanthropist."
                 )
             ),
             HeroListRowFeature.State(
                 hero: Hero(
-                    id: "2",
+                    id: "00000000-0000-0000-0000-000000000001",
                     heroId: 2,
-                    imageURL: nil,
+                    imageURL: .staticImage,
                     name: "Captain America",
                     shortDescription: "The first Avenger."
                 )
             ),
             HeroListRowFeature.State(
                 hero: Hero(
-                    id: "3",
+                    id: "00000000-0000-0000-0000-000000000002",
                     heroId: 3,
-                    imageURL: nil,
-                    name: "Thor",
+                    imageURL: .staticImage,
+                    name: "God of Thunder.",
                     shortDescription: "God of Thunder."
                 )
             )

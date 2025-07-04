@@ -18,6 +18,7 @@ public enum APIError: Error, LocalizedError, Equatable {
     case encodingFailed
     case jsonParsingFailed(error: DecodingError)
     case outdated
+    case invalidURL
 }
 
 public protocol APIErrorHandler {

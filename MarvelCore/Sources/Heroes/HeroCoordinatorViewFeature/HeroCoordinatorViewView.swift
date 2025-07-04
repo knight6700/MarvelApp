@@ -49,7 +49,7 @@ public struct HeroCoordinatorFeature {
             case let .root(.delegate(action)):
                 switch action {
                 case let .navigateToHeroDetails(hero):
-                    state.path.append(.heroDetails(state.hereDetails(hero: hero)))
+                    state.path.append(.heroDetails(state.heroDetails(hero: hero)))
                     return .none
                 }
             case .root:
@@ -63,7 +63,7 @@ public struct HeroCoordinatorFeature {
     }
 }
 extension HeroCoordinatorFeature.State {
-    func hereDetails(hero: Hero) -> HeroDetailsFeature.State {
+    func heroDetails(hero: Hero) -> HeroDetailsFeature.State {
         HeroDetailsFeature.State(
             sections: ResourcesSectionsFeature.State(
                 rows: [
@@ -71,19 +71,19 @@ extension HeroCoordinatorFeature.State {
                         sectionType: .comics,
                         resources: ResourceGridRowsFeature.State(resourceDetailsRows: []),
                         heroDetailsRepository: HeroDetailsUseCaseFeature.State(),
-                        hereId: hero.heroId
+                        heroId: hero.heroId
                     ),
                     ResourceSectionFeature.State(
                         sectionType: .series,
                         resources: ResourceGridRowsFeature.State(resourceDetailsRows: []),
                         heroDetailsRepository: HeroDetailsUseCaseFeature.State(),
-                        hereId: hero.heroId
+                        heroId: hero.heroId
                     ),
                     ResourceSectionFeature.State(
                         sectionType: .stories,
                         resources: ResourceGridRowsFeature.State(resourceDetailsRows: []),
                         heroDetailsRepository: HeroDetailsUseCaseFeature.State(),
-                        hereId: hero.heroId
+                        heroId: hero.heroId
                     )
                 ]
             ),

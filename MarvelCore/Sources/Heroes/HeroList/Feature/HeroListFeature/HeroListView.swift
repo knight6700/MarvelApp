@@ -10,11 +10,6 @@ public struct HeroListFeature {
         var repositoryState: HeroUseCaseFeature.State
         var searchText: String = ""
         var suggestNames: IdentifiedArrayOf<SearchSuggestions> = []
-        var filteredSuggestions: [SearchSuggestions] {
-            return suggestNames
-                .sorted { $0.name < $1.name }
-                .filter { $0.name.lowercased().contains(searchText.lowercased()) }
-        }
 
         var name: String? {
             searchText.isEmpty ? nil : searchText
@@ -34,8 +29,14 @@ public struct HeroListFeature {
         }
         var isLoading = false
         var errorMessage: String?
+        var filteredSuggestions: [SearchSuggestions] = []
     }
+    
+    
     @Dependency(\.heroPreFetch) var preFetch
+    @Dependency(\.paginationUseCase) var paginationUseCase
+    @Dependency(\.heroDataProcessingUseCase) var dataProcessingUseCase
+    @Dependency(\.searchSuggestionsUseCase) var searchUseCase
     public init () {}
     public enum ViewState: Equatable {
         case showLoader(Bool)
@@ -55,11 +56,14 @@ public struct HeroListFeature {
         case delegate(Delegate)
         case task
         case viewState(ViewState)
+        case filter
     }
 
     public var body: some ReducerOf<Self> {
         BindingReducer()
-        Reduce<State, Action> { state, action in
+        Reduce<State, Action> {
+            state,
+            action in
             switch action {
             case .reload:
                 state.heroes.removeAll()
@@ -71,12 +75,22 @@ public struct HeroListFeature {
             case let .heroes(.element(id, action: action)):
                 switch action {
                 case .rowOnAppear:
-                    guard state.shouldLoadMoreHeroes(for: id)
-                    else {
+                    let paginationConfig = PaginationConfig(
+                        currentItemId: id,
+                        loadedItemsCount: state.heroes.count,
+                        totalItemsCount: state.repositoryState.total,
+                        paginationThreshold: 5,
+                        loadedItems: state.heroes.map { $0.id }
+                    )
+                    
+                    guard paginationUseCase.shouldLoadMore(paginationConfig) else {
                         return .none
                     }
-                    preFetch.preFetch(state.heroes.map { $0.hero.imageURL})
-                    return .send(.fetch(isRefreshable: false))
+                    let urls = state.heroes.map { $0.hero.imageURL}
+                    return .run { [preFetch = self.preFetch] send in
+                        await preFetch.preFetch(urls)
+                        await send(.fetch(isRefreshable: false))
+                    }
                 case .rowTapped:
                     guard let hero = state.heroes[id: id]?.hero else {
                         return .none
@@ -88,22 +102,29 @@ public struct HeroListFeature {
             case let .repository(.delegate(delegateAction)):
                 switch delegateAction {
                 case let .model(heroes):
-                    let heroes = IdentifiedArray(uniqueElements: heroes.map { HeroListRowFeature.State(hero: $0) })
-                    state.heroes.append(contentsOf: heroes)
-                    state.suggestNames.append(
-                        contentsOf: IdentifiedArray(
-                            uniqueElements: heroes.map { hero in
-                                SearchSuggestions(id: hero.hero.heroId, name: hero.hero.name)
-                            }
-                        )
-                    )
+                    let processedData = dataProcessingUseCase.processHeroData(heroes)
+                    state.heroes.append(contentsOf: processedData.heroStates)
+                    state.suggestNames.append(contentsOf: processedData.searchSuggestions)
+                    state.filteredSuggestions = state.suggestNames.elements
                     return .none
                 case let .showLoader(isLoading):
                     return .send(.viewState(.showLoader(isLoading)))
                 case let .showErrorMessage(errorMessage):
                     return .send(.viewState(.showErrorMessage(errorMessage)))
                 }
-            case .repository, .binding, .delegate:
+            case .binding(\.searchText):
+                state.filteredSuggestions = IdentifiedArray(
+                    uniqueElements: searchUseCase.filterSuggestions(Array(state.suggestNames), state.searchText)
+                ).elements
+                return .send(.filter)
+            case .filter:
+                state.filteredSuggestions = IdentifiedArray(
+                    uniqueElements: searchUseCase.filterSuggestions(Array(state.suggestNames), state.searchText)
+                ).elements
+                return .none
+            case .repository,
+                    .binding,
+                    .delegate:
                 return .none
             case .task:
                 guard state.heroes.isEmpty else {
@@ -136,24 +157,14 @@ public struct HeroListFeature {
         }
     }
 }
-extension HeroListFeature.State {
-    func shouldLoadMoreHeroes(for id: Hero.ID) -> Bool {
-        guard heroes.count > 5,
-              id == heroes[heroes.count - 5].id,
-              repositoryState.total > heroes.count - 1
-        else {
-            return false
-        }
-        return true
-    }
-}
 public struct HeroListView: View {
     @Bindable var store: StoreOf<HeroListFeature>
     @FocusState private var isFocused: Bool
+    
     public init(store: StoreOf<HeroListFeature>) {
         self.store = store
     }
-
+    
     public var body: some View {
         List {
             ForEach(
@@ -222,7 +233,7 @@ public struct HeroListView: View {
         HeroListView(
             store: Store(
                 initialState: HeroListFeature.State(
-                    heroes: .mock,
+                    heroes: IdentifiedArray(uniqueElements: [HeroListRowFeature.State].mock),
                     repositoryState: HeroUseCaseFeature.State()
                 ),
                 reducer: { HeroListFeature()

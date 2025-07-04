@@ -9,19 +9,19 @@ extension IdentifiedArray where Element == ResourceSectionFeature.State {
                 sectionType: .comics,
                 resources: ResourceGridRowsFeature.State(resourceDetailsRows: .mock),
                 heroDetailsRepository: HeroDetailsUseCaseFeature.State(),
-                hereId: 1
+                heroId: 1
             ),
             ResourceSectionFeature.State(
                 sectionType: .series,
                 resources: ResourceGridRowsFeature.State(resourceDetailsRows: .mock),
                 heroDetailsRepository: HeroDetailsUseCaseFeature.State(),
-                hereId: 2
+                heroId: 2
             ),
             ResourceSectionFeature.State(
                 sectionType: .stories,
                 resources: ResourceGridRowsFeature.State(resourceDetailsRows: .mock),
                 heroDetailsRepository: HeroDetailsUseCaseFeature.State(),
-                hereId: 3
+                heroId: 3
             )
         ]
     }
