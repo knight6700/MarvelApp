@@ -52,6 +52,7 @@ jobs:
       - name: Install dependencies
         run: |
           brew install arkana-cli || true
+          brew install ask-cli
           gem install bundler
           bundle install
 
