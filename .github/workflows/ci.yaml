@@ -28,7 +28,7 @@ jobs:
         run: swiftlint --config marvelCore/.swiftlint.yml
 
       - name: Set up Xcode 16.4
-        run: sudo xcode-select -s /Applications/Xcode_16.4.app
+        run: sudo xcode-select -s /Applications/Xcode.app
 
       - name: Verify Swift version
         run: swift --version
@@ -43,7 +43,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Xcode 16.4
-        run: sudo xcode-select -s /Applications/Xcode_16.4.app
+        run: sudo xcode-select -s /Applications/Xcode.app
 
       - name: Install dependencies
         run: |
