@@ -13,7 +13,7 @@ concurrency:
 jobs:
   test-and-analyze:
     name: Run Tests & SonarCloud
-    runs-on: macos-14
+    runs-on: self-hosted
 
     steps:
       - name: Checkout code
@@ -28,7 +28,6 @@ jobs:
             -project WallaMarvel.xcodeproj \
             -scheme MarvelCoreTests \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
-            -enableCodeCoverage YES
 
       - name: Install xcresultparser
         run: |
