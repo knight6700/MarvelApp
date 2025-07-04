@@ -127,7 +127,7 @@ jobs:
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
 
       - name: Upload Snapshot Test Results
-        if: failure() # Upload on test failure
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: MarvelCoreTests.xcresult
