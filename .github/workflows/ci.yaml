@@ -118,5 +118,5 @@ jobs:
           path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
           retention-days: 7
 
-     - name: Code Coverage Summary Action
-       uses: jeantessier/code-coverage-summary-action@v1.0.4
+      - name: swifty-code-coverage
+        uses: michaelhenry/swifty-code-coverage@v1.0.1.4
