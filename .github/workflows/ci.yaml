@@ -15,7 +15,7 @@ on:
 jobs:
   lint:
     name: Run SwiftLint
-    runs-on: self-hosted # Use self-hosted macOS runner
+    runs-on: self-hosted
 
     steps:
       - name: Checkout code
@@ -41,7 +41,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for better analysis
+          fetch-depth: 0
+
+      - name: Cache SonarScanner CLI
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: sonar-scanner-cli-7.1.0.4889-macOS-ARM64
+          restore-keys: |
+            sonar-scanner-cli-
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
@@ -51,7 +59,7 @@ jobs:
   build:
     name: Build and Test App
     runs-on: self-hosted
-    needs: lint
+    needs: [lint]
 
     steps:
       - name: Checkout code
@@ -114,9 +122,9 @@ jobs:
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
 
       - name: Upload Snapshot Test Results
-        if: failure() # Even if tests fail
+        if: failure() # Upload on test failure
         uses: actions/upload-artifact@v4
         with:
           name: MarvelCoreTests.xcresult
-          path: ${{ runner.temp }}/MarvelSnapshotTests.xcresult
+          path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
           retention-days: 7
