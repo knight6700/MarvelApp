@@ -118,8 +118,13 @@ jobs:
           path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
           retention-days: 7
 
-      - name: Generate Code Coverage Report with Swifty
-        uses: michaelhenry/swifty-code-coverage@v1.0.1.3
-        with:
-          format: lcov
-          target-path: WallaMarvel.xcodeproj
+    - name: Install Slather
+      uses: gem install slather
+      
+    - name: Generate Coverage Report using Slather
+      uses: slather
+    - name: Upload Code Coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        files: coverage/lcov.info
+        token: ${{ secrets.SONAR_TOKEN }}
