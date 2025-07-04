@@ -57,6 +57,10 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          with:
+            args: >
+                -Dsonar.projectKey=knight6700_MarvelApp
+                -Dsonar.organization=knight6700   
   build:
     name: Build and Test App
     runs-on: self-hosted
