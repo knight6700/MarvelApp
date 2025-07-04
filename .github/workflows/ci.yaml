@@ -118,5 +118,8 @@ jobs:
           path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
           retention-days: 7
 
-      - name: swifty-code-coverage
-        uses: michaelhenry/swifty-code-coverage@v1.0.1.4
+      - name: Generate Code Coverage Report with Swifty
+        uses: michaelhenry/swifty-code-coverage@v1.0.1.3
+        with:
+          format: lcov
+          target-path: WallaMarvel.xcodeproj
