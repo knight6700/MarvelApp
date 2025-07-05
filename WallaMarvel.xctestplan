@@ -18,16 +18,16 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:WallaMarvel.xcodeproj",
-        "identifier" : "1A0E3AAA2862F7E300132FCB",
-        "name" : "WallaMarvelTests"
+        "containerPath" : "container:MarvelCore",
+        "identifier" : "MarvelSnapshotTests",
+        "name" : "MarvelSnapshotTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:WallaMarvel.xcodeproj",
-        "identifier" : "1A0E3AB42862F7E300132FCB",
-        "name" : "WallaMarvelUITests"
+        "identifier" : "1A0E3AAA2862F7E300132FCB",
+        "name" : "WallaMarvelTests"
       }
     }
   ],

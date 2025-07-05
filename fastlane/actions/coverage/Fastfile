@@ -1,0 +1,28 @@
+platform :ios do
+  desc "Run all tests and generate merged code coverage report"
+  lane :generate_coverage do
+    derived_data = "DerivedData"
+    output_dir = "coverage_output"
+    xcresult1 = "#{output_dir}/WallaMarvel.xcresult"
+
+    FileUtils.rm_rf(derived_data)
+    FileUtils.rm_rf(output_dir)
+    FileUtils.mkdir_p(output_dir)
+
+    scan(
+      scheme: "WallaMarvel",
+      project: "WallaMarvel.xcodeproj",
+      code_coverage: true,
+      testplan: "WallaMarvel",
+      result_bundle: true,
+      result_bundle_path: xcresult1
+    )
+
+    sh "xccov-to-lcov -p $(pwd) #{xcresult1} > #{output_dir}/core.lcov"
+    sh "cat #{output_dir}/core.lcov #{output_dir}/snapshot.lcov > #{output_dir}/merged.lcov"
+    sh "genhtml #{output_dir}/merged.lcov --output-directory #{output_dir}/html"
+
+    UI.success("✅ Code coverage report generated at: #{output_dir}/html/index.html")
+    sh "open #{output_dir}/html/index.html"
+  end
+end

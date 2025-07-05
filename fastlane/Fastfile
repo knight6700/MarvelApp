@@ -1,63 +1,10 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
 default_platform(:ios)
 
+import "actions/coverage/Fastfile"
+
 platform :ios do
-  desc "Run all tests and generate merged coverage report"
+  desc "Run coverage lane from imported file"
   lane :coverage do
-    derived_data = "DerivedData"
-    output_dir = "coverage_output"
-    xcresult1 = "#{output_dir}/MarvelCoreTests.xcresult"
-    xcresult2 = "#{output_dir}/MarvelSnapshotTests.xcresult"
-
-    # Clean up
-    sh "rm -rf #{output_dir}"
-    sh "mkdir -p #{output_dir}"
-
-    # Run MarvelCoreTests
-    scan(
-      scheme: "MarvelCoreTests",
-      output_directory: output_dir,
-      derived_data_path: derived_data,
-      result_bundle: true,
-      result_bundle_path: xcresult1,
-      code_coverage: true
-    )
-
-    # Run MarvelSnapshotTests
-    scan(
-      scheme: "MarvelSnapshotTests",
-      output_directory: output_dir,
-      derived_data_path: derived_data,
-      result_bundle: true,
-      result_bundle_path: xcresult2,
-      code_coverage: true
-    )
-
-    # Convert both to LCOV
-    sh "xccov-to-lcov -p $(pwd) #{xcresult1} > #{output_dir}/core.lcov"
-    sh "xccov-to-lcov -p $(pwd) #{xcresult2} > #{output_dir}/snapshot.lcov"
-
-    # Merge LCOV files
-    sh "cat #{output_dir}/core.lcov #{output_dir}/snapshot.lcov > #{output_dir}/merged.lcov"
-
-    # Generate HTML from LCOV
-    sh "genhtml #{output_dir}/merged.lcov --output-directory #{output_dir}/html"
-
-    # Optionally: Open report
-    sh "open #{output_dir}/html/index.html"
+    generate_coverage
   end
 end

@@ -3,17 +3,16 @@ import Foundation
 import HorizonNetwork
 
 struct HeroMapper {
-    let toDomain: @Sendable (_ dto: [HeroResult]) -> [Hero]
+    let toDomain: @Sendable (_ dto: [HeroResult], _ id: String) -> [Hero]
 }
 
 extension HeroMapper: DependencyKey {
     static var liveValue: Self {
-        @Dependency(\.uuid) var uuidGenerator
         return HeroMapper(
-            toDomain: { dto in
+            toDomain: { dto, id in
                 dto.map {
                     Hero(
-                        id: uuidGenerator.callAsFunction().uuidString, // to resolve duplicated id from api
+                        id: id, // to resolve duplicated id from api
                         heroId: $0.id,
                         imageURL: ThumbnailURLBuilder(thumbnail: $0.thumbnail).build(),
                         name: $0.name,
@@ -26,7 +25,7 @@ extension HeroMapper: DependencyKey {
 }
 extension HeroMapper: TestDependencyKey {
     static var testValue: Self {
-        .liveValue
+        return .liveValue
     }
     
     static var previewValue: Self {
