@@ -11,12 +11,16 @@ on:
     branches: [develop]
   pull_request:
     branches: [develop]
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   lint:
     name: Run SwiftLint
-    runs-on: self-hosted # Use self-hosted macOS runner
-
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -54,10 +58,10 @@ jobs:
       - name: Set Marvel API keys and run Arkana
         run: |
           echo "Setting Marvel API keys for Arkana..."
-          export publicKeyDebug="$MARVEL_PUBLIC_DEBUG"
-          export privateKeyDebug="$MARVEL_PRIVATE_DEBUG"
-          export publicKeyRelease="$MARVEL_PUBLIC_RELEASE"
-          export privateKeyRelease="$MARVEL_PRIVATE_RELEASE"
+          export publicKeyDebug="${MARVEL_PUBLIC_DEBUG}"
+          export privateKeyDebug="${MARVEL_PRIVATE_DEBUG}"
+          export publicKeyRelease="${MARVEL_PUBLIC_RELEASE}"
+          export privateKeyRelease="${MARVEL_PRIVATE_RELEASE}"
 
           echo "Keys loaded:"
           echo "- publicKeyDebug: ${publicKeyDebug:0:4}..."
@@ -96,12 +100,21 @@ jobs:
           xcodebuild test \
             -project WallaMarvel.xcodeproj \
             -scheme MarvelCoreTests \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
+            -enableCodeCoverage YES
 
+      - name: Run Snapshot Tests
+        run: |
+          xcodebuild test \
+            -project WallaMarvel.xcodeproj \
+            -scheme MarvelSnapshotTests \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
+            -enableCodeCoverage YES \
+            -resultBundlePath ${{ runner.temp }}/MarvelSnapshotTests.xcresult
       - name: Upload Snapshot Test Results
-        if: always() # Even if tests fail
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: MarvelSnapshotTests.xcresult
           path: ${{ runner.temp }}/MarvelSnapshotTests.xcresult
-          retention-days: 7
+          retention-days: 1
