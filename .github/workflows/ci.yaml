@@ -117,14 +117,3 @@ jobs:
           name: MarvelCoreTests.xcresult
           path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
           retention-days: 7
-
-    - name: Install Slather
-      uses: gem install slather
-      
-    - name: Generate Coverage Report using Slather
-      uses: slather
-    - name: Upload Code Coverage to Codecov
-      uses: codecov/codecov-action@v4
-      with:
-        files: coverage/lcov.info
-        token: ${{ secrets.SONAR_TOKEN }}
