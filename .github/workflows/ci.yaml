@@ -58,10 +58,10 @@ jobs:
       - name: Set Marvel API keys and run Arkana
         run: |
           echo "Setting Marvel API keys for Arkana..."
-          export publicKeyDebug="$MARVEL_PUBLIC_DEBUG"
-          export privateKeyDebug="$MARVEL_PRIVATE_DEBUG"
-          export publicKeyRelease="$MARVEL_PUBLIC_RELEASE"
-          export privateKeyRelease="$MARVEL_PRIVATE_RELEASE"
+          export publicKeyDebug="${MARVEL_PUBLIC_DEBUG}"
+          export privateKeyDebug="${MARVEL_PRIVATE_DEBUG}"
+          export publicKeyRelease="${MARVEL_PUBLIC_RELEASE}"
+          export privateKeyRelease="${MARVEL_PRIVATE_RELEASE}"
 
           echo "Keys loaded:"
           echo "- publicKeyDebug: ${publicKeyDebug:0:4}..."
@@ -100,17 +100,19 @@ jobs:
           xcodebuild test \
             -project WallaMarvel.xcodeproj \
             -scheme MarvelCoreTests \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
-            -enableCodeCoverage YES 
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
+            -enableCodeCoverage YES
+
       - name: Run Snapshot Tests
         run: |
           xcodebuild test \
             -project WallaMarvel.xcodeproj \
             -scheme MarvelSnapshotTests \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
-            -enableCodeCoverage YES 
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
+            -enableCodeCoverage YES \
+            -resultBundlePath ${{ runner.temp }}/MarvelSnapshotTests.xcresult
       - name: Upload Snapshot Test Results
-        if: failure() # Even if tests fail
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: MarvelSnapshotTests.xcresult
