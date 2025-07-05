@@ -38,20 +38,20 @@ jobs:
         run: swift --version
 
   build:
-    name: Build & Test
+    name: Build and Test App
     runs-on: self-hosted
-    needs: [lint]
+    needs: lint
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set Xcode version
+      - name: Set up Xcode 16.4
         run: sudo xcode-select -s /Applications/Xcode.app
 
       - name: Install dependencies
         run: |
           brew install arkana-cli || true
-          brew install ask-cli
           gem install bundler
           bundle install
 
@@ -100,20 +100,17 @@ jobs:
           xcodebuild test \
             -project WallaMarvel.xcodeproj \
             -scheme MarvelCoreTests \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
-            -enableCodeCoverage YES
-
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
       - name: Run Snapshot Tests
         run: |
           xcodebuild test \
             -project WallaMarvel.xcodeproj \
             -scheme MarvelSnapshotTests \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
-
       - name: Upload Snapshot Test Results
-        if: failure()
+        if: failure() # Even if tests fail
         uses: actions/upload-artifact@v4
         with:
-          name: MarvelCoreTests.xcresult
-          path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
-          retention-days: 7
+          name: MarvelSnapshotTests.xcresult
+          path: ${{ runner.temp }}/MarvelSnapshotTests.xcresult
+          retention-days: 1
