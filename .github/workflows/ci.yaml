@@ -38,7 +38,7 @@ jobs:
         run: swift --version
 
   build:
-    name: Build, Test & Analyze App
+    name: Build & Test
     runs-on: self-hosted
     needs: [lint]
     steps:
