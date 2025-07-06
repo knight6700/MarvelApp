@@ -114,18 +114,19 @@ Then repeat the setup steps.
 Happy CI/CD! 🎉
 
 ```
-# Install
+# Install xccov2lcov
+###Clone the repository
 git clone https://github.com/trax-retail/xccov2lcov.git
 cd xccov2lcov
 
-# Build the tool
+###Build the tool
 swift build -c release
 
-# Install it (choose one of these options)
-# Option 1: Copy to /usr/local/bin
+####Install it (choose one of these options)
+####Option 1: Copy to /usr/local/bin
 sudo cp .build/release/xccov2lcov /usr/local/bin/
 
-# Option 2: Or add to your PATH
+####Option 2: Or add to your PATH
 echo 'export PATH="$PATH:$(pwd)/.build/release"' >> ~/.zshrc
 source ~/.zshrc
 
