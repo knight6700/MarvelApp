@@ -21,7 +21,7 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios generate_coverage
 ```
 
-Run all tests and generate merged code coverage report
+Run all tests and generate Sonar-compatible code coverage report
 
 ### ios coverage
 

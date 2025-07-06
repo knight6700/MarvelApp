@@ -17,7 +17,6 @@ import HorizonNetwork
 
     @Dependency(\.heroRemoteDataSource) var remoteDataSource
     @Dependency(\.heroMapper) var heroMapper
-     @Dependency(\.uuid) var uuidGenerator
      public init() {
      }
      public enum Delegate: Equatable {
@@ -43,15 +42,13 @@ import HorizonNetwork
             state.offset = isRefreshable ? 0 : state.offset + 1
             return .run { [offset = state.offset,
                            remote = remoteDataSource,
-                           mapper = heroMapper,
-                           uuidGenerator = self.uuidGenerator
-            ] send in
+                           mapper = heroMapper] send in
                 await withTaskCancellation(id: CancelID.fetchHeroes) {
                     do {
                         await send(.delegate(.showLoader(isRefreshable)))
                         let params = HeroesParams(name: name, offset: offset)
                         let response = try await remote.fetchHeroes(params)
-                        let domainModel = mapper.toDomain(response.data.results, uuidGenerator.callAsFunction().uuidString)
+                        let domainModel = mapper.toDomain(response.data.results)
                         await send(.response(.success(domainModel), response.data.total))
                     } catch {
                         guard let error = error as? APIError else {

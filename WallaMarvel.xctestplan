@@ -25,9 +25,9 @@
     },
     {
       "target" : {
-        "containerPath" : "container:WallaMarvel.xcodeproj",
-        "identifier" : "1A0E3AAA2862F7E300132FCB",
-        "name" : "WallaMarvelTests"
+        "containerPath" : "container:MarvelCore",
+        "identifier" : "MarvelCoreTests",
+        "name" : "MarvelCoreTests"
       }
     }
   ],

@@ -1,28 +1,145 @@
+default_platform(:ios)
+
 platform :ios do
-  desc "Run all tests and generate merged code coverage report"
+  desc "Run all tests and generate Sonar-compatible code coverage report"
   lane :generate_coverage do
     derived_data = "DerivedData"
     output_dir = "coverage_output"
-    xcresult1 = "#{output_dir}/WallaMarvel.xcresult"
+    xcresult = "#{output_dir}/WallaMarvel.xcresult"
+    lcov = "#{output_dir}/coverage.lcov"
 
+    # Clean up old test results and coverage data
     FileUtils.rm_rf(derived_data)
     FileUtils.rm_rf(output_dir)
     FileUtils.mkdir_p(output_dir)
+    
+    # Force remove the specific xcresult path with shell command
+    sh "rm -rf '#{xcresult}'" if File.exist?(xcresult)
+    
+    # Double check it's gone
+    UI.message("Checking if xcresult exists: #{File.exist?(xcresult)}")
+    
+    # Small delay to ensure filesystem operations complete
+    sleep(1)
 
+    ##############################
+    # Run WallaMarvel with Test Plan
+    ##############################
     scan(
       scheme: "WallaMarvel",
       project: "WallaMarvel.xcodeproj",
       code_coverage: true,
       testplan: "WallaMarvel",
       result_bundle: true,
-      result_bundle_path: xcresult1
+      clean: true,  # Clean before building
+      derived_data_path: derived_data  # Use specific derived data path
     )
+    
+    # Find the generated xcresult file
+    xcresult_files = Dir.glob("#{derived_data}/**/WallaMarvel_*.xcresult")
+    if xcresult_files.empty?
+      xcresult_files = Dir.glob("**/WallaMarvel*.xcresult")
+    end
+    
+    if xcresult_files.empty?
+      UI.error("❌ No xcresult file found!")
+      next
+    end
+    
+    source_xcresult = xcresult_files.first
+    UI.message("Found xcresult at: #{source_xcresult}")
+    
+    # Copy to our desired location
+    FileUtils.cp_r(source_xcresult, xcresult)
 
-    sh "xccov-to-lcov -p $(pwd) #{xcresult1} > #{output_dir}/core.lcov"
-    sh "cat #{output_dir}/core.lcov #{output_dir}/snapshot.lcov > #{output_dir}/merged.lcov"
-    sh "genhtml #{output_dir}/merged.lcov --output-directory #{output_dir}/html"
+    ##############################
+    # Convert xcresult to LCOV (for SonarQube)
+    ##############################
+    
+    # Check if xcresult file exists and is valid
+    unless File.exist?(xcresult)
+      UI.error("❌ xcresult file not found at: #{xcresult}")
+      next
+    end
+    
+    UI.message("Converting xcresult to coverage reports...")
+    UI.message("Input: #{xcresult}")
+    
+    begin
+      # Use Apple's built-in xccov tool (most reliable)
+      UI.message("Using Apple's xccov tool...")
+      
+      # Generate JSON report (good for parsing)
+      json_report = "#{output_dir}/coverage.json"
+      sh "xcrun xccov view --report --json '#{xcresult}' > '#{json_report}'"
+      
+      # Generate text report (human readable)
+      text_report = "#{output_dir}/coverage.txt"
+      sh "xcrun xccov view --report '#{xcresult}' > '#{text_report}'"
+      
+      # Try to convert JSON to LCOV format (simple conversion)
+      UI.message("Converting JSON to LCOV format...")
+      
+      # Create a simple LCOV file from the JSON data
+      lcov_content = convert_json_to_lcov(json_report)
+      File.write(lcov, lcov_content)
+      
+      UI.success("✅ Coverage reports generated:")
+      UI.message("  JSON: #{json_report}")
+      UI.message("  Text: #{text_report}")
+      UI.message("  LCOV: #{lcov}")
+      
+    rescue => e
+      UI.error("❌ Failed to generate coverage reports: #{e.message}")
+      UI.message("You can manually convert the xcresult file using:")
+      UI.message("  xcrun xccov view --report --json '#{xcresult}' > coverage.json")
+      UI.message("  xcrun xccov view --report '#{xcresult}' > coverage.txt")
+    end
+  end
+  
+  # Helper method to convert JSON coverage to basic LCOV format
+  def convert_json_to_lcov(json_file)
+    require 'json'
+    
+    begin
+      json_data = JSON.parse(File.read(json_file))
+      lcov_content = ""
+      
+      if json_data['targets']
+        json_data['targets'].each do |target|
+          if target['files']
+            target['files'].each do |file|
+              lcov_content += "SF:#{file['path']}\n"
+              
+              if file['functions']
+                file['functions'].each do |func|
+                  lcov_content += "FN:#{func['lineNumber']},#{func['name']}\n"
+                  lcov_content += "FNDA:#{func['executionCount']},#{func['name']}\n"
+                end
+                lcov_content += "FNF:#{file['functions'].size}\n"
+                lcov_content += "FNH:#{file['functions'].count { |f| f['executionCount'] > 0 }}\n"
+              end
+              
+              if file['lines']
+                file['lines'].each do |line|
+                  lcov_content += "DA:#{line['line']},#{line['executionCount']}\n"
+                end
+                lcov_content += "LF:#{file['lines'].size}\n"
+                lcov_content += "LH:#{file['lines'].count { |l| l['executionCount'] > 0 }}\n"
+              end
+              
+              lcov_content += "end_of_record\n"
+            end
+          end
+        end
+      end
+      
+      return lcov_content
+    rescue => e
+      UI.error("Failed to convert JSON to LCOV: #{e.message}")
+      return "# LCOV conversion failed\n# Use the JSON or text reports instead\n"
+    end
 
-    UI.success("✅ Code coverage report generated at: #{output_dir}/html/index.html")
-    sh "open #{output_dir}/html/index.html"
+    UI.success("✅ Sonar-compatible coverage report generated at: #{lcov}")
   end
 end

@@ -1,4 +1,4 @@
-name: iOS CI with Arkana
+name: iOS CI with Arkana and SonarCloud
 
 env:
   MARVEL_PUBLIC_DEBUG: ${{ secrets.MARVEL_PUBLIC_DEBUG }}
@@ -45,6 +45,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for better SonarCloud analysis
 
       - name: Set up Xcode 16.4
         run: sudo xcode-select -s /Applications/Xcode.app
@@ -53,6 +55,7 @@ jobs:
         run: |
           brew install arkana-cli || true
           gem install bundler
+          gem install fastlane
           bundle install
 
       - name: Set Marvel API keys and run Arkana
@@ -95,22 +98,38 @@ jobs:
             -configuration Debug \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
 
-      - name: Run Unit Tests
+      - name: Generate Coverage Reports using Fastlane
         run: |
-          xcodebuild test \
-            -project WallaMarvel.xcodeproj \
-            -scheme MarvelCoreTests \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
-            -enableCodeCoverage YES
+          # Use Fastlane to run tests and generate coverage reports
+          bundle exec fastlane ios generate_coverage
 
-      - name: Run Snapshot Tests
+      - name: Install SonarCloud Scanner
         run: |
-          xcodebuild test \
-            -project WallaMarvel.xcodeproj \
-            -scheme MarvelSnapshotTests \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
-            -enableCodeCoverage YES \
-            -resultBundlePath ${{ runner.temp }}/MarvelSnapshotTests.xcresult
+          brew install sonar-scanner
+
+      - name: Run SonarCloud Scan
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+            -Dsonar.sources=. \
+            -Dsonar.exclusions=**/*.xcresult/**,**/DerivedData/**,**/.build/**,**/Pods/**,**/*.generated.swift \
+            -Dsonar.swift.coverage.reportPaths=coverage_output/core_coverage.json,coverage_output/snapshot_coverage.json \
+            -Dsonar.swift.swiftLint.reportPaths=swiftlint-report.xml
+
+      - name: Upload Coverage Reports (Optional)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-reports
+          path: coverage_output/
+          retention-days: 7
+
       - name: Upload Snapshot Test Results
         if: failure()
         uses: actions/upload-artifact@v4
