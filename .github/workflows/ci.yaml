@@ -120,11 +120,29 @@ jobs:
       - name: Convert XcResult to JSON
         run: |
           mkdir -p coverage_output
-          echo "📦 Converting MarvelCoreTests..."
-          xcrun xccov view --report --json ./TestResults/MarvelCoreTests.xcresult > coverage_output/core_coverage.json
-          echo "📦 Converting MarvelSnapshotTests..."
-          xcrun xccov view --report --json ./TestResults/MarvelSnapshotTests.xcresult > coverage_output/snapshot_coverage.json
-          echo "✅ JSON coverage files saved to coverage_output/"
+
+          echo "📦 Searching for MarvelCoreTests.xcresult..."
+          CORE_RESULT=$(find ~/Library/Developer/Xcode/DerivedData -type d -path "*/Logs/Test/Test-MarvelCoreTests*.xcresult" | sort | tail -n 1)
+
+          echo "📦 Searching for MarvelSnapshotTests.xcresult..."
+          SNAPSHOT_RESULT=$(find ~/Library/Developer/Xcode/DerivedData -type d -path "*/Logs/Test/Test-MarvelSnapshotTests*.xcresult" | sort | tail -n 1)
+
+          if [ -d "$CORE_RESULT" ]; then
+            echo "✅ Found: $CORE_RESULT"
+            xcrun xccov view --report --json "$CORE_RESULT" > coverage_output/core_coverage.json
+          else
+            echo "❌ MarvelCoreTests.xcresult not found"
+          fi
+
+          if [ -d "$SNAPSHOT_RESULT" ]; then
+            echo "✅ Found: $SNAPSHOT_RESULT"
+            xcrun xccov view --report --json "$SNAPSHOT_RESULT" > coverage_output/snapshot_coverage.json
+          else
+            echo "❌ MarvelSnapshotTests.xcresult not found"
+          fi
+
+          echo "🎯 JSON coverage files saved to coverage_output/"
+
       - name: Upload Coverage Reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -181,37 +199,3 @@ jobs:
             -Dsonar.exclusions=**/*.xcresult/**,**/DerivedData/**,**/.build/**,**/Pods/**,**/*.generated.swift \
             -Dsonar.swift.coverage.reportPaths=coverage_output/core_coverage.json,coverage_output/snapshot_coverage.json \
             -Dsonar.swift.swiftLint.reportPaths=swiftlint-report.xml
-
-      - name: Cleanup Coverage, Test Results, and DerivedData logs
-        if: always()
-        run: |
-          echo "🧹 Starting cleanup..."
-          if [ -d "coverage_output/" ]; then
-            echo "Removing coverage_output/ directory..."
-            rm -rf coverage_output/
-            echo "✅ coverage_output/ removed"
-          else
-            echo "ℹ️  coverage_output/ not found"
-          fi
-          if [ -d "TestResults/" ]; then
-            echo "Removing TestResults/ directory..."
-            rm -rf TestResults/
-            echo "✅ TestResults/ removed"
-          else
-            echo "ℹ️  TestResults/ not found"
-          fi
-          echo "Searching for .xcresult files in DerivedData..."
-          XCRESULT_FILES=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult" -type d 2>/dev/null || true)
-
-          if [ -n "$XCRESULT_FILES" ]; then
-            echo "Found .xcresult files to remove:"
-            echo "$XCRESULT_FILES"
-            find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult" -type d -exec rm -rf {} + 2>/dev/null || true
-            echo "✅ .xcresult files removed"
-          else
-            echo "ℹ️  No .xcresult files found in DerivedData"
-          fi
-          echo "Cleaning entire DerivedData..."
-          rm -rf ~/Library/Developer/Xcode/DerivedData/* 2>/dev/null || true
-          echo "✅ DerivedData cleaned"
-          echo "🎉 Cleanup complete!"
