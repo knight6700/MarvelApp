@@ -133,7 +133,7 @@ jobs:
           fi
 
       - name: Convert JSON to XML
-        run: python3 Scripts/json_to_xml.py
+        run: python3 scripts/json_to_xml.py
 
       - name: Upload Coverage Reports
         if: always()
