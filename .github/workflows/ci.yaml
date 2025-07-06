@@ -173,7 +173,7 @@ jobs:
         run: |
           sonar-scanner \
             -Dsonar.projectKey=knight6700_MarvelApp \
-            -Dsonar.organization=Faris \
+            -Dsonar.organization=knight6700 \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.sources=. \
             -Dsonar.exclusions=**/*.xcresult/**,**/DerivedData/**,**/.build/**,**/Pods/**,**/*.generated.swift \
