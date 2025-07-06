@@ -118,16 +118,13 @@ jobs:
             -enableCodeCoverage YES
 
       - name: Convert XcResult to JSON
-          run: |
-            mkdir -p coverage_output
-
-            echo "📦 Converting MarvelCoreTests..."
-            xcrun xccov view --report --json ./TestResults/MarvelCoreTests.xcresult > coverage_output/core_coverage.json
-
-            echo "📦 Converting MarvelSnapshotTests..."
-            xcrun xccov view --report --json ./TestResults/MarvelSnapshotTests.xcresult > coverage_output/snapshot_coverage.json
-
-            echo "✅ JSON coverage files saved to coverage_output/"
+        run: |
+          mkdir -p coverage_output
+          echo "📦 Converting MarvelCoreTests..."
+          xcrun xccov view --report --json ./TestResults/MarvelCoreTests.xcresult > coverage_output/core_coverage.json
+          echo "📦 Converting MarvelSnapshotTests..."
+          xcrun xccov view --report --json ./TestResults/MarvelSnapshotTests.xcresult > coverage_output/snapshot_coverage.json
+          echo "✅ JSON coverage files saved to coverage_output/"
       - name: Upload Coverage Reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -189,7 +186,6 @@ jobs:
         if: always()
         run: |
           echo "🧹 Starting cleanup..."
-          
           if [ -d "coverage_output/" ]; then
             echo "Removing coverage_output/ directory..."
             rm -rf coverage_output/
@@ -197,7 +193,6 @@ jobs:
           else
             echo "ℹ️  coverage_output/ not found"
           fi
-          
           if [ -d "TestResults/" ]; then
             echo "Removing TestResults/ directory..."
             rm -rf TestResults/
@@ -205,10 +200,9 @@ jobs:
           else
             echo "ℹ️  TestResults/ not found"
           fi
-          
           echo "Searching for .xcresult files in DerivedData..."
           XCRESULT_FILES=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult" -type d 2>/dev/null || true)
-          
+
           if [ -n "$XCRESULT_FILES" ]; then
             echo "Found .xcresult files to remove:"
             echo "$XCRESULT_FILES"
@@ -217,9 +211,7 @@ jobs:
           else
             echo "ℹ️  No .xcresult files found in DerivedData"
           fi
-          
           echo "Cleaning entire DerivedData..."
           rm -rf ~/Library/Developer/Xcode/DerivedData/* 2>/dev/null || true
           echo "✅ DerivedData cleaned"
-          
           echo "🎉 Cleanup complete!"
