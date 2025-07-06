@@ -4,7 +4,7 @@ platform :ios do
   desc "Run all tests and generate Sonar-compatible code coverage report"
   lane :generate_coverage do
     derived_data = "DerivedData"
-    output_dir = "coverage_output"
+    output_dir = "fastlane/coverage_output"
     xcresult = "#{output_dir}/WallaMarvel.xcresult"
     lcov = "#{output_dir}/coverage.lcov"
 
@@ -31,8 +31,9 @@ platform :ios do
       code_coverage: true,
       testplan: "WallaMarvel",
       result_bundle: true,
-      clean: true,  # Clean before building
-      derived_data_path: derived_data  # Use specific derived data path
+      clean: true,
+      derived_data_path: derived_data,
+      destination: "platform=iOS Simulator,name=iPhone 16 Pro"
     )
     
     # Find the generated xcresult file
