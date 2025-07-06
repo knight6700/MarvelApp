@@ -84,6 +84,7 @@ jobs:
         run: |
           rm -rf ~/Library/Developer/Xcode/DerivedData
           rm -rf .build
+
       - name: Resolve SPM Dependencies
         run: |
           xcodebuild -resolvePackageDependencies \
@@ -105,7 +106,7 @@ jobs:
             -scheme MarvelCoreTests \
             -configuration Debug \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
-            -enableCodeCoverage YES \
+            -enableCodeCoverage YES
 
       - name: Run SnapshotTests
         run: |
@@ -114,14 +115,14 @@ jobs:
             -scheme MarvelSnapshotTests \
             -configuration Debug \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
-            -enableCodeCoverage YES \
+            -enableCodeCoverage YES
 
       - name: Convert Latest Xcresult to JSON
-          run: |
-            mkdir -p coverage_output
-            LATEST_RESULT=$(find ~/Library/Developer/Xcode/DerivedData -type d -name "*.xcresult" | sort -r | head -n 1)
-            echo "Using result bundle at: $LATEST_RESULT"
-            xcrun xccov view --report --json "$LATEST_RESULT" > coverage_output/combined_coverage.json
+        run: |
+          mkdir -p coverage_output
+          LATEST_RESULT=$(find ~/Library/Developer/Xcode/DerivedData -type d -name "*.xcresult" | sort -r | head -n 1)
+          echo "Using result bundle at: $LATEST_RESULT"
+          xcrun xccov view --report --json "$LATEST_RESULT" > coverage_output/combined_coverage.json
 
       - name: Upload Coverage Reports
         if: always()
@@ -144,7 +145,8 @@ jobs:
     runs-on: self-hosted
     needs: build
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -180,9 +182,9 @@ jobs:
             -Dsonar.swift.swiftLint.reportPaths=swiftlint-report.xml
 
       - name: Cleanup Coverage, Test Results, and DerivedData logs
-          if: always()
-          run: |
-             echo "🧹 Removing coverage_output/, TestResults/, and xcresult logs from DerivedData..."
-             rm -rf coverage_output/ TestResults/
-             find ~/Library/Developer/Xcode/DerivedData -type d -path "*/Logs/Test" -exec rm -rf {} \;
-             echo "✅ Cleanup complete."
+        if: always()
+        run: |
+          echo "🧹 Removing coverage_output/, TestResults/, and xcresult logs from DerivedData..."
+          rm -rf coverage_output/ TestResults/
+          find ~/Library/Developer/Xcode/DerivedData -type d -path "*/Logs/Test" -exec rm -rf {} \;
+          echo "✅ Cleanup complete."
