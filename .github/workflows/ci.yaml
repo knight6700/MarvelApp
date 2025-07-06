@@ -84,7 +84,6 @@ jobs:
         run: |
           rm -rf ~/Library/Developer/Xcode/DerivedData
           rm -rf .build
-
       - name: Resolve SPM Dependencies
         run: |
           xcodebuild -resolvePackageDependencies \
