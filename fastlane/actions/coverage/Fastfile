@@ -33,7 +33,7 @@ platform :ios do
       result_bundle: true,
       clean: true,
       derived_data_path: derived_data,
-      destination: "platform=iOS Simulator,name=iPhone 16 Pro"
+      destination: "platform=iOS Simulator,name=iPhone 16,OS=18.2"
     )
     
     # Find the generated xcresult file
