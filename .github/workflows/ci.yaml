@@ -24,13 +24,15 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install SwiftLint
         run: brew install swiftlint
 
       - name: Run SwiftLint
-        run: swiftlint --config marvelCore/.swiftlint.yml
+        run: |
+          swiftlint --config marvelCore/.swiftlint.yml --reporter junit > swiftlint-report.xml
+          swiftlint --config marvelCore/.swiftlint.yml
 
       - name: Set up Xcode 16.4
         run: sudo xcode-select -s /Applications/Xcode.app
@@ -38,16 +40,22 @@ jobs:
       - name: Verify Swift version
         run: swift --version
 
+      - name: Upload SwiftLint Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: swiftlint-report
+          path: swiftlint-report.xml
+          retention-days: 7
+
   build:
     name: Build and Test App
     runs-on: self-hosted
     needs: lint
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for better SonarCloud analysis
+          fetch-depth: 0  # Required for full history in SonarCloud
 
       - name: Set up Xcode 16.4
         run: sudo xcode-select -s /Applications/Xcode.app
@@ -61,18 +69,10 @@ jobs:
 
       - name: Set Marvel API keys and run Arkana
         run: |
-          echo "Setting Marvel API keys for Arkana..."
           export publicKeyDebug="${MARVEL_PUBLIC_DEBUG}"
           export privateKeyDebug="${MARVEL_PRIVATE_DEBUG}"
           export publicKeyRelease="${MARVEL_PUBLIC_RELEASE}"
           export privateKeyRelease="${MARVEL_PRIVATE_RELEASE}"
-
-          echo "Keys loaded:"
-          echo "- publicKeyDebug: ${publicKeyDebug:0:4}..."
-          echo "- privateKeyDebug: ${privateKeyDebug:0:4}..."
-          echo "- publicKeyRelease: ${publicKeyRelease:0:4}..."
-          echo "- privateKeyRelease: ${privateKeyRelease:0:4}..."
-
           bundle exec arkana
 
       - name: Skip Xcode macro validations
@@ -100,26 +100,7 @@ jobs:
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
 
       - name: Generate Coverage Reports using Fastlane
-        run: |
-          # Use Fastlane to run tests and generate coverage reports
-          bundle exec fastlane ios generate_coverage
-
-      - name: Install SonarCloud Scanner
-        run: |
-          brew install sonar-scanner
-
-      - name: Run SonarCloud Scan
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.sources=. \
-            -Dsonar.exclusions=**/*.xcresult/**,**/DerivedData/**,**/.build/**,**/Pods/**,**/*.generated.swift \
-            -Dsonar.swift.coverage.reportPaths=coverage_output/core_coverage.json,coverage_output/snapshot_coverage.json \
-            -Dsonar.swift.swiftLint.reportPaths=swiftlint-report.xml
+        run: bundle exec fastlane ios generate_coverage
 
       - name: Upload Coverage Reports (Optional)
         if: always()
@@ -136,3 +117,16 @@ jobs:
           name: MarvelSnapshotTests.xcresult
           path: ${{ runner.temp }}/MarvelSnapshotTests.xcresult
           retention-days: 1
+
+  sonarqube:
+    name: SonarQube
+    runs-on: self-hosted
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
