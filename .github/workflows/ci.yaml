@@ -119,30 +119,26 @@ jobs:
 
       - name: Convert XcResult to JSON
         run: |
-          mkdir -p coverage_output
-
-          echo "📦 Searching for MarvelCoreTests.xcresult..."
-          CORE_RESULT=$(find ~/Library/Developer/Xcode/DerivedData -type d -path "*/Logs/Test/Test-MarvelCoreTests*.xcresult" | sort | tail -n 1)
-
-          echo "📦 Searching for MarvelSnapshotTests.xcresult..."
-          SNAPSHOT_RESULT=$(find ~/Library/Developer/Xcode/DerivedData -type d -path "*/Logs/Test/Test-MarvelSnapshotTests*.xcresult" | sort | tail -n 1)
-
-          if [ -d "$CORE_RESULT" ]; then
-            echo "✅ Found: $CORE_RESULT"
-            xcrun xccov view --report --json "$CORE_RESULT" > coverage_output/core_coverage.json
-          else
-            echo "❌ MarvelCoreTests.xcresult not found"
-          fi
-
-          if [ -d "$SNAPSHOT_RESULT" ]; then
-            echo "✅ Found: $SNAPSHOT_RESULT"
-            xcrun xccov view --report --json "$SNAPSHOT_RESULT" > coverage_output/snapshot_coverage.json
-          else
-            echo "❌ MarvelSnapshotTests.xcresult not found"
-          fi
-
-          echo "🎯 JSON coverage files saved to coverage_output/"
-
+            mkdir -p coverage_output
+            echo "📦 Searching for MarvelCoreTests.xcresult..."
+            CORE_RESULT=$(find ~/Library/Developer/Xcode/DerivedData -type d -path "*/Logs/Test/Test-MarvelCoreTests*.xcresult" | sort | tail -n 1)
+            echo "📦 Searching for MarvelSnapshotTests.xcresult..."
+            SNAPSHOT_RESULT=$(find ~/Library/Developer/Xcode/DerivedData -type d -path "*/Logs/Test/Test-MarvelSnapshotTests*.xcresult" | sort | tail -n 1)
+            if [ -d "$CORE_RESULT" ]; then
+              echo "✅ Found: $CORE_RESULT"
+              # Generate XML format instead of JSON
+              xcrun xccov view --report --xml "$CORE_RESULT" > coverage_output/core_coverage.xml
+            else
+              echo "❌ MarvelCoreTests.xcresult not found"
+            fi
+            if [ -d "$SNAPSHOT_RESULT" ]; then
+              echo "✅ Found: $SNAPSHOT_RESULT"
+              # Generate XML format instead of JSON
+              xcrun xccov view --report --xml "$SNAPSHOT_RESULT" > coverage_output/snapshot_coverage.xml
+            else
+              echo "❌ MarvelSnapshotTests.xcresult not found"
+            fi
+            echo "🎯 XML coverage files saved to coverage_output/"
       - name: Upload Coverage Reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -197,5 +193,5 @@ jobs:
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.sources=. \
             -Dsonar.exclusions=**/*.xcresult/**,**/DerivedData/**,**/.build/**,**/Pods/**,**/*.generated.swift \
-            -Dsonar.swift.coverage.reportPaths=coverage_output/core_coverage.json,coverage_output/snapshot_coverage.json \
+            -Dsonar.swift.coverage.reportPaths=coverage_output/core_coverage.xml,coverage_output/snapshot_coverage.xml \
             -Dsonar.swift.swiftLint.reportPaths=swiftlint-report.xml
