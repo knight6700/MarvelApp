@@ -127,14 +127,14 @@ jobs:
             if [ -d "$CORE_RESULT" ]; then
               echo "✅ Found: $CORE_RESULT"
               # Generate XML format instead of JSON
-              xcrun xccov view --report --xml "$CORE_RESULT" > coverage_output/core_coverage.xml
+              xcrun xccov view --report "$CORE_RESULT" > coverage_output/core_coverage.xml
             else
               echo "❌ MarvelCoreTests.xcresult not found"
             fi
             if [ -d "$SNAPSHOT_RESULT" ]; then
               echo "✅ Found: $SNAPSHOT_RESULT"
               # Generate XML format instead of JSON
-              xcrun xccov view --report --xml "$SNAPSHOT_RESULT" > coverage_output/snapshot_coverage.xml
+              xcrun xccov view --report "$SNAPSHOT_RESULT" > coverage_output/snapshot_coverage.xml
             else
               echo "❌ MarvelSnapshotTests.xcresult not found"
             fi
