@@ -98,38 +98,16 @@ jobs:
             -configuration Debug \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
 
-      - name: Run UnitTests
+      - name: Run Tests and Generate Coverage
         run: |
-          xcodebuild test \
-            -project WallaMarvel.xcodeproj \
-            -scheme MarvelCoreTests \
-            -configuration Debug \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
-            -enableCodeCoverage YES \
-            -resultBundlePath ./TestResults/MarvelCoreTests.xcresult
-
-      - name: Run SnapshotTests
-        run: |
-          xcodebuild test \
-            -project WallaMarvel.xcodeproj \
-            -scheme MarvelSnapshotTests \
-            -configuration Debug \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
-            -enableCodeCoverage YES \
-            -resultBundlePath ./TestResults/MarvelSnapshotTests.xcresult
-
-      - name: Convert XcResult to JSON
-        run: |
-          mkdir -p coverage_output
-          xcrun xccov view --report --json ./TestResults/MarvelCoreTests.xcresult > coverage_output/core_coverage.json
-          xcrun xccov view --report --json ./TestResults/MarvelSnapshotTests.xcresult > coverage_output/snapshot_coverage.json
+          bundle exec fastlane coverage
 
       - name: Upload Coverage Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: coverage-reports
-          path: coverage_output/
+          path: fastlane/coverage_output/
           retention-days: 7
 
       - name: Upload Snapshot Test Results
@@ -177,12 +155,13 @@ jobs:
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.sources=. \
             -Dsonar.exclusions=**/*.xcresult/**,**/DerivedData/**,**/.build/**,**/Pods/**,**/*.generated.swift \
-            -Dsonar.swift.coverage.reportPaths=coverage_output/core_coverage.json,coverage_output/snapshot_coverage.json \
+            -Dsonar.swift.coverage.reportPaths=fastlane/coverage_output/coverage.json \
+            -Dsonar.coverageReportPaths=fastlane/coverage_output/coverage.lcov \
             -Dsonar.swift.swiftLint.reportPaths=swiftlint-report.xml
 
       - name: Cleanup Coverage and Test Results
         if: always()
         run: |
           echo "🧹 Cleaning up coverage_output and TestResults..."
-          rm -rf coverage_output/*
+          rm -rf fastlane/coverage_output/*
           rm -rf TestResults/*
