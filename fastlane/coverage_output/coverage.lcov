@@ -1,0 +1,1520 @@
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/Mocks/Mocks+ResourceItems.swift
+FN:4,static Array<A>.mockResourceItems.getter
+FNDA:3,static Array<A>.mockResourceItems.getter
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonNetwork/StructuredNetwork/Configuration/RequestConfiguration.swift
+FN:23,RequestConfiguration.init(method:path:parameters:encoding:encoder:decoder:uRLSession:)
+FNDA:0,RequestConfiguration.init(method:path:parameters:encoding:encoder:decoder:uRLSession:)
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Views/HeroHeaderView.swift
+FN:6,HeroHeaderView.body.getter
+FNDA:1,HeroHeaderView.body.getter
+FN:7,closure #1 in HeroHeaderView.body.getter
+FNDA:1,closure #1 in HeroHeaderView.body.getter
+FN:8,closure #1 in closure #1 in HeroHeaderView.body.getter
+FNDA:1,closure #1 in closure #1 in HeroHeaderView.body.getter
+FNF:3
+FNH:3
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonNetwork/Configuration/ConstantKeys.swift
+FN:5,static ConstantKeys.publicKey.getter
+FNDA:0,static ConstantKeys.publicKey.getter
+FN:12,static ConstantKeys.privateKey.getter
+FNDA:0,static ConstantKeys.privateKey.getter
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/HeroDetailsView.swift
+FN:11,variable initialization expression of HeroDetailsFeature.State.showSafari
+FNDA:1,variable initialization expression of HeroDetailsFeature.State.showSafari
+FN:19,HeroDetailsFeature.body.getter
+FNDA:8,HeroDetailsFeature.body.getter
+FN:21,closure #1 in HeroDetailsFeature.body.getter
+FNDA:8,closure #1 in HeroDetailsFeature.body.getter
+FN:34,closure #2 in HeroDetailsFeature.body.getter
+FNDA:8,closure #2 in HeroDetailsFeature.body.getter
+FN:44,HeroDetailsView.body.getter
+FNDA:1,HeroDetailsView.body.getter
+FN:45,closure #1 in HeroDetailsView.body.getter
+FNDA:1,closure #1 in HeroDetailsView.body.getter
+FN:46,closure #1 in closure #1 in HeroDetailsView.body.getter
+FNDA:1,closure #1 in closure #1 in HeroDetailsView.body.getter
+FN:47,closure #1 in closure #1 in closure #1 in HeroDetailsView.body.getter
+FNDA:1,closure #1 in closure #1 in closure #1 in HeroDetailsView.body.getter
+FN:58,closure #2 in HeroDetailsView.body.getter
+FNDA:0,closure #2 in HeroDetailsView.body.getter
+FNF:9
+FNH:8
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonNetwork/StructuredNetwork/Encoders/Encoder.swift
+FN:16,JSONParameterEncoder.encode(urlRequest:with:encoder:)
+FNDA:0,JSONParameterEncoder.encode(urlRequest:with:encoder:)
+FN:36,URLParameterEncoder.encode(urlRequest:with:encoder:)
+FNDA:0,URLParameterEncoder.encode(urlRequest:with:encoder:)
+FN:51,implicit closure #1 in URLParameterEncoder.encode(urlRequest:with:encoder:)
+FNDA:0,implicit closure #1 in URLParameterEncoder.encode(urlRequest:with:encoder:)
+FN:54,closure #1 in URLParameterEncoder.encode(urlRequest:with:encoder:)
+FNDA:0,closure #1 in URLParameterEncoder.encode(urlRequest:with:encoder:)
+FN:78,ParameterEncoding.encode(urlRequest:parameters:encoder:)
+FNDA:0,ParameterEncoding.encode(urlRequest:parameters:encoder:)
+FNF:5
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonNetwork/Configuration/Environment.swift
+FN:8,closure #1 in variable initialization expression of static Environment.current
+FNDA:0,closure #1 in variable initialization expression of static Environment.current
+FN:16,Environment.baseHost.getter
+FNDA:0,Environment.baseHost.getter
+FN:23,Environment.basePort.getter
+FNDA:0,Environment.basePort.getter
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/Mocks/Mocks+ResourceSectionFeatureState.swift
+FN:6,static IdentifiedArray<>.mock.getter
+FNDA:0,static IdentifiedArray<>.mock.getter
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/Mocks/Mocks+ResourcesDTO.swift
+FN:5,static ResourcesDTO.mock.getter
+FNDA:3,static ResourcesDTO.mock.getter
+FN:17,static ResourcesResult.mock.getter
+FNDA:3,static ResourcesResult.mock.getter
+FN:59,static URLElement.mock.getter
+FNDA:3,static URLElement.mock.getter
+FN:68,static Series.mock.getter
+FNDA:15,static Series.mock.getter
+FN:77,static DateElement.mock.getter
+FNDA:3,static DateElement.mock.getter
+FN:86,static Price.mock.getter
+FNDA:3,static Price.mock.getter
+FN:95,static Creators.mock.getter
+FNDA:3,static Creators.mock.getter
+FN:106,static CreatorsItem.mock.getter
+FNDA:3,static CreatorsItem.mock.getter
+FN:116,static Characters.mock.getter
+FNDA:6,static Characters.mock.getter
+FNF:9
+FNH:9
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonNetwork/Helper/MD5HashGenerator.swift
+FN:10,static Generator.liveValue.getter
+FNDA:0,static Generator.liveValue.getter
+FN:11,closure #1 in static Generator.liveValue.getter
+FNDA:0,closure #1 in static Generator.liveValue.getter
+FN:13,implicit closure #1 in closure #1 in static Generator.liveValue.getter
+FNDA:0,implicit closure #1 in closure #1 in static Generator.liveValue.getter
+FN:14,closure #1 in closure #1 in static Generator.liveValue.getter
+FNDA:0,closure #1 in closure #1 in static Generator.liveValue.getter
+FN:21,static Generator.testValue.getter
+FNDA:0,static Generator.testValue.getter
+FN:22,closure #1 in static Generator.testValue.getter
+FNDA:0,closure #1 in static Generator.testValue.getter
+FN:24,implicit closure #1 in closure #1 in static Generator.testValue.getter
+FNDA:0,implicit closure #1 in closure #1 in static Generator.testValue.getter
+FN:25,closure #1 in closure #1 in static Generator.testValue.getter
+FNDA:0,closure #1 in closure #1 in static Generator.testValue.getter
+FN:33,DependencyValues.generator.getter
+FNDA:0,DependencyValues.generator.getter
+FN:34,DependencyValues.generator.setter
+FNDA:0,DependencyValues.generator.setter
+FNF:10
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Views/ResourceListFeature/ResourceSectionsView.swift
+FN:15,ResourcesSectionsFeature.body.getter
+FNDA:8,ResourcesSectionsFeature.body.getter
+FN:16,closure #1 in ResourcesSectionsFeature.body.getter
+FNDA:8,closure #1 in ResourcesSectionsFeature.body.getter
+FN:25,closure #2 in ResourcesSectionsFeature.body.getter
+FNDA:8,closure #2 in ResourcesSectionsFeature.body.getter
+FN:34,ResourceSectionsView.body.getter
+FNDA:1,ResourceSectionsView.body.getter
+FN:35,closure #1 in ResourceSectionsView.body.getter
+FNDA:1,closure #1 in ResourceSectionsView.body.getter
+FN:38,closure #1 in closure #1 in ResourceSectionsView.body.getter
+FNDA:6,closure #1 in closure #1 in ResourceSectionsView.body.getter
+FNF:6
+FNH:6
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Domain/HeroDetailsUseCaseFeature.swift
+FN:28,HeroDetailsUseCaseFeature.reduce(into:action:)
+FNDA:4,HeroDetailsUseCaseFeature.reduce(into:action:)
+FN:31,closure #1 in HeroDetailsUseCaseFeature.reduce(into:action:)
+FNDA:3,closure #1 in HeroDetailsUseCaseFeature.reduce(into:action:)
+FN:49,implicit closure #1 in HeroDetailsUseCaseFeature.reduce(into:action:)
+FNDA:0,implicit closure #1 in HeroDetailsUseCaseFeature.reduce(into:action:)
+FNF:3
+FNH:2
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Data/HeroDetailsMapper/HeroDetailsMapper.swift
+FN:9,static HeroDetailsMapper.liveValue.getter
+FNDA:0,static HeroDetailsMapper.liveValue.getter
+FN:11,closure #1 in static HeroDetailsMapper.liveValue.getter
+FNDA:0,closure #1 in static HeroDetailsMapper.liveValue.getter
+FN:12,closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FNDA:0,closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FN:16,closure #1 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FNDA:0,closure #1 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FN:16,implicit closure #1 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FNDA:0,implicit closure #1 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FN:20,closure #2 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FNDA:0,closure #2 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FN:23,implicit closure #1 in closure #2 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FNDA:0,implicit closure #1 in closure #2 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FN:25,implicit closure #2 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FNDA:0,implicit closure #2 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FN:34,static HeroDetailsMapper.testValue.getter
+FNDA:1,static HeroDetailsMapper.testValue.getter
+FN:35,closure #1 in static HeroDetailsMapper.testValue.getter
+FNDA:3,closure #1 in static HeroDetailsMapper.testValue.getter
+FN:40,static HeroDetailsMapper.previewValue.getter
+FNDA:0,static HeroDetailsMapper.previewValue.getter
+FN:47,DependencyValues.heroDetailsMapper.getter
+FNDA:3,DependencyValues.heroDetailsMapper.getter
+FN:48,DependencyValues.heroDetailsMapper.setter
+FNDA:0,DependencyValues.heroDetailsMapper.setter
+FNF:13
+FNH:3
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Domain/UseCases/HeroDataProcessingUseCase.swift
+FN:16,static HeroDataProcessingUseCase.liveValue.getter
+FNDA:1,static HeroDataProcessingUseCase.liveValue.getter
+FN:18,closure #1 in static HeroDataProcessingUseCase.liveValue.getter
+FNDA:1,closure #1 in static HeroDataProcessingUseCase.liveValue.getter
+FN:19,closure #1 in closure #1 in static HeroDataProcessingUseCase.liveValue.getter
+FNDA:3,closure #1 in closure #1 in static HeroDataProcessingUseCase.liveValue.getter
+FN:23,closure #2 in closure #1 in static HeroDataProcessingUseCase.liveValue.getter
+FNDA:3,closure #2 in closure #1 in static HeroDataProcessingUseCase.liveValue.getter
+FN:31,closure #2 in static HeroDataProcessingUseCase.liveValue.getter
+FNDA:0,closure #2 in static HeroDataProcessingUseCase.liveValue.getter
+FN:32,closure #1 in closure #2 in static HeroDataProcessingUseCase.liveValue.getter
+FNDA:0,closure #1 in closure #2 in static HeroDataProcessingUseCase.liveValue.getter
+FN:42,static HeroDataProcessingUseCase.testValue.getter
+FNDA:1,static HeroDataProcessingUseCase.testValue.getter
+FN:45,static HeroDataProcessingUseCase.previewValue.getter
+FNDA:0,static HeroDataProcessingUseCase.previewValue.getter
+FN:47,closure #1 in static HeroDataProcessingUseCase.previewValue.getter
+FNDA:0,closure #1 in static HeroDataProcessingUseCase.previewValue.getter
+FN:53,closure #2 in static HeroDataProcessingUseCase.previewValue.getter
+FNDA:0,closure #2 in static HeroDataProcessingUseCase.previewValue.getter
+FN:54,closure #1 in closure #2 in static HeroDataProcessingUseCase.previewValue.getter
+FNDA:0,closure #1 in closure #2 in static HeroDataProcessingUseCase.previewValue.getter
+FN:65,DependencyValues.heroDataProcessingUseCase.getter
+FNDA:1,DependencyValues.heroDataProcessingUseCase.getter
+FN:66,DependencyValues.heroDataProcessingUseCase.setter
+FNDA:0,DependencyValues.heroDataProcessingUseCase.setter
+FNF:13
+FNH:6
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Data/HeroAPIClient/HeroRemoteDataSource.swift
+FN:9,static HeroRemoteDataSource.liveValue.getter
+FNDA:0,static HeroRemoteDataSource.liveValue.getter
+FN:11,closure #1 in static HeroRemoteDataSource.liveValue.getter
+FNDA:0,closure #1 in static HeroRemoteDataSource.liveValue.getter
+FN:28,static HeroRemoteDataSource.testValue.getter
+FNDA:1,static HeroRemoteDataSource.testValue.getter
+FN:30,closure #1 in static HeroRemoteDataSource.testValue.getter
+FNDA:1,closure #1 in static HeroRemoteDataSource.testValue.getter
+FN:35,static HeroRemoteDataSource.failValue.getter
+FNDA:1,static HeroRemoteDataSource.failValue.getter
+FN:37,closure #1 in static HeroRemoteDataSource.failValue.getter
+FNDA:1,closure #1 in static HeroRemoteDataSource.failValue.getter
+FN:42,static HeroRemoteDataSource.previewValue.getter
+FNDA:0,static HeroRemoteDataSource.previewValue.getter
+FN:44,closure #1 in static HeroRemoteDataSource.previewValue.getter
+FNDA:0,closure #1 in static HeroRemoteDataSource.previewValue.getter
+FN:53,DependencyValues.heroRemoteDataSource.getter
+FNDA:2,DependencyValues.heroRemoteDataSource.getter
+FN:54,DependencyValues.heroRemoteDataSource.setter
+FNDA:2,DependencyValues.heroRemoteDataSource.setter
+FNF:10
+FNH:6
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Feature/HeroCell.swift
+FN:6,HeroCell.body.getter
+FNDA:3,HeroCell.body.getter
+FN:7,closure #1 in HeroCell.body.getter
+FNDA:3,closure #1 in HeroCell.body.getter
+FN:13,closure #1 in closure #1 in HeroCell.body.getter
+FNDA:3,closure #1 in closure #1 in HeroCell.body.getter
+FN:44,variable initialization expression of AngledBottomCorners.cutSize
+FNDA:0,variable initialization expression of AngledBottomCorners.cutSize
+FN:46,AngledBottomCorners.path(in:)
+FNDA:9,AngledBottomCorners.path(in:)
+FN:51,implicit closure #1 in AngledBottomCorners.path(in:)
+FNDA:0,implicit closure #1 in AngledBottomCorners.path(in:)
+FN:53,implicit closure #2 in AngledBottomCorners.path(in:)
+FNDA:0,implicit closure #2 in AngledBottomCorners.path(in:)
+FN:59,implicit closure #3 in AngledBottomCorners.path(in:)
+FNDA:9,implicit closure #3 in AngledBottomCorners.path(in:)
+FNF:8
+FNH:5
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Domain/Models/ThumbnailURLBuilder.swift
+FN:7,ThumbnailURLBuilder.init(thumbnail:)
+FNDA:3,ThumbnailURLBuilder.init(thumbnail:)
+FN:12,ThumbnailURLBuilder.build()
+FNDA:3,ThumbnailURLBuilder.build()
+FN:17,implicit closure #1 in ThumbnailURLBuilder.build()
+FNDA:0,implicit closure #1 in ThumbnailURLBuilder.build()
+FNF:3
+FNH:2
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/Mocks/Mocks+ResourceDetailsRowFeature.swift
+FN:6,static IdentifiedArray<>.mock.getter
+FNDA:3,static IdentifiedArray<>.mock.getter
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Domain/UseCases/SearchSuggestionsUseCase.swift
+FN:9,static SearchSuggestionsUseCase.liveValue.getter
+FNDA:0,static SearchSuggestionsUseCase.liveValue.getter
+FN:10,closure #1 in static SearchSuggestionsUseCase.liveValue.getter
+FNDA:0,closure #1 in static SearchSuggestionsUseCase.liveValue.getter
+FN:14,closure #1 in closure #1 in static SearchSuggestionsUseCase.liveValue.getter
+FNDA:0,closure #1 in closure #1 in static SearchSuggestionsUseCase.liveValue.getter
+FN:15,closure #2 in closure #1 in static SearchSuggestionsUseCase.liveValue.getter
+FNDA:0,closure #2 in closure #1 in static SearchSuggestionsUseCase.liveValue.getter
+FN:21,static SearchSuggestionsUseCase.testValue.getter
+FNDA:1,static SearchSuggestionsUseCase.testValue.getter
+FN:22,closure #1 in static SearchSuggestionsUseCase.testValue.getter
+FNDA:4,closure #1 in static SearchSuggestionsUseCase.testValue.getter
+FN:23,closure #1 in closure #1 in static SearchSuggestionsUseCase.testValue.getter
+FNDA:12,closure #1 in closure #1 in static SearchSuggestionsUseCase.testValue.getter
+FN:27,static SearchSuggestionsUseCase.previewValue.getter
+FNDA:0,static SearchSuggestionsUseCase.previewValue.getter
+FN:34,DependencyValues.searchSuggestionsUseCase.getter
+FNDA:4,DependencyValues.searchSuggestionsUseCase.getter
+FN:35,DependencyValues.searchSuggestionsUseCase.setter
+FNDA:0,DependencyValues.searchSuggestionsUseCase.setter
+FNF:10
+FNH:4
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Tests/MarvelCoreTests/HeroListFeatureTests.swift
+FN:10,HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FNDA:1,HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FN:12,implicit closure #1 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FNDA:1,implicit closure #1 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FN:12,closure #1 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FNDA:1,closure #1 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FN:14,closure #2 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FNDA:1,closure #2 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FN:20,closure #3 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FNDA:1,closure #3 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FN:25,closure #4 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FNDA:1,closure #4 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FN:28,closure #5 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FNDA:1,closure #5 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FN:31,closure #6 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FNDA:1,closure #6 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FN:37,closure #7 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FNDA:1,closure #7 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FN:42,closure #8 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FNDA:1,closure #8 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FN:49,closure #9 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FNDA:1,closure #9 in HeroListFeatureTests.testFetchHeroesWithSuccessState()
+FN:57,HeroListFeatureTests.testFetchHeroesWithErrorState()
+FNDA:1,HeroListFeatureTests.testFetchHeroesWithErrorState()
+FN:59,implicit closure #1 in HeroListFeatureTests.testFetchHeroesWithErrorState()
+FNDA:1,implicit closure #1 in HeroListFeatureTests.testFetchHeroesWithErrorState()
+FN:59,closure #1 in HeroListFeatureTests.testFetchHeroesWithErrorState()
+FNDA:1,closure #1 in HeroListFeatureTests.testFetchHeroesWithErrorState()
+FN:61,closure #2 in HeroListFeatureTests.testFetchHeroesWithErrorState()
+FNDA:1,closure #2 in HeroListFeatureTests.testFetchHeroesWithErrorState()
+FN:65,closure #3 in HeroListFeatureTests.testFetchHeroesWithErrorState()
+FNDA:1,closure #3 in HeroListFeatureTests.testFetchHeroesWithErrorState()
+FN:70,closure #4 in HeroListFeatureTests.testFetchHeroesWithErrorState()
+FNDA:1,closure #4 in HeroListFeatureTests.testFetchHeroesWithErrorState()
+FN:75,closure #5 in HeroListFeatureTests.testFetchHeroesWithErrorState()
+FNDA:1,closure #5 in HeroListFeatureTests.testFetchHeroesWithErrorState()
+FNF:18
+FNH:18
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Data/Parameters/HeroesPrarams.swift
+FN:7,variable initialization expression of HeroesParams.limit
+FNDA:2,variable initialization expression of HeroesParams.limit
+FN:11,HeroesParams.init(name:offset:)
+FNDA:2,HeroesParams.init(name:offset:)
+FNF:2
+FNH:2
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonNetwork/Builder/RemoteService.swift
+FN:15,RemoteService.fullURL.getter
+FNDA:0,RemoteService.fullURL.getter
+FN:26,implicit closure #1 in RemoteService.fullURL.getter
+FNDA:0,implicit closure #1 in RemoteService.fullURL.getter
+FN:33,RemoteService.asURLRequest()
+FNDA:0,RemoteService.asURLRequest()
+FN:66,String.appendingPathComponent(_:)
+FNDA:0,String.appendingPathComponent(_:)
+FN:78,MarvelServices.init(requestConfiguration:generateMarvelSignature:)
+FNDA:0,MarvelServices.init(requestConfiguration:generateMarvelSignature:)
+FN:85,MarvelServices.scheme.getter
+FNDA:0,MarvelServices.scheme.getter
+FN:86,MarvelServices.host.getter
+FNDA:0,MarvelServices.host.getter
+FN:87,MarvelServices.port.getter
+FNDA:0,MarvelServices.port.getter
+FN:88,MarvelServices.basePath.getter
+FNDA:0,MarvelServices.basePath.getter
+FNF:9
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroCoordinatorViewFeature/HeroCoordinatorViewView.swift
+FN:6,HeroCoordinatorFeature.init()
+FNDA:0,HeroCoordinatorFeature.init()
+FN:11,HeroCoordinatorFeature.Path.id.getter
+FNDA:0,HeroCoordinatorFeature.Path.id.getter
+FN:20,variable initialization expression of HeroCoordinatorFeature.State.path
+FNDA:0,variable initialization expression of HeroCoordinatorFeature.State.path
+FN:25,HeroCoordinatorFeature.State.init(path:root:)
+FNDA:0,HeroCoordinatorFeature.State.init(path:root:)
+FN:38,HeroCoordinatorFeature.body.getter
+FNDA:0,HeroCoordinatorFeature.body.getter
+FN:39,closure #1 in HeroCoordinatorFeature.body.getter
+FNDA:0,closure #1 in HeroCoordinatorFeature.body.getter
+FN:60,closure #2 in HeroCoordinatorFeature.body.getter
+FNDA:0,closure #2 in HeroCoordinatorFeature.body.getter
+FN:66,HeroCoordinatorFeature.State.heroDetails(hero:)
+FNDA:0,HeroCoordinatorFeature.State.heroDetails(hero:)
+FN:96,HeroCoordinatorFeatureRouterView.init(store:)
+FNDA:0,HeroCoordinatorFeatureRouterView.init(store:)
+FN:99,HeroCoordinatorFeatureRouterView.body.getter
+FNDA:0,HeroCoordinatorFeatureRouterView.body.getter
+FN:105,closure #1 in HeroCoordinatorFeatureRouterView.body.getter
+FNDA:0,closure #1 in HeroCoordinatorFeatureRouterView.body.getter
+FN:113,closure #2 in HeroCoordinatorFeatureRouterView.body.getter
+FNDA:0,closure #2 in HeroCoordinatorFeatureRouterView.body.getter
+FNF:12
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Feature/HeroListFeature/HeroListRowView.swift
+FN:8,HeroListRowFeature.State.id.getter
+FNDA:24,HeroListRowFeature.State.id.getter
+FN:22,HeroListRowFeature.reduce(into:action:)
+FNDA:3,HeroListRowFeature.reduce(into:action:)
+FN:31,HeroListRowView.body.getter
+FNDA:3,HeroListRowView.body.getter
+FN:36,closure #1 in HeroListRowView.body.getter
+FNDA:3,closure #1 in HeroListRowView.body.getter
+FN:39,closure #2 in HeroListRowView.body.getter
+FNDA:0,closure #2 in HeroListRowView.body.getter
+FNF:5
+FNH:4
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Data/DTOs/HeroesDTO.swift
+FN:57,ItemType.init(from:)
+FNDA:0,ItemType.init(from:)
+FN:60,implicit closure #1 in ItemType.init(from:)
+FNDA:0,implicit closure #1 in ItemType.init(from:)
+FN:92,URLType.init(from:)
+FNDA:0,URLType.init(from:)
+FN:95,implicit closure #1 in URLType.init(from:)
+FNDA:0,implicit closure #1 in URLType.init(from:)
+FNF:4
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Views/ResourceDetailsFeature/ResourceGridRowsView.swift
+FN:9,ResourceGridRowsFeature.State.showUnAvailableContent.getter
+FNDA:3,ResourceGridRowsFeature.State.showUnAvailableContent.getter
+FN:19,ResourceGridRowsFeature.body.getter
+FNDA:0,ResourceGridRowsFeature.body.getter
+FN:20,closure #1 in ResourceGridRowsFeature.body.getter
+FNDA:0,closure #1 in ResourceGridRowsFeature.body.getter
+FN:31,closure #2 in ResourceGridRowsFeature.body.getter
+FNDA:0,closure #2 in ResourceGridRowsFeature.body.getter
+FN:38,variable initialization expression of ResourceGridRowsView.rows
+FNDA:0,variable initialization expression of ResourceGridRowsView.rows
+FN:42,ResourceGridRowsView.body.getter
+FNDA:3,ResourceGridRowsView.body.getter
+FN:43,closure #1 in ResourceGridRowsView.body.getter
+FNDA:3,closure #1 in ResourceGridRowsView.body.getter
+FN:44,closure #1 in closure #1 in ResourceGridRowsView.body.getter
+FNDA:3,closure #1 in closure #1 in ResourceGridRowsView.body.getter
+FN:45,closure #1 in closure #1 in closure #1 in ResourceGridRowsView.body.getter
+FNDA:3,closure #1 in closure #1 in closure #1 in ResourceGridRowsView.body.getter
+FN:51,closure #1 in closure #1 in closure #1 in closure #1 in ResourceGridRowsView.body.getter
+FNDA:30,closure #1 in closure #1 in closure #1 in closure #1 in ResourceGridRowsView.body.getter
+FN:67,ResourceGridRowsView.contentUnavailable.getter
+FNDA:3,ResourceGridRowsView.contentUnavailable.getter
+FN:69,closure #1 in ResourceGridRowsView.contentUnavailable.getter
+FNDA:0,closure #1 in ResourceGridRowsView.contentUnavailable.getter
+FN:71,closure #2 in ResourceGridRowsView.contentUnavailable.getter
+FNDA:0,closure #2 in ResourceGridRowsView.contentUnavailable.getter
+FNF:13
+FNH:7
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Domain/ResourceMapper/ResourceMapper.swift
+FN:9,static ResourceMapper.liveValue.getter
+FNDA:0,static ResourceMapper.liveValue.getter
+FN:11,closure #1 in static ResourceMapper.liveValue.getter
+FNDA:0,closure #1 in static ResourceMapper.liveValue.getter
+FN:13,closure #1 in closure #1 in static ResourceMapper.liveValue.getter
+FNDA:0,closure #1 in closure #1 in static ResourceMapper.liveValue.getter
+FN:25,DependencyValues.resourceMapper.getter
+FNDA:0,DependencyValues.resourceMapper.getter
+FN:26,DependencyValues.resourceMapper.setter
+FNDA:0,DependencyValues.resourceMapper.setter
+FNF:5
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/Mocks/Mocks+SearchSuggestions.swift
+FN:5,static Array<A>.mock.getter
+FNDA:2,static Array<A>.mock.getter
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/Mocks/Mocks+Hero.swift
+FN:6,static Hero.mock.getter
+FNDA:0,static Hero.mock.getter
+FN:17,static URL.staticImage.getter
+FNDA:37,static URL.staticImage.getter
+FN:25,static Array<A>.mock.getter
+FNDA:2,static Array<A>.mock.getter
+FN:52,static Array<A>.mock.getter
+FNDA:2,static Array<A>.mock.getter
+FNF:4
+FNH:3
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonNetwork/Parameters/GenerateMarvelSignature.swift
+FN:11,GenerateMarvelSignature.hash.getter
+FNDA:0,GenerateMarvelSignature.hash.getter
+FN:22,GenerateMarvelSignature.init(generator:date:apiKey:privateKey:)
+FNDA:0,GenerateMarvelSignature.init(generator:date:apiKey:privateKey:)
+FN:31,static GenerateMarvelSignature.liveValue.getter
+FNDA:0,static GenerateMarvelSignature.liveValue.getter
+FN:44,static GenerateMarvelSignature.testValue.getter
+FNDA:0,static GenerateMarvelSignature.testValue.getter
+FN:57,DependencyValues.signature.getter
+FNDA:0,DependencyValues.signature.getter
+FN:58,DependencyValues.signature.setter
+FNDA:0,DependencyValues.signature.setter
+FNF:6
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonNetwork/StructuredNetwork/Configuration/APIError.swift
+FN:4,static APIError.== infix(_:_:)
+FNDA:1,static APIError.== infix(_:_:)
+FN:29,static APIErrorHandler.handleNetworkResponse(data:response:)
+FNDA:0,static APIErrorHandler.handleNetworkResponse(data:response:)
+FN:44,implicit closure #1 in static APIErrorHandler.handleNetworkResponse(data:response:)
+FNDA:0,implicit closure #1 in static APIErrorHandler.handleNetworkResponse(data:response:)
+FN:45,implicit closure #2 in static APIErrorHandler.handleNetworkResponse(data:response:)
+FNDA:0,implicit closure #2 in static APIErrorHandler.handleNetworkResponse(data:response:)
+FNF:4
+FNH:1
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonNetwork/Builder/RemoteAPI.swift
+FN:8,static NetworkApi.request<A>(_:)
+FNDA:0,static NetworkApi.request<A>(_:)
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Views/ResourceDetailsFeature/ResourceGridRowView.swift
+FN:9,ResourceGridRowFeature.State.id.getter
+FNDA:15,ResourceGridRowFeature.State.id.getter
+FN:20,ResourceGridRowFeature.body.getter
+FNDA:0,ResourceGridRowFeature.body.getter
+FN:22,closure #1 in ResourceGridRowFeature.body.getter
+FNDA:0,closure #1 in ResourceGridRowFeature.body.getter
+FN:31,ResourceGridRowView.body.getter
+FNDA:15,ResourceGridRowView.body.getter
+FN:32,closure #1 in ResourceGridRowView.body.getter
+FNDA:15,closure #1 in ResourceGridRowView.body.getter
+FN:39,closure #1 in closure #1 in ResourceGridRowView.body.getter
+FNDA:15,closure #1 in closure #1 in ResourceGridRowView.body.getter
+FN:45,implicit closure #1 in closure #1 in closure #1 in ResourceGridRowView.body.getter
+FNDA:0,implicit closure #1 in closure #1 in closure #1 in ResourceGridRowView.body.getter
+FN:52,closure #2 in ResourceGridRowView.body.getter
+FNDA:0,closure #2 in ResourceGridRowView.body.getter
+FNF:8
+FNH:4
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Domain/Models/ResourcesSections.swift
+FN:8,ResourceSection.title.getter
+FNDA:3,ResourceSection.title.getter
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/Mocks/Mocks+HeroesDTO.swift
+FN:5,static HeroesDTO.mock.getter
+FNDA:1,static HeroesDTO.mock.getter
+FN:17,static Array<A>.mock.getter
+FNDA:1,static Array<A>.mock.getter
+FN:64,static Thumbnail.mock.getter
+FNDA:9,static Thumbnail.mock.getter
+FN:73,static Comics.mock.getter
+FNDA:9,static Comics.mock.getter
+FN:86,static Stories.mock.getter
+FNDA:6,static Stories.mock.getter
+FN:100,static URLElement.mockDetail.getter
+FNDA:3,static URLElement.mockDetail.getter
+FN:104,static URLElement.mockWiki.getter
+FNDA:3,static URLElement.mockWiki.getter
+FN:108,static URLElement.mockComicLink.getter
+FNDA:3,static URLElement.mockComicLink.getter
+FNF:8
+FNH:8
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Domain/UseCases/HeroUseCaseFeature.swift
+FN:9,variable initialization expression of HeroUseCaseFeature.State.offset
+FNDA:5,variable initialization expression of HeroUseCaseFeature.State.offset
+FN:10,variable initialization expression of HeroUseCaseFeature.State.total
+FNDA:5,variable initialization expression of HeroUseCaseFeature.State.total
+FN:12,HeroUseCaseFeature.State.init(offset:total:)
+FNDA:5,HeroUseCaseFeature.State.init(offset:total:)
+FN:20,HeroUseCaseFeature.init()
+FNDA:23,HeroUseCaseFeature.init()
+FN:39,HeroUseCaseFeature.reduce(into:action:)
+FNDA:9,HeroUseCaseFeature.reduce(into:action:)
+FN:43,closure #1 in HeroUseCaseFeature.reduce(into:action:)
+FNDA:2,closure #1 in HeroUseCaseFeature.reduce(into:action:)
+FN:46,closure #1 in closure #1 in HeroUseCaseFeature.reduce(into:action:)
+FNDA:2,closure #1 in closure #1 in HeroUseCaseFeature.reduce(into:action:)
+FN:70,implicit closure #1 in HeroUseCaseFeature.reduce(into:action:)
+FNDA:1,implicit closure #1 in HeroUseCaseFeature.reduce(into:action:)
+FNF:8
+FNH:8
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Data/HeroDetailsRemoteDataSource/HeroDetailsRemoteDataSource.swift
+FN:9,static HeroDetailsRemoteDataSource.liveValue.getter
+FNDA:0,static HeroDetailsRemoteDataSource.liveValue.getter
+FN:10,closure #1 in static HeroDetailsRemoteDataSource.liveValue.getter
+FNDA:0,closure #1 in static HeroDetailsRemoteDataSource.liveValue.getter
+FN:26,static HeroDetailsRemoteDataSource.testValue.getter
+FNDA:1,static HeroDetailsRemoteDataSource.testValue.getter
+FN:28,closure #1 in static HeroDetailsRemoteDataSource.testValue.getter
+FNDA:3,closure #1 in static HeroDetailsRemoteDataSource.testValue.getter
+FN:41,static HeroDetailsRemoteDataSource.previewValue.getter
+FNDA:0,static HeroDetailsRemoteDataSource.previewValue.getter
+FN:48,DependencyValues.heroDetailsRemoteDataSource.getter
+FNDA:3,DependencyValues.heroDetailsRemoteDataSource.getter
+FN:49,DependencyValues.heroDetailsRemoteDataSource.setter
+FNDA:0,DependencyValues.heroDetailsRemoteDataSource.setter
+FNF:7
+FNH:3
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonNetwork/Parameters/DateProvider.swift
+FN:8,static DateProvider.liveValue.getter
+FNDA:0,static DateProvider.liveValue.getter
+FN:10,closure #1 in static DateProvider.liveValue.getter
+FNDA:0,closure #1 in static DateProvider.liveValue.getter
+FN:17,DependencyValues.dateProvider.getter
+FNDA:0,DependencyValues.dateProvider.getter
+FN:18,DependencyValues.dateProvider.setter
+FNDA:0,DependencyValues.dateProvider.setter
+FNF:4
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Domain/UseCases/PaginationUseCase.swift
+FN:17,static PaginationUseCase.liveValue.getter
+FNDA:0,static PaginationUseCase.liveValue.getter
+FN:18,closure #1 in static PaginationUseCase.liveValue.getter
+FNDA:0,closure #1 in static PaginationUseCase.liveValue.getter
+FN:24,implicit closure #1 in closure #1 in static PaginationUseCase.liveValue.getter
+FNDA:0,implicit closure #1 in closure #1 in static PaginationUseCase.liveValue.getter
+FN:31,implicit closure #2 in closure #1 in static PaginationUseCase.liveValue.getter
+FNDA:0,implicit closure #2 in closure #1 in static PaginationUseCase.liveValue.getter
+FN:37,static PaginationUseCase.testValue.getter
+FNDA:1,static PaginationUseCase.testValue.getter
+FN:38,closure #1 in static PaginationUseCase.testValue.getter
+FNDA:3,closure #1 in static PaginationUseCase.testValue.getter
+FN:43,static PaginationUseCase.previewValue.getter
+FNDA:0,static PaginationUseCase.previewValue.getter
+FN:50,DependencyValues.paginationUseCase.getter
+FNDA:3,DependencyValues.paginationUseCase.getter
+FN:51,DependencyValues.paginationUseCase.setter
+FNDA:0,DependencyValues.paginationUseCase.setter
+FNF:9
+FNH:3
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Data/HeroMapper/HeroMapper.swift
+FN:10,static HeroMapper.liveValue.getter
+FNDA:2,static HeroMapper.liveValue.getter
+FN:13,closure #1 in static HeroMapper.liveValue.getter
+FNDA:1,closure #1 in static HeroMapper.liveValue.getter
+FN:14,closure #1 in closure #1 in static HeroMapper.liveValue.getter
+FNDA:3,closure #1 in closure #1 in static HeroMapper.liveValue.getter
+FN:28,static HeroMapper.testValue.getter
+FNDA:2,static HeroMapper.testValue.getter
+FN:32,static HeroMapper.previewValue.getter
+FNDA:0,static HeroMapper.previewValue.getter
+FN:38,DependencyValues.heroMapper.getter
+FNDA:2,DependencyValues.heroMapper.getter
+FN:39,DependencyValues.heroMapper.setter
+FNDA:0,DependencyValues.heroMapper.setter
+FNF:7
+FNH:5
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Feature/HeroListFeature/HeroListView.swift
+FN:9,variable initialization expression of HeroListFeature.State.heroes
+FNDA:3,variable initialization expression of HeroListFeature.State.heroes
+FN:11,variable initialization expression of HeroListFeature.State.searchText
+FNDA:3,variable initialization expression of HeroListFeature.State.searchText
+FN:12,variable initialization expression of HeroListFeature.State.suggestNames
+FNDA:3,variable initialization expression of HeroListFeature.State.suggestNames
+FN:14,HeroListFeature.State.name.getter
+FNDA:2,HeroListFeature.State.name.getter
+FN:17,HeroListFeature.State.showUnAvailableContent.getter
+FNDA:1,HeroListFeature.State.showUnAvailableContent.getter
+FN:19,implicit closure #1 in HeroListFeature.State.showUnAvailableContent.getter
+FNDA:0,implicit closure #1 in HeroListFeature.State.showUnAvailableContent.getter
+FN:20,implicit closure #2 in HeroListFeature.State.showUnAvailableContent.getter
+FNDA:0,implicit closure #2 in HeroListFeature.State.showUnAvailableContent.getter
+FN:26,HeroListFeature.State.init(heroes:repositoryState:)
+FNDA:3,HeroListFeature.State.init(heroes:repositoryState:)
+FN:30,variable initialization expression of HeroListFeature.State.isLoading
+FNDA:3,variable initialization expression of HeroListFeature.State.isLoading
+FN:32,variable initialization expression of HeroListFeature.State.filteredSuggestions
+FNDA:3,variable initialization expression of HeroListFeature.State.filteredSuggestions
+FN:40,HeroListFeature.init()
+FNDA:3,HeroListFeature.init()
+FN:62,HeroListFeature.body.getter
+FNDA:23,HeroListFeature.body.getter
+FN:64,closure #1 in HeroListFeature.body.getter
+FNDA:23,closure #1 in HeroListFeature.body.getter
+FN:83,closure #1 in closure #1 in HeroListFeature.body.getter
+FNDA:9,closure #1 in closure #1 in HeroListFeature.body.getter
+FN:89,closure #2 in closure #1 in HeroListFeature.body.getter
+FNDA:0,closure #2 in closure #1 in HeroListFeature.body.getter
+FN:90,closure #3 in closure #1 in HeroListFeature.body.getter
+FNDA:0,closure #3 in closure #1 in HeroListFeature.body.getter
+FN:149,closure #2 in HeroListFeature.body.getter
+FNDA:23,closure #2 in HeroListFeature.body.getter
+FN:155,closure #3 in HeroListFeature.body.getter
+FNDA:23,closure #3 in HeroListFeature.body.getter
+FN:164,HeroListView.init(store:)
+FNDA:1,HeroListView.init(store:)
+FN:168,HeroListView.body.getter
+FNDA:1,HeroListView.body.getter
+FN:169,closure #1 in HeroListView.body.getter
+FNDA:1,closure #1 in HeroListView.body.getter
+FN:175,closure #1 in closure #1 in HeroListView.body.getter
+FNDA:6,closure #1 in closure #1 in HeroListView.body.getter
+FN:183,closure #2 in HeroListView.body.getter
+FNDA:0,closure #2 in HeroListView.body.getter
+FN:190,closure #3 in HeroListView.body.getter
+FNDA:1,closure #3 in HeroListView.body.getter
+FN:191,closure #1 in closure #3 in HeroListView.body.getter
+FNDA:0,closure #1 in closure #3 in HeroListView.body.getter
+FN:192,closure #1 in closure #1 in closure #3 in HeroListView.body.getter
+FNDA:0,closure #1 in closure #1 in closure #3 in HeroListView.body.getter
+FN:194,closure #2 in closure #1 in closure #3 in HeroListView.body.getter
+FNDA:0,closure #2 in closure #1 in closure #3 in HeroListView.body.getter
+FN:199,closure #4 in HeroListView.body.getter
+FNDA:0,closure #4 in HeroListView.body.getter
+FN:203,closure #5 in HeroListView.body.getter
+FNDA:0,closure #5 in HeroListView.body.getter
+FN:208,closure #6 in HeroListView.body.getter
+FNDA:0,closure #6 in HeroListView.body.getter
+FN:209,implicit closure #1 in closure #6 in HeroListView.body.getter
+FNDA:0,implicit closure #1 in closure #6 in HeroListView.body.getter
+FN:214,closure #7 in HeroListView.body.getter
+FNDA:1,closure #7 in HeroListView.body.getter
+FN:218,closure #8 in HeroListView.body.getter
+FNDA:1,closure #8 in HeroListView.body.getter
+FN:220,closure #1 in closure #8 in HeroListView.body.getter
+FNDA:0,closure #1 in closure #8 in HeroListView.body.getter
+FN:222,closure #2 in closure #8 in HeroListView.body.getter
+FNDA:0,closure #2 in closure #8 in HeroListView.body.getter
+FNF:35
+FNH:21
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Views/ResourceListFeature/ResourceSectionView.swift
+FN:10,ResourceSectionFeature.State.id.getter
+FNDA:20,ResourceSectionFeature.State.id.getter
+FN:17,variable initialization expression of ResourceSectionFeature.State.isLoading
+FNDA:3,variable initialization expression of ResourceSectionFeature.State.isLoading
+FN:25,ResourceSectionFeature.State.init(sectionType:resources:heroDetailsRepository:heroId:)
+FNDA:3,ResourceSectionFeature.State.init(sectionType:resources:heroDetailsRepository:heroId:)
+FN:48,ResourceSectionFeature.body.getter
+FNDA:8,ResourceSectionFeature.body.getter
+FN:50,closure #1 in ResourceSectionFeature.body.getter
+FNDA:8,closure #1 in ResourceSectionFeature.body.getter
+FN:83,closure #2 in ResourceSectionFeature.body.getter
+FNDA:8,closure #2 in ResourceSectionFeature.body.getter
+FN:93,ResourceSectionView.body.getter
+FNDA:3,ResourceSectionView.body.getter
+FN:94,closure #1 in ResourceSectionView.body.getter
+FNDA:3,closure #1 in ResourceSectionView.body.getter
+FN:95,closure #1 in closure #1 in ResourceSectionView.body.getter
+FNDA:3,closure #1 in closure #1 in ResourceSectionView.body.getter
+FN:98,closure #1 in closure #1 in closure #1 in ResourceSectionView.body.getter
+FNDA:0,closure #1 in closure #1 in closure #1 in ResourceSectionView.body.getter
+FN:111,closure #2 in closure #1 in ResourceSectionView.body.getter
+FNDA:0,closure #2 in closure #1 in ResourceSectionView.body.getter
+FN:114,closure #3 in closure #1 in ResourceSectionView.body.getter
+FNDA:3,closure #3 in closure #1 in ResourceSectionView.body.getter
+FNF:12
+FNH:10
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonNetwork/Response/Response.swift
+FN:16,Response.init(code:status:copyright:attributionText:attributionHTML:etag:data:)
+FNDA:4,Response.init(code:status:copyright:attributionText:attributionHTML:etag:data:)
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Domain/HeroPreFetch/HeroPreFetch.swift
+FN:10,static HeroPreFetch.liveValue.getter
+FNDA:0,static HeroPreFetch.liveValue.getter
+FN:11,closure #1 in static HeroPreFetch.liveValue.getter
+FNDA:0,closure #1 in static HeroPreFetch.liveValue.getter
+FN:12,closure #1 in closure #1 in static HeroPreFetch.liveValue.getter
+FNDA:0,closure #1 in closure #1 in static HeroPreFetch.liveValue.getter
+FN:20,DependencyValues.heroPreFetch.getter
+FNDA:0,DependencyValues.heroPreFetch.getter
+FN:21,DependencyValues.heroPreFetch.setter
+FNDA:0,DependencyValues.heroPreFetch.setter
+FNF:5
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonComponent/ImageView.swift
+FN:8,variable initialization expression of ImageView._loadFailed
+FNDA:19,variable initialization expression of ImageView._loadFailed
+FN:14,ImageView.init(url:size:placeholder:loadFailed:)
+FNDA:19,ImageView.init(url:size:placeholder:loadFailed:)
+FN:21,ImageView.body.getter
+FNDA:19,ImageView.body.getter
+FN:38,closure #1 in ImageView.body.getter
+FNDA:19,closure #1 in ImageView.body.getter
+FN:42,closure #2 in ImageView.body.getter
+FNDA:0,closure #2 in ImageView.body.getter
+FN:47,implicit closure #1 in ImageView.body.getter
+FNDA:0,implicit closure #1 in ImageView.body.getter
+FNF:6
+FNH:4
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/HeroDetailsView.swift
+FN:11,variable initialization expression of HeroDetailsFeature.State.showSafari
+FNDA:1,variable initialization expression of HeroDetailsFeature.State.showSafari
+FN:19,HeroDetailsFeature.body.getter
+FNDA:8,HeroDetailsFeature.body.getter
+FN:21,closure #1 in HeroDetailsFeature.body.getter
+FNDA:8,closure #1 in HeroDetailsFeature.body.getter
+FN:34,closure #2 in HeroDetailsFeature.body.getter
+FNDA:8,closure #2 in HeroDetailsFeature.body.getter
+FN:44,HeroDetailsView.body.getter
+FNDA:1,HeroDetailsView.body.getter
+FN:45,closure #1 in HeroDetailsView.body.getter
+FNDA:1,closure #1 in HeroDetailsView.body.getter
+FN:46,closure #1 in closure #1 in HeroDetailsView.body.getter
+FNDA:1,closure #1 in closure #1 in HeroDetailsView.body.getter
+FN:47,closure #1 in closure #1 in closure #1 in HeroDetailsView.body.getter
+FNDA:1,closure #1 in closure #1 in closure #1 in HeroDetailsView.body.getter
+FN:58,closure #2 in HeroDetailsView.body.getter
+FNDA:0,closure #2 in HeroDetailsView.body.getter
+FNF:9
+FNH:8
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonComponent/Styles/Colors.swift
+FN:10,Color.init(_:)
+FNDA:9,Color.init(_:)
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/Mocks/Mocks+ResourceSectionFeatureState.swift
+FN:6,static IdentifiedArray<>.mock.getter
+FNDA:0,static IdentifiedArray<>.mock.getter
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/Mocks/Mocks+ResourcesDTO.swift
+FN:5,static ResourcesDTO.mock.getter
+FNDA:3,static ResourcesDTO.mock.getter
+FN:17,static ResourcesResult.mock.getter
+FNDA:3,static ResourcesResult.mock.getter
+FN:59,static URLElement.mock.getter
+FNDA:3,static URLElement.mock.getter
+FN:68,static Series.mock.getter
+FNDA:15,static Series.mock.getter
+FN:77,static DateElement.mock.getter
+FNDA:3,static DateElement.mock.getter
+FN:86,static Price.mock.getter
+FNDA:3,static Price.mock.getter
+FN:95,static Creators.mock.getter
+FNDA:3,static Creators.mock.getter
+FN:106,static CreatorsItem.mock.getter
+FNDA:3,static CreatorsItem.mock.getter
+FN:116,static Characters.mock.getter
+FNDA:6,static Characters.mock.getter
+FNF:9
+FNH:9
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Domain/HeroDetailsUseCaseFeature.swift
+FN:28,HeroDetailsUseCaseFeature.reduce(into:action:)
+FNDA:4,HeroDetailsUseCaseFeature.reduce(into:action:)
+FN:31,closure #1 in HeroDetailsUseCaseFeature.reduce(into:action:)
+FNDA:3,closure #1 in HeroDetailsUseCaseFeature.reduce(into:action:)
+FN:49,implicit closure #1 in HeroDetailsUseCaseFeature.reduce(into:action:)
+FNDA:0,implicit closure #1 in HeroDetailsUseCaseFeature.reduce(into:action:)
+FNF:3
+FNH:2
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Views/ResourceListFeature/ResourceSectionsView.swift
+FN:15,ResourcesSectionsFeature.body.getter
+FNDA:8,ResourcesSectionsFeature.body.getter
+FN:16,closure #1 in ResourcesSectionsFeature.body.getter
+FNDA:8,closure #1 in ResourcesSectionsFeature.body.getter
+FN:25,closure #2 in ResourcesSectionsFeature.body.getter
+FNDA:8,closure #2 in ResourcesSectionsFeature.body.getter
+FN:34,ResourceSectionsView.body.getter
+FNDA:1,ResourceSectionsView.body.getter
+FN:35,closure #1 in ResourceSectionsView.body.getter
+FNDA:1,closure #1 in ResourceSectionsView.body.getter
+FN:38,closure #1 in closure #1 in ResourceSectionsView.body.getter
+FNDA:6,closure #1 in closure #1 in ResourceSectionsView.body.getter
+FNF:6
+FNH:6
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonComponent/SafariView/SafariView.swift
+FN:6,SafariView.init(url:)
+FNDA:0,SafariView.init(url:)
+FN:9,SafariView.makeUIViewController(context:)
+FNDA:0,SafariView.makeUIViewController(context:)
+FN:16,SafariView.updateUIViewController(_:context:)
+FNDA:0,SafariView.updateUIViewController(_:context:)
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Data/HeroDetailsMapper/HeroDetailsMapper.swift
+FN:9,static HeroDetailsMapper.liveValue.getter
+FNDA:0,static HeroDetailsMapper.liveValue.getter
+FN:11,closure #1 in static HeroDetailsMapper.liveValue.getter
+FNDA:0,closure #1 in static HeroDetailsMapper.liveValue.getter
+FN:12,closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FNDA:0,closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FN:16,closure #1 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FNDA:0,closure #1 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FN:16,implicit closure #1 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FNDA:0,implicit closure #1 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FN:20,closure #2 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FNDA:0,closure #2 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FN:23,implicit closure #1 in closure #2 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FNDA:0,implicit closure #1 in closure #2 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FN:25,implicit closure #2 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FNDA:0,implicit closure #2 in closure #1 in closure #1 in static HeroDetailsMapper.liveValue.getter
+FN:34,static HeroDetailsMapper.testValue.getter
+FNDA:1,static HeroDetailsMapper.testValue.getter
+FN:35,closure #1 in static HeroDetailsMapper.testValue.getter
+FNDA:3,closure #1 in static HeroDetailsMapper.testValue.getter
+FN:40,static HeroDetailsMapper.previewValue.getter
+FNDA:0,static HeroDetailsMapper.previewValue.getter
+FN:47,DependencyValues.heroDetailsMapper.getter
+FNDA:3,DependencyValues.heroDetailsMapper.getter
+FN:48,DependencyValues.heroDetailsMapper.setter
+FNDA:0,DependencyValues.heroDetailsMapper.setter
+FNF:13
+FNH:3
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Domain/UseCases/HeroDataProcessingUseCase.swift
+FN:16,static HeroDataProcessingUseCase.liveValue.getter
+FNDA:1,static HeroDataProcessingUseCase.liveValue.getter
+FN:18,closure #1 in static HeroDataProcessingUseCase.liveValue.getter
+FNDA:1,closure #1 in static HeroDataProcessingUseCase.liveValue.getter
+FN:19,closure #1 in closure #1 in static HeroDataProcessingUseCase.liveValue.getter
+FNDA:3,closure #1 in closure #1 in static HeroDataProcessingUseCase.liveValue.getter
+FN:23,closure #2 in closure #1 in static HeroDataProcessingUseCase.liveValue.getter
+FNDA:3,closure #2 in closure #1 in static HeroDataProcessingUseCase.liveValue.getter
+FN:31,closure #2 in static HeroDataProcessingUseCase.liveValue.getter
+FNDA:0,closure #2 in static HeroDataProcessingUseCase.liveValue.getter
+FN:32,closure #1 in closure #2 in static HeroDataProcessingUseCase.liveValue.getter
+FNDA:0,closure #1 in closure #2 in static HeroDataProcessingUseCase.liveValue.getter
+FN:42,static HeroDataProcessingUseCase.testValue.getter
+FNDA:1,static HeroDataProcessingUseCase.testValue.getter
+FN:45,static HeroDataProcessingUseCase.previewValue.getter
+FNDA:0,static HeroDataProcessingUseCase.previewValue.getter
+FN:47,closure #1 in static HeroDataProcessingUseCase.previewValue.getter
+FNDA:0,closure #1 in static HeroDataProcessingUseCase.previewValue.getter
+FN:53,closure #2 in static HeroDataProcessingUseCase.previewValue.getter
+FNDA:0,closure #2 in static HeroDataProcessingUseCase.previewValue.getter
+FN:54,closure #1 in closure #2 in static HeroDataProcessingUseCase.previewValue.getter
+FNDA:0,closure #1 in closure #2 in static HeroDataProcessingUseCase.previewValue.getter
+FN:65,DependencyValues.heroDataProcessingUseCase.getter
+FNDA:1,DependencyValues.heroDataProcessingUseCase.getter
+FN:66,DependencyValues.heroDataProcessingUseCase.setter
+FNDA:0,DependencyValues.heroDataProcessingUseCase.setter
+FNF:13
+FNH:6
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Data/HeroAPIClient/HeroRemoteDataSource.swift
+FN:9,static HeroRemoteDataSource.liveValue.getter
+FNDA:0,static HeroRemoteDataSource.liveValue.getter
+FN:11,closure #1 in static HeroRemoteDataSource.liveValue.getter
+FNDA:0,closure #1 in static HeroRemoteDataSource.liveValue.getter
+FN:28,static HeroRemoteDataSource.testValue.getter
+FNDA:1,static HeroRemoteDataSource.testValue.getter
+FN:30,closure #1 in static HeroRemoteDataSource.testValue.getter
+FNDA:1,closure #1 in static HeroRemoteDataSource.testValue.getter
+FN:35,static HeroRemoteDataSource.failValue.getter
+FNDA:1,static HeroRemoteDataSource.failValue.getter
+FN:37,closure #1 in static HeroRemoteDataSource.failValue.getter
+FNDA:1,closure #1 in static HeroRemoteDataSource.failValue.getter
+FN:42,static HeroRemoteDataSource.previewValue.getter
+FNDA:0,static HeroRemoteDataSource.previewValue.getter
+FN:44,closure #1 in static HeroRemoteDataSource.previewValue.getter
+FNDA:0,closure #1 in static HeroRemoteDataSource.previewValue.getter
+FN:53,DependencyValues.heroRemoteDataSource.getter
+FNDA:2,DependencyValues.heroRemoteDataSource.getter
+FN:54,DependencyValues.heroRemoteDataSource.setter
+FNDA:2,DependencyValues.heroRemoteDataSource.setter
+FNF:10
+FNH:6
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Feature/HeroCell.swift
+FN:6,HeroCell.body.getter
+FNDA:3,HeroCell.body.getter
+FN:7,closure #1 in HeroCell.body.getter
+FNDA:3,closure #1 in HeroCell.body.getter
+FN:13,closure #1 in closure #1 in HeroCell.body.getter
+FNDA:3,closure #1 in closure #1 in HeroCell.body.getter
+FN:44,variable initialization expression of AngledBottomCorners.cutSize
+FNDA:0,variable initialization expression of AngledBottomCorners.cutSize
+FN:46,AngledBottomCorners.path(in:)
+FNDA:9,AngledBottomCorners.path(in:)
+FN:51,implicit closure #1 in AngledBottomCorners.path(in:)
+FNDA:0,implicit closure #1 in AngledBottomCorners.path(in:)
+FN:53,implicit closure #2 in AngledBottomCorners.path(in:)
+FNDA:0,implicit closure #2 in AngledBottomCorners.path(in:)
+FN:59,implicit closure #3 in AngledBottomCorners.path(in:)
+FNDA:9,implicit closure #3 in AngledBottomCorners.path(in:)
+FNF:8
+FNH:5
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonComponent/LoadingErrorOverlay.swift
+FN:8,LoadingErrorOverlay.body(content:)
+FNDA:4,LoadingErrorOverlay.body(content:)
+FN:9,closure #1 in LoadingErrorOverlay.body(content:)
+FNDA:4,closure #1 in LoadingErrorOverlay.body(content:)
+FN:13,implicit closure #1 in closure #1 in LoadingErrorOverlay.body(content:)
+FNDA:4,implicit closure #1 in closure #1 in LoadingErrorOverlay.body(content:)
+FN:21,closure #1 in closure #1 in LoadingErrorOverlay.body(content:)
+FNDA:0,closure #1 in closure #1 in LoadingErrorOverlay.body(content:)
+FN:22,closure #1 in closure #1 in closure #1 in LoadingErrorOverlay.body(content:)
+FNDA:0,closure #1 in closure #1 in closure #1 in LoadingErrorOverlay.body(content:)
+FN:29,closure #2 in closure #1 in closure #1 in LoadingErrorOverlay.body(content:)
+FNDA:0,closure #2 in closure #1 in closure #1 in LoadingErrorOverlay.body(content:)
+FN:52,View.loadingErrorOverlay(isLoading:error:action:)
+FNDA:4,View.loadingErrorOverlay(isLoading:error:action:)
+FNF:7
+FNH:4
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Domain/Models/ThumbnailURLBuilder.swift
+FN:7,ThumbnailURLBuilder.init(thumbnail:)
+FNDA:3,ThumbnailURLBuilder.init(thumbnail:)
+FN:12,ThumbnailURLBuilder.build()
+FNDA:3,ThumbnailURLBuilder.build()
+FN:17,implicit closure #1 in ThumbnailURLBuilder.build()
+FNDA:0,implicit closure #1 in ThumbnailURLBuilder.build()
+FNF:3
+FNH:2
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/Mocks/Mocks+ResourceDetailsRowFeature.swift
+FN:6,static IdentifiedArray<>.mock.getter
+FNDA:3,static IdentifiedArray<>.mock.getter
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Domain/UseCases/SearchSuggestionsUseCase.swift
+FN:9,static SearchSuggestionsUseCase.liveValue.getter
+FNDA:0,static SearchSuggestionsUseCase.liveValue.getter
+FN:10,closure #1 in static SearchSuggestionsUseCase.liveValue.getter
+FNDA:0,closure #1 in static SearchSuggestionsUseCase.liveValue.getter
+FN:14,closure #1 in closure #1 in static SearchSuggestionsUseCase.liveValue.getter
+FNDA:0,closure #1 in closure #1 in static SearchSuggestionsUseCase.liveValue.getter
+FN:15,closure #2 in closure #1 in static SearchSuggestionsUseCase.liveValue.getter
+FNDA:0,closure #2 in closure #1 in static SearchSuggestionsUseCase.liveValue.getter
+FN:21,static SearchSuggestionsUseCase.testValue.getter
+FNDA:1,static SearchSuggestionsUseCase.testValue.getter
+FN:22,closure #1 in static SearchSuggestionsUseCase.testValue.getter
+FNDA:4,closure #1 in static SearchSuggestionsUseCase.testValue.getter
+FN:23,closure #1 in closure #1 in static SearchSuggestionsUseCase.testValue.getter
+FNDA:12,closure #1 in closure #1 in static SearchSuggestionsUseCase.testValue.getter
+FN:27,static SearchSuggestionsUseCase.previewValue.getter
+FNDA:0,static SearchSuggestionsUseCase.previewValue.getter
+FN:34,DependencyValues.searchSuggestionsUseCase.getter
+FNDA:4,DependencyValues.searchSuggestionsUseCase.getter
+FN:35,DependencyValues.searchSuggestionsUseCase.setter
+FNDA:0,DependencyValues.searchSuggestionsUseCase.setter
+FNF:10
+FNH:4
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Data/Parameters/HeroesPrarams.swift
+FN:7,variable initialization expression of HeroesParams.limit
+FNDA:2,variable initialization expression of HeroesParams.limit
+FN:11,HeroesParams.init(name:offset:)
+FNDA:2,HeroesParams.init(name:offset:)
+FNF:2
+FNH:2
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroCoordinatorViewFeature/HeroCoordinatorViewView.swift
+FN:6,HeroCoordinatorFeature.init()
+FNDA:0,HeroCoordinatorFeature.init()
+FN:11,HeroCoordinatorFeature.Path.id.getter
+FNDA:0,HeroCoordinatorFeature.Path.id.getter
+FN:20,variable initialization expression of HeroCoordinatorFeature.State.path
+FNDA:0,variable initialization expression of HeroCoordinatorFeature.State.path
+FN:25,HeroCoordinatorFeature.State.init(path:root:)
+FNDA:0,HeroCoordinatorFeature.State.init(path:root:)
+FN:38,HeroCoordinatorFeature.body.getter
+FNDA:0,HeroCoordinatorFeature.body.getter
+FN:39,closure #1 in HeroCoordinatorFeature.body.getter
+FNDA:0,closure #1 in HeroCoordinatorFeature.body.getter
+FN:60,closure #2 in HeroCoordinatorFeature.body.getter
+FNDA:0,closure #2 in HeroCoordinatorFeature.body.getter
+FN:66,HeroCoordinatorFeature.State.heroDetails(hero:)
+FNDA:0,HeroCoordinatorFeature.State.heroDetails(hero:)
+FN:96,HeroCoordinatorFeatureRouterView.init(store:)
+FNDA:0,HeroCoordinatorFeatureRouterView.init(store:)
+FN:99,HeroCoordinatorFeatureRouterView.body.getter
+FNDA:0,HeroCoordinatorFeatureRouterView.body.getter
+FN:105,closure #1 in HeroCoordinatorFeatureRouterView.body.getter
+FNDA:0,closure #1 in HeroCoordinatorFeatureRouterView.body.getter
+FN:113,closure #2 in HeroCoordinatorFeatureRouterView.body.getter
+FNDA:0,closure #2 in HeroCoordinatorFeatureRouterView.body.getter
+FNF:12
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Tests/MarvelSnapshotTests/HeroListTests.swift
+FN:10,HeroListTests.heroListLoaded()
+FNDA:1,HeroListTests.heroListLoaded()
+FN:12,closure #1 in HeroListTests.heroListLoaded()
+FNDA:1,closure #1 in HeroListTests.heroListLoaded()
+FN:15,implicit closure #1 in closure #1 in HeroListTests.heroListLoaded()
+FNDA:1,implicit closure #1 in closure #1 in HeroListTests.heroListLoaded()
+FN:19,closure #1 in closure #1 in HeroListTests.heroListLoaded()
+FNDA:1,closure #1 in closure #1 in HeroListTests.heroListLoaded()
+FN:26,implicit closure #1 in HeroListTests.heroListLoaded()
+FNDA:1,implicit closure #1 in HeroListTests.heroListLoaded()
+FNF:5
+FNH:5
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Feature/HeroListFeature/HeroListRowView.swift
+FN:8,HeroListRowFeature.State.id.getter
+FNDA:24,HeroListRowFeature.State.id.getter
+FN:22,HeroListRowFeature.reduce(into:action:)
+FNDA:3,HeroListRowFeature.reduce(into:action:)
+FN:31,HeroListRowView.body.getter
+FNDA:3,HeroListRowView.body.getter
+FN:36,closure #1 in HeroListRowView.body.getter
+FNDA:3,closure #1 in HeroListRowView.body.getter
+FN:39,closure #2 in HeroListRowView.body.getter
+FNDA:0,closure #2 in HeroListRowView.body.getter
+FNF:5
+FNH:4
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Tests/MarvelSnapshotTests/HeroDetailsTests.swift
+FN:10,HeroDetailsTests.heroDetailsLoaded()
+FNDA:1,HeroDetailsTests.heroDetailsLoaded()
+FN:13,implicit closure #1 in HeroDetailsTests.heroDetailsLoaded()
+FNDA:1,implicit closure #1 in HeroDetailsTests.heroDetailsLoaded()
+FN:50,closure #1 in HeroDetailsTests.heroDetailsLoaded()
+FNDA:1,closure #1 in HeroDetailsTests.heroDetailsLoaded()
+FN:56,implicit closure #2 in HeroDetailsTests.heroDetailsLoaded()
+FNDA:1,implicit closure #2 in HeroDetailsTests.heroDetailsLoaded()
+FNF:4
+FNH:4
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Views/ResourceDetailsFeature/ResourceGridRowsView.swift
+FN:9,ResourceGridRowsFeature.State.showUnAvailableContent.getter
+FNDA:3,ResourceGridRowsFeature.State.showUnAvailableContent.getter
+FN:19,ResourceGridRowsFeature.body.getter
+FNDA:0,ResourceGridRowsFeature.body.getter
+FN:20,closure #1 in ResourceGridRowsFeature.body.getter
+FNDA:0,closure #1 in ResourceGridRowsFeature.body.getter
+FN:31,closure #2 in ResourceGridRowsFeature.body.getter
+FNDA:0,closure #2 in ResourceGridRowsFeature.body.getter
+FN:38,variable initialization expression of ResourceGridRowsView.rows
+FNDA:0,variable initialization expression of ResourceGridRowsView.rows
+FN:42,ResourceGridRowsView.body.getter
+FNDA:3,ResourceGridRowsView.body.getter
+FN:43,closure #1 in ResourceGridRowsView.body.getter
+FNDA:3,closure #1 in ResourceGridRowsView.body.getter
+FN:44,closure #1 in closure #1 in ResourceGridRowsView.body.getter
+FNDA:3,closure #1 in closure #1 in ResourceGridRowsView.body.getter
+FN:45,closure #1 in closure #1 in closure #1 in ResourceGridRowsView.body.getter
+FNDA:3,closure #1 in closure #1 in closure #1 in ResourceGridRowsView.body.getter
+FN:51,closure #1 in closure #1 in closure #1 in closure #1 in ResourceGridRowsView.body.getter
+FNDA:30,closure #1 in closure #1 in closure #1 in closure #1 in ResourceGridRowsView.body.getter
+FN:67,ResourceGridRowsView.contentUnavailable.getter
+FNDA:3,ResourceGridRowsView.contentUnavailable.getter
+FN:69,closure #1 in ResourceGridRowsView.contentUnavailable.getter
+FNDA:0,closure #1 in ResourceGridRowsView.contentUnavailable.getter
+FN:71,closure #2 in ResourceGridRowsView.contentUnavailable.getter
+FNDA:0,closure #2 in ResourceGridRowsView.contentUnavailable.getter
+FNF:13
+FNH:7
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Domain/ResourceMapper/ResourceMapper.swift
+FN:9,static ResourceMapper.liveValue.getter
+FNDA:0,static ResourceMapper.liveValue.getter
+FN:11,closure #1 in static ResourceMapper.liveValue.getter
+FNDA:0,closure #1 in static ResourceMapper.liveValue.getter
+FN:13,closure #1 in closure #1 in static ResourceMapper.liveValue.getter
+FNDA:0,closure #1 in closure #1 in static ResourceMapper.liveValue.getter
+FN:25,DependencyValues.resourceMapper.getter
+FNDA:0,DependencyValues.resourceMapper.getter
+FN:26,DependencyValues.resourceMapper.setter
+FNDA:0,DependencyValues.resourceMapper.setter
+FNF:5
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonComponent/Shapes/RoundedCorner.swift
+FN:10,RoundedCorner.init(radius:corners:)
+FNDA:0,RoundedCorner.init(radius:corners:)
+FN:15,RoundedCorner.path(in:)
+FNDA:0,RoundedCorner.path(in:)
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/Mocks/Mocks+SearchSuggestions.swift
+FN:5,static Array<A>.mock.getter
+FNDA:2,static Array<A>.mock.getter
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/Mocks/Mocks+Hero.swift
+FN:6,static Hero.mock.getter
+FNDA:0,static Hero.mock.getter
+FN:17,static URL.staticImage.getter
+FNDA:37,static URL.staticImage.getter
+FN:25,static Array<A>.mock.getter
+FNDA:2,static Array<A>.mock.getter
+FN:52,static Array<A>.mock.getter
+FNDA:2,static Array<A>.mock.getter
+FNF:4
+FNH:3
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Data/DTOs/HeroesDTO.swift
+FN:57,ItemType.init(from:)
+FNDA:0,ItemType.init(from:)
+FN:60,implicit closure #1 in ItemType.init(from:)
+FNDA:0,implicit closure #1 in ItemType.init(from:)
+FN:92,URLType.init(from:)
+FNDA:0,URLType.init(from:)
+FN:95,implicit closure #1 in URLType.init(from:)
+FNDA:0,implicit closure #1 in URLType.init(from:)
+FNF:4
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Views/ResourceDetailsFeature/ResourceGridRowView.swift
+FN:9,ResourceGridRowFeature.State.id.getter
+FNDA:15,ResourceGridRowFeature.State.id.getter
+FN:20,ResourceGridRowFeature.body.getter
+FNDA:0,ResourceGridRowFeature.body.getter
+FN:22,closure #1 in ResourceGridRowFeature.body.getter
+FNDA:0,closure #1 in ResourceGridRowFeature.body.getter
+FN:31,ResourceGridRowView.body.getter
+FNDA:15,ResourceGridRowView.body.getter
+FN:32,closure #1 in ResourceGridRowView.body.getter
+FNDA:15,closure #1 in ResourceGridRowView.body.getter
+FN:39,closure #1 in closure #1 in ResourceGridRowView.body.getter
+FNDA:15,closure #1 in closure #1 in ResourceGridRowView.body.getter
+FN:45,implicit closure #1 in closure #1 in closure #1 in ResourceGridRowView.body.getter
+FNDA:0,implicit closure #1 in closure #1 in closure #1 in ResourceGridRowView.body.getter
+FN:52,closure #2 in ResourceGridRowView.body.getter
+FNDA:0,closure #2 in ResourceGridRowView.body.getter
+FNF:8
+FNH:4
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Domain/Models/ResourcesSections.swift
+FN:8,ResourceSection.title.getter
+FNDA:3,ResourceSection.title.getter
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/Mocks/Mocks+HeroesDTO.swift
+FN:5,static HeroesDTO.mock.getter
+FNDA:1,static HeroesDTO.mock.getter
+FN:17,static Array<A>.mock.getter
+FNDA:1,static Array<A>.mock.getter
+FN:64,static Thumbnail.mock.getter
+FNDA:9,static Thumbnail.mock.getter
+FN:73,static Comics.mock.getter
+FNDA:9,static Comics.mock.getter
+FN:86,static Stories.mock.getter
+FNDA:6,static Stories.mock.getter
+FN:100,static URLElement.mockDetail.getter
+FNDA:3,static URLElement.mockDetail.getter
+FN:104,static URLElement.mockWiki.getter
+FNDA:3,static URLElement.mockWiki.getter
+FN:108,static URLElement.mockComicLink.getter
+FNDA:3,static URLElement.mockComicLink.getter
+FNF:8
+FNH:8
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Domain/UseCases/HeroUseCaseFeature.swift
+FN:9,variable initialization expression of HeroUseCaseFeature.State.offset
+FNDA:5,variable initialization expression of HeroUseCaseFeature.State.offset
+FN:10,variable initialization expression of HeroUseCaseFeature.State.total
+FNDA:5,variable initialization expression of HeroUseCaseFeature.State.total
+FN:12,HeroUseCaseFeature.State.init(offset:total:)
+FNDA:5,HeroUseCaseFeature.State.init(offset:total:)
+FN:20,HeroUseCaseFeature.init()
+FNDA:23,HeroUseCaseFeature.init()
+FN:39,HeroUseCaseFeature.reduce(into:action:)
+FNDA:9,HeroUseCaseFeature.reduce(into:action:)
+FN:43,closure #1 in HeroUseCaseFeature.reduce(into:action:)
+FNDA:2,closure #1 in HeroUseCaseFeature.reduce(into:action:)
+FN:46,closure #1 in closure #1 in HeroUseCaseFeature.reduce(into:action:)
+FNDA:2,closure #1 in closure #1 in HeroUseCaseFeature.reduce(into:action:)
+FN:70,implicit closure #1 in HeroUseCaseFeature.reduce(into:action:)
+FNDA:1,implicit closure #1 in HeroUseCaseFeature.reduce(into:action:)
+FNF:8
+FNH:8
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Data/HeroDetailsRemoteDataSource/HeroDetailsRemoteDataSource.swift
+FN:9,static HeroDetailsRemoteDataSource.liveValue.getter
+FNDA:0,static HeroDetailsRemoteDataSource.liveValue.getter
+FN:10,closure #1 in static HeroDetailsRemoteDataSource.liveValue.getter
+FNDA:0,closure #1 in static HeroDetailsRemoteDataSource.liveValue.getter
+FN:26,static HeroDetailsRemoteDataSource.testValue.getter
+FNDA:1,static HeroDetailsRemoteDataSource.testValue.getter
+FN:28,closure #1 in static HeroDetailsRemoteDataSource.testValue.getter
+FNDA:3,closure #1 in static HeroDetailsRemoteDataSource.testValue.getter
+FN:41,static HeroDetailsRemoteDataSource.previewValue.getter
+FNDA:0,static HeroDetailsRemoteDataSource.previewValue.getter
+FN:48,DependencyValues.heroDetailsRemoteDataSource.getter
+FNDA:3,DependencyValues.heroDetailsRemoteDataSource.getter
+FN:49,DependencyValues.heroDetailsRemoteDataSource.setter
+FNDA:0,DependencyValues.heroDetailsRemoteDataSource.setter
+FNF:7
+FNH:3
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/HorizonComponent/Styles/Images.swift
+FN:8,Image.init(_:)
+FNDA:0,Image.init(_:)
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Domain/UseCases/PaginationUseCase.swift
+FN:17,static PaginationUseCase.liveValue.getter
+FNDA:0,static PaginationUseCase.liveValue.getter
+FN:18,closure #1 in static PaginationUseCase.liveValue.getter
+FNDA:0,closure #1 in static PaginationUseCase.liveValue.getter
+FN:24,implicit closure #1 in closure #1 in static PaginationUseCase.liveValue.getter
+FNDA:0,implicit closure #1 in closure #1 in static PaginationUseCase.liveValue.getter
+FN:31,implicit closure #2 in closure #1 in static PaginationUseCase.liveValue.getter
+FNDA:0,implicit closure #2 in closure #1 in static PaginationUseCase.liveValue.getter
+FN:37,static PaginationUseCase.testValue.getter
+FNDA:1,static PaginationUseCase.testValue.getter
+FN:38,closure #1 in static PaginationUseCase.testValue.getter
+FNDA:3,closure #1 in static PaginationUseCase.testValue.getter
+FN:43,static PaginationUseCase.previewValue.getter
+FNDA:0,static PaginationUseCase.previewValue.getter
+FN:50,DependencyValues.paginationUseCase.getter
+FNDA:3,DependencyValues.paginationUseCase.getter
+FN:51,DependencyValues.paginationUseCase.setter
+FNDA:0,DependencyValues.paginationUseCase.setter
+FNF:9
+FNH:3
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Data/HeroMapper/HeroMapper.swift
+FN:10,static HeroMapper.liveValue.getter
+FNDA:2,static HeroMapper.liveValue.getter
+FN:13,closure #1 in static HeroMapper.liveValue.getter
+FNDA:1,closure #1 in static HeroMapper.liveValue.getter
+FN:14,closure #1 in closure #1 in static HeroMapper.liveValue.getter
+FNDA:3,closure #1 in closure #1 in static HeroMapper.liveValue.getter
+FN:28,static HeroMapper.testValue.getter
+FNDA:2,static HeroMapper.testValue.getter
+FN:32,static HeroMapper.previewValue.getter
+FNDA:0,static HeroMapper.previewValue.getter
+FN:38,DependencyValues.heroMapper.getter
+FNDA:2,DependencyValues.heroMapper.getter
+FN:39,DependencyValues.heroMapper.setter
+FNDA:0,DependencyValues.heroMapper.setter
+FNF:7
+FNH:5
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Feature/HeroListFeature/HeroListView.swift
+FN:9,variable initialization expression of HeroListFeature.State.heroes
+FNDA:3,variable initialization expression of HeroListFeature.State.heroes
+FN:11,variable initialization expression of HeroListFeature.State.searchText
+FNDA:3,variable initialization expression of HeroListFeature.State.searchText
+FN:12,variable initialization expression of HeroListFeature.State.suggestNames
+FNDA:3,variable initialization expression of HeroListFeature.State.suggestNames
+FN:14,HeroListFeature.State.name.getter
+FNDA:2,HeroListFeature.State.name.getter
+FN:17,HeroListFeature.State.showUnAvailableContent.getter
+FNDA:1,HeroListFeature.State.showUnAvailableContent.getter
+FN:19,implicit closure #1 in HeroListFeature.State.showUnAvailableContent.getter
+FNDA:0,implicit closure #1 in HeroListFeature.State.showUnAvailableContent.getter
+FN:20,implicit closure #2 in HeroListFeature.State.showUnAvailableContent.getter
+FNDA:0,implicit closure #2 in HeroListFeature.State.showUnAvailableContent.getter
+FN:26,HeroListFeature.State.init(heroes:repositoryState:)
+FNDA:3,HeroListFeature.State.init(heroes:repositoryState:)
+FN:30,variable initialization expression of HeroListFeature.State.isLoading
+FNDA:3,variable initialization expression of HeroListFeature.State.isLoading
+FN:32,variable initialization expression of HeroListFeature.State.filteredSuggestions
+FNDA:3,variable initialization expression of HeroListFeature.State.filteredSuggestions
+FN:40,HeroListFeature.init()
+FNDA:3,HeroListFeature.init()
+FN:62,HeroListFeature.body.getter
+FNDA:23,HeroListFeature.body.getter
+FN:64,closure #1 in HeroListFeature.body.getter
+FNDA:23,closure #1 in HeroListFeature.body.getter
+FN:83,closure #1 in closure #1 in HeroListFeature.body.getter
+FNDA:9,closure #1 in closure #1 in HeroListFeature.body.getter
+FN:89,closure #2 in closure #1 in HeroListFeature.body.getter
+FNDA:0,closure #2 in closure #1 in HeroListFeature.body.getter
+FN:90,closure #3 in closure #1 in HeroListFeature.body.getter
+FNDA:0,closure #3 in closure #1 in HeroListFeature.body.getter
+FN:149,closure #2 in HeroListFeature.body.getter
+FNDA:23,closure #2 in HeroListFeature.body.getter
+FN:155,closure #3 in HeroListFeature.body.getter
+FNDA:23,closure #3 in HeroListFeature.body.getter
+FN:164,HeroListView.init(store:)
+FNDA:1,HeroListView.init(store:)
+FN:168,HeroListView.body.getter
+FNDA:1,HeroListView.body.getter
+FN:169,closure #1 in HeroListView.body.getter
+FNDA:1,closure #1 in HeroListView.body.getter
+FN:175,closure #1 in closure #1 in HeroListView.body.getter
+FNDA:6,closure #1 in closure #1 in HeroListView.body.getter
+FN:183,closure #2 in HeroListView.body.getter
+FNDA:0,closure #2 in HeroListView.body.getter
+FN:190,closure #3 in HeroListView.body.getter
+FNDA:1,closure #3 in HeroListView.body.getter
+FN:191,closure #1 in closure #3 in HeroListView.body.getter
+FNDA:0,closure #1 in closure #3 in HeroListView.body.getter
+FN:192,closure #1 in closure #1 in closure #3 in HeroListView.body.getter
+FNDA:0,closure #1 in closure #1 in closure #3 in HeroListView.body.getter
+FN:194,closure #2 in closure #1 in closure #3 in HeroListView.body.getter
+FNDA:0,closure #2 in closure #1 in closure #3 in HeroListView.body.getter
+FN:199,closure #4 in HeroListView.body.getter
+FNDA:0,closure #4 in HeroListView.body.getter
+FN:203,closure #5 in HeroListView.body.getter
+FNDA:0,closure #5 in HeroListView.body.getter
+FN:208,closure #6 in HeroListView.body.getter
+FNDA:0,closure #6 in HeroListView.body.getter
+FN:209,implicit closure #1 in closure #6 in HeroListView.body.getter
+FNDA:0,implicit closure #1 in closure #6 in HeroListView.body.getter
+FN:214,closure #7 in HeroListView.body.getter
+FNDA:1,closure #7 in HeroListView.body.getter
+FN:218,closure #8 in HeroListView.body.getter
+FNDA:1,closure #8 in HeroListView.body.getter
+FN:220,closure #1 in closure #8 in HeroListView.body.getter
+FNDA:0,closure #1 in closure #8 in HeroListView.body.getter
+FN:222,closure #2 in closure #8 in HeroListView.body.getter
+FNDA:0,closure #2 in closure #8 in HeroListView.body.getter
+FNF:35
+FNH:21
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroList/Domain/HeroPreFetch/HeroPreFetch.swift
+FN:10,static HeroPreFetch.liveValue.getter
+FNDA:0,static HeroPreFetch.liveValue.getter
+FN:11,closure #1 in static HeroPreFetch.liveValue.getter
+FNDA:0,closure #1 in static HeroPreFetch.liveValue.getter
+FN:12,closure #1 in closure #1 in static HeroPreFetch.liveValue.getter
+FNDA:0,closure #1 in closure #1 in static HeroPreFetch.liveValue.getter
+FN:20,DependencyValues.heroPreFetch.getter
+FNDA:0,DependencyValues.heroPreFetch.getter
+FN:21,DependencyValues.heroPreFetch.setter
+FNDA:0,DependencyValues.heroPreFetch.setter
+FNF:5
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Views/ResourceListFeature/ResourceSectionView.swift
+FN:10,ResourceSectionFeature.State.id.getter
+FNDA:20,ResourceSectionFeature.State.id.getter
+FN:17,variable initialization expression of ResourceSectionFeature.State.isLoading
+FNDA:3,variable initialization expression of ResourceSectionFeature.State.isLoading
+FN:25,ResourceSectionFeature.State.init(sectionType:resources:heroDetailsRepository:heroId:)
+FNDA:3,ResourceSectionFeature.State.init(sectionType:resources:heroDetailsRepository:heroId:)
+FN:48,ResourceSectionFeature.body.getter
+FNDA:8,ResourceSectionFeature.body.getter
+FN:50,closure #1 in ResourceSectionFeature.body.getter
+FNDA:8,closure #1 in ResourceSectionFeature.body.getter
+FN:83,closure #2 in ResourceSectionFeature.body.getter
+FNDA:8,closure #2 in ResourceSectionFeature.body.getter
+FN:93,ResourceSectionView.body.getter
+FNDA:3,ResourceSectionView.body.getter
+FN:94,closure #1 in ResourceSectionView.body.getter
+FNDA:3,closure #1 in ResourceSectionView.body.getter
+FN:95,closure #1 in closure #1 in ResourceSectionView.body.getter
+FNDA:3,closure #1 in closure #1 in ResourceSectionView.body.getter
+FN:98,closure #1 in closure #1 in closure #1 in ResourceSectionView.body.getter
+FNDA:0,closure #1 in closure #1 in closure #1 in ResourceSectionView.body.getter
+FN:111,closure #2 in closure #1 in ResourceSectionView.body.getter
+FNDA:0,closure #2 in closure #1 in ResourceSectionView.body.getter
+FN:114,closure #3 in closure #1 in ResourceSectionView.body.getter
+FNDA:3,closure #3 in closure #1 in ResourceSectionView.body.getter
+FNF:12
+FNH:10
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/Mocks/Mocks+ResourceItems.swift
+FN:4,static Array<A>.mockResourceItems.getter
+FNDA:3,static Array<A>.mockResourceItems.getter
+FNF:1
+FNH:1
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/MarvelCore/Sources/Heroes/HeroDetails/Views/HeroHeaderView.swift
+FN:6,HeroHeaderView.body.getter
+FNDA:1,HeroHeaderView.body.getter
+FN:7,closure #1 in HeroHeaderView.body.getter
+FNDA:1,closure #1 in HeroHeaderView.body.getter
+FN:8,closure #1 in closure #1 in HeroHeaderView.body.getter
+FNDA:1,closure #1 in closure #1 in HeroHeaderView.body.getter
+FNF:3
+FNH:3
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/WallaMarvel/AppDelegate.swift
+FN:6,AppDelegate.application(_:didFinishLaunchingWithOptions:)
+FNDA:0,AppDelegate.application(_:didFinishLaunchingWithOptions:)
+FN:12,AppDelegate.application(_:configurationForConnecting:options:)
+FNDA:0,AppDelegate.application(_:configurationForConnecting:options:)
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/WallaMarvel/SceneDelegate.swift
+FN:11,SceneDelegate.scene(_:willConnectTo:options:)
+FNDA:0,SceneDelegate.scene(_:willConnectTo:options:)
+FN:19,implicit closure #1 in SceneDelegate.scene(_:willConnectTo:options:)
+FNDA:0,implicit closure #1 in SceneDelegate.scene(_:willConnectTo:options:)
+FN:22,closure #1 in SceneDelegate.scene(_:willConnectTo:options:)
+FNDA:0,closure #1 in SceneDelegate.scene(_:willConnectTo:options:)
+FN:35,SceneDelegate.startMentoring()
+FNDA:0,SceneDelegate.startMentoring()
+FNF:4
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/WallaMarvelTests/WallaMarvelTests.swift
+FN:6,WallaMarvelTests.setUpWithError()
+FNDA:0,WallaMarvelTests.setUpWithError()
+FN:10,WallaMarvelTests.tearDownWithError()
+FNDA:0,WallaMarvelTests.tearDownWithError()
+FN:14,WallaMarvelTests.testExample()
+FNDA:0,WallaMarvelTests.testExample()
+FN:22,WallaMarvelTests.testPerformanceExample()
+FNDA:0,WallaMarvelTests.testPerformanceExample()
+FNF:4
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/WallaMarvelUITests/WallaMarvelUITests.swift
+FN:5,WallaMarvelUITests.setUpWithError()
+FNDA:0,WallaMarvelUITests.setUpWithError()
+FN:14,WallaMarvelUITests.tearDownWithError()
+FNDA:0,WallaMarvelUITests.tearDownWithError()
+FN:18,WallaMarvelUITests.testExample()
+FNDA:0,WallaMarvelUITests.testExample()
+FN:26,WallaMarvelUITests.testLaunchPerformance()
+FNDA:0,WallaMarvelUITests.testLaunchPerformance()
+FNF:4
+FNH:0
+end_of_record
+SF:/Users/Mahmoud/Downloads/WallaMarvel/WallaMarvelUITests/WallaMarvelUITestsLaunchTests.swift
+FN:5,static WallaMarvelUITestsLaunchTests.runsForEachTargetApplicationUIConfiguration.getter
+FNDA:0,static WallaMarvelUITestsLaunchTests.runsForEachTargetApplicationUIConfiguration.getter
+FN:9,WallaMarvelUITestsLaunchTests.setUpWithError()
+FNDA:0,WallaMarvelUITestsLaunchTests.setUpWithError()
+FN:13,WallaMarvelUITestsLaunchTests.testLaunch()
+FNDA:0,WallaMarvelUITestsLaunchTests.testLaunch()
+FNF:3
+FNH:0
+end_of_record

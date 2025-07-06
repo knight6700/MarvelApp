@@ -1,0 +1,35 @@
+{
+  "configurations" : [
+    {
+      "id" : "788C5668-F509-44FA-9C31-B37989AAF9DC",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:WallaMarvel.xcodeproj",
+      "identifier" : "1A0E3A942862F7E200132FCB",
+      "name" : "WallaMarvel"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:MarvelCore",
+        "identifier" : "MarvelSnapshotTests",
+        "name" : "MarvelSnapshotTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:MarvelCore",
+        "identifier" : "MarvelCoreTests",
+        "name" : "MarvelCoreTests"
+      }
+    }
+  ],
+  "version" : 1
+}

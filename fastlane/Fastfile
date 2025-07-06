@@ -1,0 +1,10 @@
+default_platform(:ios)
+
+import "actions/coverage/Fastfile"
+
+platform :ios do
+  desc "Run coverage lane from imported file"
+  lane :coverage do
+    generate_coverage
+  end
+end

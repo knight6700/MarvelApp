@@ -26,7 +26,7 @@ extension HeroMapper: DependencyKey {
 }
 extension HeroMapper: TestDependencyKey {
     static var testValue: Self {
-        .liveValue
+        return .liveValue
     }
     
     static var previewValue: Self {
