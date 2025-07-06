@@ -120,9 +120,15 @@ jobs:
       - name: Convert Latest Xcresult to JSON
         run: |
           mkdir -p coverage_output
-          LATEST_RESULT=~/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
+          LATEST_RESULT=$(find ~/Library/Developer/Xcode/DerivedData -type d -path "*/Logs/Test/*.xcresult" | sort | tail -n 1)
           echo "Using result bundle at: $LATEST_RESULT"
-          xcrun xccov view --report --json "$LATEST_RESULT" > coverage_output/combined_coverage.json
+          if [ -d "$LATEST_RESULT" ]; then
+            xcrun xccov view --report --json "$LATEST_RESULT" > coverage_output/combined_coverage.json
+            echo "✅ Coverage JSON generated."
+          else
+            echo "❌ No valid .xcresult folder found"
+            exit 1
+          fi
 
       - name: Upload Coverage Reports
         if: always()
@@ -184,7 +190,38 @@ jobs:
       - name: Cleanup Coverage, Test Results, and DerivedData logs
         if: always()
         run: |
-          echo "🧹 Removing coverage_output/, TestResults/, and xcresult logs from DerivedData..."
-          rm -rf coverage_output/ TestResults/
-          rm -rf ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
-          echo "✅ Cleanup complete."
+          echo "🧹 Starting cleanup..."
+          
+          if [ -d "coverage_output/" ]; then
+            echo "Removing coverage_output/ directory..."
+            rm -rf coverage_output/
+            echo "✅ coverage_output/ removed"
+          else
+            echo "ℹ️  coverage_output/ not found"
+          fi
+          
+          if [ -d "TestResults/" ]; then
+            echo "Removing TestResults/ directory..."
+            rm -rf TestResults/
+            echo "✅ TestResults/ removed"
+          else
+            echo "ℹ️  TestResults/ not found"
+          fi
+          
+          echo "Searching for .xcresult files in DerivedData..."
+          XCRESULT_FILES=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult" -type d 2>/dev/null || true)
+          
+          if [ -n "$XCRESULT_FILES" ]; then
+            echo "Found .xcresult files to remove:"
+            echo "$XCRESULT_FILES"
+            find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult" -type d -exec rm -rf {} + 2>/dev/null || true
+            echo "✅ .xcresult files removed"
+          else
+            echo "ℹ️  No .xcresult files found in DerivedData"
+          fi
+          
+          echo "Cleaning entire DerivedData..."
+          rm -rf ~/Library/Developer/Xcode/DerivedData/* 2>/dev/null || true
+          echo "✅ DerivedData cleaned"
+          
+          echo "🎉 Cleanup complete!"
