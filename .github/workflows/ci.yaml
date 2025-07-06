@@ -26,16 +26,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up Xcode 16.4
+        run: sudo xcode-select -s /Applications/Xcode.app
+
       - name: Install SwiftLint
-        run: brew install swiftlint
+        run: |
+          if ! command -v swiftlint &> /dev/null; then
+            brew install swiftlint
+          fi
 
       - name: Run SwiftLint
         run: |
-          swiftlint --config marvelCore/.swiftlint.yml --reporter junit > swiftlint-report.xml
+          mkdir -p reports
+          swiftlint --config marvelCore/.swiftlint.yml --reporter junit > reports/swiftlint-report.xml || true
           swiftlint --config marvelCore/.swiftlint.yml
-
-      - name: Set up Xcode 16.4
-        run: sudo xcode-select -s /Applications/Xcode.app
 
       - name: Verify Swift version
         run: swift --version
@@ -44,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: swiftlint-report
-          path: swiftlint-report.xml
+          path: reports/swiftlint-report.xml
           retention-days: 7
 
   build:
@@ -62,10 +66,18 @@ jobs:
 
       - name: Install dependencies
         run: |
-          brew install arkana-cli || true
-          gem install bundler
-          gem install fastlane
-          bundle install
+          # Install arkana-cli if not present
+          if ! command -v arkana &> /dev/null; then
+            brew install arkana-cli
+          fi
+          
+          # Install bundler and fastlane if Gemfile exists
+          if [ -f "Gemfile" ]; then
+            gem install bundler
+            bundle install
+          else
+            gem install fastlane
+          fi
 
       - name: Set Marvel API keys and run Arkana
         run: |
@@ -73,7 +85,13 @@ jobs:
           export privateKeyDebug="${MARVEL_PRIVATE_DEBUG}"
           export publicKeyRelease="${MARVEL_PUBLIC_RELEASE}"
           export privateKeyRelease="${MARVEL_PRIVATE_RELEASE}"
-          bundle exec arkana
+          
+          # Run arkana directly or via bundle if Gemfile exists
+          if [ -f "Gemfile" ]; then
+            bundle exec arkana
+          else
+            arkana
+          fi
 
       - name: Skip Xcode macro validations
         run: |
@@ -97,16 +115,20 @@ jobs:
             -project WallaMarvel.xcodeproj \
             -scheme WallaMarvel \
             -configuration Debug \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
+            -derivedDataPath ./DerivedData
 
       - name: Run UnitTests
         run: |
+          mkdir -p TestResults
           xcodebuild test \
             -project WallaMarvel.xcodeproj \
             -scheme MarvelCoreTests \
             -configuration Debug \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
-            -enableCodeCoverage YES
+            -enableCodeCoverage YES \
+            -derivedDataPath ./DerivedData \
+            -resultBundlePath ./TestResults/MarvelCoreTests.xcresult
 
       - name: Run SnapshotTests
         run: |
@@ -115,14 +137,43 @@ jobs:
             -scheme MarvelSnapshotTests \
             -configuration Debug \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
-            -enableCodeCoverage YES
+            -enableCodeCoverage YES \
+            -derivedDataPath ./DerivedData \
+            -resultBundlePath ./TestResults/MarvelSnapshotTests.xcresult
 
-      - name: Convert Latest Xcresult to JSON
+      - name: Convert Test Results to Coverage JSON
         run: |
           mkdir -p coverage_output
-          LATEST_RESULT=$(find ~/Library/Developer/Xcode/DerivedData -type d -name "*.xcresult" | sort -r | head -n 1)
-          echo "Using result bundle at: $LATEST_RESULT"
-          xcrun xccov view --report --json "$LATEST_RESULT" > coverage_output/combined_coverage.json
+          
+          # Find the most recent xcresult bundles
+          CORE_RESULT="./TestResults/MarvelCoreTests.xcresult"
+          SNAPSHOT_RESULT="./TestResults/MarvelSnapshotTests.xcresult"
+          
+          # Extract coverage from each test result bundle
+          if [ -d "$CORE_RESULT" ]; then
+            echo "Processing MarvelCoreTests coverage..."
+            xcrun xccov view --report --json "$CORE_RESULT" > coverage_output/core_coverage.json
+          fi
+          
+          if [ -d "$SNAPSHOT_RESULT" ]; then
+            echo "Processing MarvelSnapshotTests coverage..."
+            xcrun xccov view --report --json "$SNAPSHOT_RESULT" > coverage_output/snapshot_coverage.json
+          fi
+          
+          # If both exist, use the most recent one for combined coverage
+          if [ -d "$SNAPSHOT_RESULT" ]; then
+            cp coverage_output/snapshot_coverage.json coverage_output/combined_coverage.json
+          elif [ -d "$CORE_RESULT" ]; then
+            cp coverage_output/core_coverage.json coverage_output/combined_coverage.json
+          fi
+
+      - name: Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: TestResults/
+          retention-days: 7
 
       - name: Upload Coverage Reports
         if: always()
@@ -132,18 +183,21 @@ jobs:
           path: coverage_output/
           retention-days: 7
 
-      - name: Upload Snapshot Test Results
+      - name: Upload Snapshot Test Failures
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: MarvelSnapshotTests.xcresult
-          path: ./TestResults/MarvelSnapshotTests.xcresult
-          retention-days: 1
+          name: snapshot-test-failures
+          path: |
+            TestResults/MarvelSnapshotTests.xcresult
+            **/FailureDiffs/
+          retention-days: 3
 
   sonarqube:
-    name: SonarQube
+    name: SonarQube Analysis
     runs-on: self-hosted
     needs: build
+    if: always() && needs.build.result != 'cancelled'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -154,13 +208,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: swiftlint-report
-          path: .
+          path: reports/
 
       - name: Download Coverage Reports
         uses: actions/download-artifact@v4
         with:
           name: coverage-reports
           path: coverage_output/
+        continue-on-error: true
 
       - name: Install SonarQube Scanner
         run: |
@@ -168,23 +223,55 @@ jobs:
             brew install sonar-scanner
           fi
 
+      - name: Verify SonarQube inputs
+        run: |
+          echo "Checking SonarQube inputs..."
+          ls -la reports/ || echo "No reports directory"
+          ls -la coverage_output/ || echo "No coverage_output directory"
+          
+          if [ -f "reports/swiftlint-report.xml" ]; then
+            echo "✅ SwiftLint report found"
+          else
+            echo "❌ SwiftLint report missing"
+          fi
+          
+          if [ -f "coverage_output/combined_coverage.json" ]; then
+            echo "✅ Coverage report found"
+          else
+            echo "❌ Coverage report missing"
+          fi
+
       - name: Run SonarQube Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          sonar-scanner \
-            -Dsonar.projectKey=knight6700_MarvelApp \
-            -Dsonar.organization=knight6700 \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.sources=. \
-            -Dsonar.exclusions=**/*.xcresult/**,**/DerivedData/**,**/.build/**,**/Pods/**,**/*.generated.swift \
-            -Dsonar.swift.coverage.reportPaths=coverage_output/combined_coverage.json \
-            -Dsonar.swift.swiftLint.reportPaths=swiftlint-report.xml
+          # Build SonarQube scanner arguments
+          SONAR_ARGS="-Dsonar.projectKey=knight6700_MarvelApp"
+          SONAR_ARGS="$SONAR_ARGS -Dsonar.organization=knight6700"
+          SONAR_ARGS="$SONAR_ARGS -Dsonar.host.url=https://sonarcloud.io"
+          SONAR_ARGS="$SONAR_ARGS -Dsonar.sources=."
+          SONAR_ARGS="$SONAR_ARGS -Dsonar.exclusions=**/*.xcresult/**,**/DerivedData/**,**/.build/**,**/Pods/**,**/*.generated.swift,**/TestResults/**"
+          
+          # Add SwiftLint report if it exists
+          if [ -f "reports/swiftlint-report.xml" ]; then
+            SONAR_ARGS="$SONAR_ARGS -Dsonar.swift.swiftLint.reportPaths=reports/swiftlint-report.xml"
+          fi
+          
+          # Add coverage report if it exists
+          if [ -f "coverage_output/combined_coverage.json" ]; then
+            SONAR_ARGS="$SONAR_ARGS -Dsonar.swift.coverage.reportPaths=coverage_output/combined_coverage.json"
+          fi
+          
+          echo "Running SonarQube scan with args: $SONAR_ARGS"
+          sonar-scanner $SONAR_ARGS
 
-      - name: Cleanup Coverage, Test Results, and DerivedData logs
+      - name: Cleanup
         if: always()
         run: |
-          echo "🧹 Removing coverage_output/, TestResults/, and xcresult logs from DerivedData..."
-          rm -rf coverage_output/ TestResults/
-          find ~/Library/Developer/Xcode/DerivedData -type d -path "*/Logs/Test" -exec rm -rf {} \;
+          echo "🧹 Cleaning up temporary files..."
+          rm -rf coverage_output/ TestResults/ reports/ DerivedData/
+          
+          # Clean up old DerivedData logs
+          find ~/Library/Developer/Xcode/DerivedData -type d -path "*/Logs/Test" -mtime +1 -exec rm -rf {} \; 2>/dev/null || true
+          
           echo "✅ Cleanup complete."
