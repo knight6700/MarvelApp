@@ -187,5 +187,5 @@ jobs:
             -Dsonar.organization=knight6700 \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.sources=. \
-            -Dsonar.exclusions=**/*.xcresult/**,**/DerivedData/**,**/.build/**,**/Pods/**,**/*.generated.swift \
+            -Dsonar.exclusions=**/*.xcresult/**,**/DerivedData/**,**/.build/**,**/Pods/**,**/*.generated.swift,**/scripts/json_to_xml.py \
             -Dsonar.coverage.reportPaths=coverage_output/core_coverage.xsd,coverage_output/snapshot_coverage.xsd \
