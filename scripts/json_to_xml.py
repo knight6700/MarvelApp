@@ -2,58 +2,44 @@ import json
 import os
 import xml.etree.ElementTree as ET
 
-XSD_NS = "http://www.w3.org/2001/XMLSchema"
-
-def guess_type(value):
-    if isinstance(value, bool):
-        return "xs:boolean"
-    elif isinstance(value, int):
-        return "xs:integer"
-    elif isinstance(value, float):
-        return "xs:float"
-    elif isinstance(value, list):
-        return "xs:sequence"
-    else:
-        return "xs:string"
-
-def build_element(name, value, parent):
+def build_xml_element(name, value):
     if isinstance(value, dict):
-        element = ET.SubElement(parent, "xs:element", name=name)
-        complex_type = ET.SubElement(element, "xs:complexType")
-        sequence = ET.SubElement(complex_type, "xs:sequence")
+        element = ET.Element(name)
         for k, v in value.items():
-            build_element(k, v, sequence)
+            child = build_xml_element(k, v)
+            element.append(child)
+        return element
     elif isinstance(value, list):
-        element = ET.SubElement(parent, "xs:element", name=name, minOccurs="0", maxOccurs="unbounded")
-        complex_type = ET.SubElement(element, "xs:complexType")
-        sequence = ET.SubElement(complex_type, "xs:sequence")
-        if value:
-            build_element("item", value[0], sequence)
+        parent = ET.Element(name)
+        for item in value:
+            child = build_xml_element("item", item)
+            parent.append(child)
+        return parent
     else:
-        ET.SubElement(parent, "xs:element", name=name, type=guess_type(value))
+        element = ET.Element(name)
+        element.text = str(value)
+        return element
 
-def convert_to_xsd(json_path, xsd_path, root_name="root"):
+def convert_to_xml(json_path, xml_path, root_name="root"):
     try:
         with open(json_path, "r") as f:
             data = json.load(f)
 
-        schema = ET.Element("xs:schema", attrib={"xmlns:xs": XSD_NS})
-        build_element(root_name, data, schema)
-
-        tree = ET.ElementTree(schema)
-        tree.write(xsd_path, encoding="utf-8", xml_declaration=True)
-        print(f"✅ XSD generated: {xsd_path}")
+        root = build_xml_element(root_name, data)
+        tree = ET.ElementTree(root)
+        tree.write(xml_path, encoding="utf-8", xml_declaration=True)
+        print(f"✅ XML generated: {xml_path}")
     except Exception as e:
-        print(f"❌ Failed to generate XSD from {json_path}: {e}")
+        print(f"❌ Failed to generate XML from {json_path}: {e}")
 
 # Define the files
 files_to_convert = [
-    ("coverage_output/core_coverage.json", "coverage_output/core_coverage.xsd"),
-    ("coverage_output/snapshot_coverage.json", "coverage_output/snapshot_coverage.xsd")
+    ("coverage_output/core_coverage.json", "coverage_output/core_coverage.xml"),
+    ("coverage_output/snapshot_coverage.json", "coverage_output/snapshot_coverage.xml")
 ]
 
-for json_file, xsd_file in files_to_convert:
+for json_file, xml_file in files_to_convert:
     if os.path.exists(json_file):
-        convert_to_xsd(json_file, xsd_file, root_name="coverage")
+        convert_to_xml(json_file, xml_file, root_name="coverage")
     else:
         print(f"⚠️ Skipping {json_file}, file not found.")
