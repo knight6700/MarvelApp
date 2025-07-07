@@ -8,21 +8,27 @@ def convert_to_sonar_coverage_xml(json_path, xml_path):
             data = json.load(f)
 
         root = ET.Element("coverage", version="1")
-
         targets = data.get("targets", [])
         if not targets:
             print(f"⚠️ No targets found in {json_path}")
             return
 
         for file in targets[0].get("files", []):
-            file_path = file["path"]
-            file_element = ET.SubElement(root, "file", path=file_path)
+            absolute_path = file.get("path")
+            if not absolute_path or not os.path.exists(absolute_path):
+                continue  # skip if path is invalid or doesn't exist
 
+            # Convert to relative path for SonarQube compatibility
+            relative_path = os.path.relpath(absolute_path, start=os.getcwd())
+            file_element = ET.SubElement(root, "file", path=relative_path)
+
+            seen_lines = set()
             for function in file.get("functions", []):
                 line_number = function.get("lineNumber")
                 execution_count = function.get("executionCount", 0)
 
-                if line_number is not None:
+                if line_number is not None and line_number not in seen_lines:
+                    seen_lines.add(line_number)
                     ET.SubElement(
                         file_element,
                         "lineToCover",
@@ -30,7 +36,9 @@ def convert_to_sonar_coverage_xml(json_path, xml_path):
                         covered=str(execution_count > 0).lower()
                     )
 
+        # Save XML
         tree = ET.ElementTree(root)
+        ET.indent(tree, space="  ", level=0)  # Pretty-print (Python 3.9+)
         tree.write(xml_path, encoding="utf-8", xml_declaration=True)
         print(f"✅ XML generated: {xml_path}")
 
