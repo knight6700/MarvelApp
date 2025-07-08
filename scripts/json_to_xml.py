@@ -1,6 +1,9 @@
+#!/usr/bin/env python3
+
 import json
 import xml.etree.ElementTree as ET
 import os
+import sys
 
 def convert_to_sonar_coverage_xml(json_path, xml_path):
     try:
@@ -15,37 +18,49 @@ def convert_to_sonar_coverage_xml(json_path, xml_path):
 
         for file in targets[0].get("files", []):
             absolute_path = file.get("path")
-            if not absolute_path or not os.path.exists(absolute_path):
-                continue  # skip if path is invalid or doesn't exist
+            if not absolute_path:
+                continue
 
-            # Convert to relative path for SonarQube compatibility
+            # Skip missing files (optional)
+            if not os.path.exists(absolute_path):
+                print(f"⚠️ Skipping non-existent file: {absolute_path}")
+                continue
+
             relative_path = os.path.relpath(absolute_path, start=os.getcwd())
             file_element = ET.SubElement(root, "file", path=relative_path)
 
-            seen_lines = set()
+            covered_lines = {}
             for function in file.get("functions", []):
                 line_number = function.get("lineNumber")
                 execution_count = function.get("executionCount", 0)
 
-                if line_number is not None and line_number not in seen_lines:
-                    seen_lines.add(line_number)
-                    ET.SubElement(
-                        file_element,
-                        "lineToCover",
-                        lineNumber=str(line_number),
-                        covered=str(execution_count > 0).lower()
-                    )
+                if line_number is not None:
+                    # Keep the highest execution count for the line
+                    existing_count = covered_lines.get(line_number, 0)
+                    covered_lines[line_number] = max(existing_count, execution_count)
+
+            for line_number, count in sorted(covered_lines.items()):
+                ET.SubElement(
+                    file_element,
+                    "lineToCover",
+                    lineNumber=str(line_number),
+                    covered=str(count > 0).lower()
+                )
 
         # Save XML
         tree = ET.ElementTree(root)
-        ET.indent(tree, space="  ", level=0)  # Pretty-print (Python 3.9+)
+        try:
+            ET.indent(tree, space="  ", level=0)  # Python 3.9+
+        except AttributeError:
+            pass  # Python < 3.9 fallback: no indent
+
         tree.write(xml_path, encoding="utf-8", xml_declaration=True)
         print(f"✅ XML generated: {xml_path}")
 
     except Exception as e:
-        print(f"❌ Error converting {json_path}: {e}")
+        print(f"❌ Error converting {json_path}: {e}", file=sys.stderr)
 
-# Convert both core and snapshot coverage files
+# -------- Main -------- #
 files_to_convert = [
     ("coverage_output/core_coverage.json", "coverage_output/core_coverage.xml"),
     ("coverage_output/snapshot_coverage.json", "coverage_output/snapshot_coverage.xml"),
