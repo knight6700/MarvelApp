@@ -1,59 +1,73 @@
+#!/usr/bin/env python3
+
 import json
-import os
 import xml.etree.ElementTree as ET
+import os
+import sys
 
-XSD_NS = "http://www.w3.org/2001/XMLSchema"
-
-def guess_type(value):
-    if isinstance(value, bool):
-        return "xs:boolean"
-    elif isinstance(value, int):
-        return "xs:integer"
-    elif isinstance(value, float):
-        return "xs:float"
-    elif isinstance(value, list):
-        return "xs:sequence"
-    else:
-        return "xs:string"
-
-def build_element(name, value, parent):
-    if isinstance(value, dict):
-        element = ET.SubElement(parent, "xs:element", name=name)
-        complex_type = ET.SubElement(element, "xs:complexType")
-        sequence = ET.SubElement(complex_type, "xs:sequence")
-        for k, v in value.items():
-            build_element(k, v, sequence)
-    elif isinstance(value, list):
-        element = ET.SubElement(parent, "xs:element", name=name, minOccurs="0", maxOccurs="unbounded")
-        complex_type = ET.SubElement(element, "xs:complexType")
-        sequence = ET.SubElement(complex_type, "xs:sequence")
-        if value:
-            build_element("item", value[0], sequence)
-    else:
-        ET.SubElement(parent, "xs:element", name=name, type=guess_type(value))
-
-def convert_to_xsd(json_path, xsd_path, root_name="root"):
+def convert_to_sonar_coverage_xml(json_path, xml_path):
     try:
         with open(json_path, "r") as f:
             data = json.load(f)
 
-        schema = ET.Element("xs:schema", attrib={"xmlns:xs": XSD_NS})
-        build_element(root_name, data, schema)
+        root = ET.Element("coverage", version="1")
+        targets = data.get("targets", [])
+        if not targets:
+            print(f"⚠️ No targets found in {json_path}")
+            return
 
-        tree = ET.ElementTree(schema)
-        tree.write(xsd_path, encoding="utf-8", xml_declaration=True)
-        print(f"✅ XSD generated: {xsd_path}")
+        for file in targets[0].get("files", []):
+            absolute_path = file.get("path")
+            if not absolute_path:
+                continue
+
+            # Skip missing files (optional)
+            if not os.path.exists(absolute_path):
+                print(f"⚠️ Skipping non-existent file: {absolute_path}")
+                continue
+
+            relative_path = os.path.relpath(absolute_path, start=os.getcwd())
+            file_element = ET.SubElement(root, "file", path=relative_path)
+
+            covered_lines = {}
+            for function in file.get("functions", []):
+                line_number = function.get("lineNumber")
+                execution_count = function.get("executionCount", 0)
+
+                if line_number is not None:
+                    # Keep the highest execution count for the line
+                    existing_count = covered_lines.get(line_number, 0)
+                    covered_lines[line_number] = max(existing_count, execution_count)
+
+            for line_number, count in sorted(covered_lines.items()):
+                ET.SubElement(
+                    file_element,
+                    "lineToCover",
+                    lineNumber=str(line_number),
+                    covered=str(count > 0).lower()
+                )
+
+        # Save XML
+        tree = ET.ElementTree(root)
+        try:
+            ET.indent(tree, space="  ", level=0)  # Python 3.9+
+        except AttributeError:
+            pass  # Python < 3.9 fallback: no indent
+
+        tree.write(xml_path, encoding="utf-8", xml_declaration=True)
+        print(f"✅ XML generated: {xml_path}")
+
     except Exception as e:
-        print(f"❌ Failed to generate XSD from {json_path}: {e}")
+        print(f"❌ Error converting {json_path}: {e}", file=sys.stderr)
 
-# Define the files
+# -------- Main -------- #
 files_to_convert = [
-    ("coverage_output/core_coverage.json", "coverage_output/core_coverage.xsd"),
-    ("coverage_output/snapshot_coverage.json", "coverage_output/snapshot_coverage.xsd")
+    ("coverage_output/core_coverage.json", "coverage_output/core_coverage.xml"),
+    ("coverage_output/snapshot_coverage.json", "coverage_output/snapshot_coverage.xml"),
 ]
 
-for json_file, xsd_file in files_to_convert:
+for json_file, xml_file in files_to_convert:
     if os.path.exists(json_file):
-        convert_to_xsd(json_file, xsd_file, root_name="coverage")
+        convert_to_sonar_coverage_xml(json_file, xml_file)
     else:
-        print(f"⚠️ Skipping {json_file}, file not found.")
+        print(f"⚠️ File not found: {json_file}")

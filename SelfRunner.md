@@ -114,6 +114,7 @@ Then repeat the setup steps.
 Happy CI/CD! 🎉
 
 ```
+# Coverage
 # Install xccov2lcov
 ###Clone the repository
 git clone https://github.com/trax-retail/xccov2lcov.git

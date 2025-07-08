@@ -188,4 +188,4 @@ jobs:
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.sources=. \
             -Dsonar.exclusions=**/*.xcresult/**,**/DerivedData/**,**/.build/**,**/Pods/**,**/*.generated.swift,**/scripts/json_to_xml.py \
-            -Dsonar.coverage.reportPaths=coverage_output/core_coverage.xsd,coverage_output/snapshot_coverage.xsd \
+            -Dsonar.coverageReportPaths=coverage_output/core_coverage.xml,coverage_output/snapshot_coverage.xml \
