@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: swiftlint-report
-          path: swiftlint-report.xml
+          path: swiftlint-report.html
           retention-days: 7
 
       - name: Set up Xcode 16.4
