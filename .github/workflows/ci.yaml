@@ -35,8 +35,8 @@ jobs:
       - name: Upload SwiftLint Report
         uses: actions/upload-artifact@v4
         with:
-          name: swiftlint-report.html
-          path: .
+          name: swiftlint-report
+          path: swiftlint_report.html
           retention-days: 7
 
       - name: Set up Xcode 16.4
@@ -162,7 +162,7 @@ jobs:
       - name: Download SwiftLint Report
         uses: actions/download-artifact@v4
         with:
-          name: swiftlint_report
+          name: swiftlint-report
           path: .
 
       - name: Download Coverage Reports
