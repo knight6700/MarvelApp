@@ -36,7 +36,7 @@ struct HeroDetailsTests {
                                 ),
                                 heroDetailsRepository: HeroDetailsUseCaseFeature.State(),
                                 heroId: 3
-                            ),
+                            )
                         ]
                     ),
                     hero: Hero(

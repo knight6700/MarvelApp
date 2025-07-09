@@ -20,11 +20,21 @@ public struct HeroDetailsFeature {
         BindingReducer()
         Reduce<State, Action> { state, action in
             switch action {
-            case let .sections(.rows(.element(_, action: .resources(.resourceDetailsRows(.element(id: _, action: .rowDidTapped(url))))))):
+            case let .sections(
+                .rows(
+                    .element(
+                        _,
+                        action: .resources(
+                            .resourceDetailsRows(.element(id: _, action: .rowDidTapped(url)))
+                        )
+                    )
+                )
+            ):
                 state.resourceURL = url
                 state.showSafari = true
                 return .none
-            case .sections, .binding:
+            case .sections,
+                    .binding:
                 return .none
             }
         }

@@ -8,7 +8,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    func scene(
+        _ scene: UIScene,
+        willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
         startMentoring()
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
@@ -17,7 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let view = HeroCoordinatorFeatureRouterView(
             store: Store(
                 initialState: HeroCoordinatorFeature.State(
-                    root: HeroListFeature.State(heroes: [], repositoryState: HeroUseCaseFeature.State())
+                    root: HeroListFeature.State(
+                        heroes: [],
+                        repositoryState: HeroUseCaseFeature.State()
+                    )
                 ),
                 reducer: {
                     HeroCoordinatorFeature()

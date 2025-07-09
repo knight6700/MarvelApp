@@ -36,7 +36,30 @@ struct ResourcesResult: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case digitalID = "digitalId"
-        case title, issueNumber, variantDescription, description, isbn, upc, diamondCode, ean, issn, format, pageCount, textObjects, resourceURI, urls, series, variants, collections, dates, prices, thumbnail, images, creators, characters, stories, events
+        case title,
+             issueNumber,
+             variantDescription,
+             description,
+             isbn,
+             upc,
+             diamondCode,
+             ean, issn,
+             format,
+             pageCount,
+             textObjects,
+             resourceURI,
+             urls,
+             series,
+             variants,
+             collections,
+             dates,
+             prices,
+             thumbnail,
+             images,
+             creators,
+             characters,
+             stories,
+             events
     }
 }
 
@@ -50,8 +73,12 @@ struct Characters: Codable {
 
 // MARK: - Series
 struct Series: Codable {
-    let resourceURI: String?
+    let resourceUrl: String?
     let name: String?
+    enum CodingKeys: String, CodingKey {
+        case resourceUrl = "resourceURI"
+        case name
+    }
 }
 
 // MARK: - Creators
@@ -75,10 +102,10 @@ struct DateElement: Codable {
 }
 
 enum DateType: String, Codable {
-    case digitalPurchaseDate = "digitalPurchaseDate"
-    case focDate = "focDate"
-    case onsaleDate = "onsaleDate"
-    case unlimitedDate = "unlimitedDate"
+    case digitalPurchaseDate
+    case focDate
+    case onsaleDate
+    case unlimitedDate
 }
 
 enum Ean: String, Codable {
@@ -102,8 +129,8 @@ struct Price: Codable {
 }
 
 enum PriceType: String, Codable {
-    case digitalPurchasePrice = "digitalPurchasePrice"
-    case printPrice = "printPrice"
+    case digitalPurchasePrice
+    case printPrice
 }
 
 // MARK: - TextObject

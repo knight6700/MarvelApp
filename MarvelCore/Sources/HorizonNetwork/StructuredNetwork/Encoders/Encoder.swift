@@ -49,13 +49,10 @@ public struct URLParameterEncoder: ParameterEncoder {
 
         if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false), !jsonObject.isEmpty {
             var existingItems = urlComponents.queryItems ?? []
-
-            for (key, value) in jsonObject {
-                if !existingItems.contains(where: { $0.name == key }) {
-                    existingItems.append(URLQueryItem(name: key, value: "\(value)"))
-                }
+            
+            for (key, value) in jsonObject where !existingItems.contains(where: { $0.name == key }) {
+                existingItems.append(URLQueryItem(name: key, value: "\(value)"))
             }
-
             urlComponents.queryItems = existingItems
             urlRequest.url = urlComponents.url
         }
@@ -68,8 +65,8 @@ public struct URLParameterEncoder: ParameterEncoder {
 }
 
 public enum ParameterEncoding {
-    case UrlEncoding
-    case JsonEncoding
+    case urlEncoding
+    case jsonEncoding
 
     public func encode(
         urlRequest: inout URLRequest,
@@ -78,7 +75,7 @@ public enum ParameterEncoding {
     ) throws {
         do {
             switch self {
-            case .UrlEncoding:
+            case .urlEncoding:
                 guard let urlParameters = parameters else { return }
                 try URLParameterEncoder().encode(
                     urlRequest: &urlRequest,
@@ -86,7 +83,7 @@ public enum ParameterEncoding {
                     encoder: encoder
                 )
 
-            case .JsonEncoding:
+            case .jsonEncoding:
                 guard let bodyParameters = parameters else { return }
                 try JSONParameterEncoder().encode(
                     urlRequest: &urlRequest,

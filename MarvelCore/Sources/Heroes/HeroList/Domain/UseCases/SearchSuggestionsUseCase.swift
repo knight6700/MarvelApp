@@ -2,7 +2,10 @@ import Dependencies
 import Foundation
 
 struct SearchSuggestionsUseCase {
-    let filterSuggestions: @Sendable (_ suggestions: [SearchSuggestions], _ query: String) -> [SearchSuggestions]
+    let filterSuggestions: @Sendable (
+        _ suggestions: [SearchSuggestions],
+        _ query: String
+    ) -> [SearchSuggestions]
 }
 
 extension SearchSuggestionsUseCase: DependencyKey {

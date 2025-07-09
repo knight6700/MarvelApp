@@ -16,7 +16,7 @@ public struct RequestConfiguration {
         method: HTTPMethod = .get,
         path: String,
         parameters: Encodable? = nil,
-        encoding: ParameterEncoding = .UrlEncoding,
+        encoding: ParameterEncoding = .urlEncoding,
         encoder: JSONEncoder = JSONEncoder(),
         decoder: JSONDecoder = JSONDecoder(),
         uRLSession: URLSession = URLSession.shared

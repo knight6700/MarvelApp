@@ -5,7 +5,7 @@ struct DateProvider {
 }
 
 extension DateProvider: DependencyKey {
-    static var liveValue: DateProvider  {
+    static var liveValue: DateProvider {
         @Dependency(\.date) var dateProvider
       return DateProvider {
             Int(dateProvider.now.timeIntervalSince1970)
