@@ -30,11 +30,7 @@ jobs:
 
       - name: Run SwiftLint
         run: |
-          swiftlint --config marvelCore/.swiftlint.yml --reporter junit > swiftlint-report.xml
-          swiftlint --config marvelCore/.swiftlint.yml
-
-      - name: Set up Xcode 16.4
-        run: sudo xcode-select -s /Applications/Xcode.app
+          swiftlint lint --strict --config .swiftlint.yml --reporter html > swiftlint_report.html
 
       - name: Upload SwiftLint Report
         uses: actions/upload-artifact@v4
@@ -42,6 +38,9 @@ jobs:
           name: swiftlint-report
           path: swiftlint-report.xml
           retention-days: 7
+
+      - name: Set up Xcode 16.4
+        run: sudo xcode-select -s /Applications/Xcode.app
 
   build:
     name: Build and Test App
