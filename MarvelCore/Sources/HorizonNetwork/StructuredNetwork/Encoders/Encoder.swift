@@ -8,7 +8,9 @@ protocol ParameterEncoder {
     ) throws
 }
 
-struct JSONParameterEncoder: ParameterEncoder {
+public struct JSONParameterEncoder: ParameterEncoder {
+    public init() {}
+    
     func encode(
         urlRequest: inout URLRequest,
         with parameters: Encodable,
@@ -29,6 +31,7 @@ struct JSONParameterEncoder: ParameterEncoder {
 }
 
 public struct URLParameterEncoder: ParameterEncoder {
+    public init() {}
     public func encode(
         urlRequest: inout URLRequest,
         with parameters: Encodable,
@@ -71,13 +74,15 @@ public enum ParameterEncoding {
     public func encode(
         urlRequest: inout URLRequest,
         parameters: Encodable?,
-        encoder: JSONEncoder
+        encoder: JSONEncoder,
+        jSONParameterEncoder: JSONParameterEncoder = JSONParameterEncoder(),
+        uRLParameterEncoder: URLParameterEncoder = URLParameterEncoder()
     ) throws {
         do {
             switch self {
             case .urlEncoding:
                 guard let urlParameters = parameters else { return }
-                try URLParameterEncoder().encode(
+                try uRLParameterEncoder.encode(
                     urlRequest: &urlRequest,
                     with: urlParameters,
                     encoder: encoder
@@ -85,7 +90,7 @@ public enum ParameterEncoding {
 
             case .jsonEncoding:
                 guard let bodyParameters = parameters else { return }
-                try JSONParameterEncoder().encode(
+                try jSONParameterEncoder.encode(
                     urlRequest: &urlRequest,
                     with: bodyParameters,
                     encoder: encoder
