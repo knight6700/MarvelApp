@@ -8,7 +8,9 @@ protocol ParameterEncoder {
     ) throws
 }
 
-struct JSONParameterEncoder: ParameterEncoder {
+public struct JSONParameterEncoder: ParameterEncoder {
+    public init() {}
+    
     func encode(
         urlRequest: inout URLRequest,
         with parameters: Encodable,
@@ -29,6 +31,7 @@ struct JSONParameterEncoder: ParameterEncoder {
 }
 
 public struct URLParameterEncoder: ParameterEncoder {
+    public init() {}
     public func encode(
         urlRequest: inout URLRequest,
         with parameters: Encodable,
@@ -49,13 +52,10 @@ public struct URLParameterEncoder: ParameterEncoder {
 
         if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false), !jsonObject.isEmpty {
             var existingItems = urlComponents.queryItems ?? []
-
-            for (key, value) in jsonObject {
-                if !existingItems.contains(where: { $0.name == key }) {
-                    existingItems.append(URLQueryItem(name: key, value: "\(value)"))
-                }
+            
+            for (key, value) in jsonObject where !existingItems.contains(where: { $0.name == key }) {
+                existingItems.append(URLQueryItem(name: key, value: "\(value)"))
             }
-
             urlComponents.queryItems = existingItems
             urlRequest.url = urlComponents.url
         }
@@ -68,27 +68,29 @@ public struct URLParameterEncoder: ParameterEncoder {
 }
 
 public enum ParameterEncoding {
-    case UrlEncoding
-    case JsonEncoding
+    case urlEncoding
+    case jsonEncoding
 
     public func encode(
         urlRequest: inout URLRequest,
         parameters: Encodable?,
-        encoder: JSONEncoder
+        encoder: JSONEncoder,
+        jSONParameterEncoder: JSONParameterEncoder = JSONParameterEncoder(),
+        uRLParameterEncoder: URLParameterEncoder = URLParameterEncoder()
     ) throws {
         do {
             switch self {
-            case .UrlEncoding:
+            case .urlEncoding:
                 guard let urlParameters = parameters else { return }
-                try URLParameterEncoder().encode(
+                try uRLParameterEncoder.encode(
                     urlRequest: &urlRequest,
                     with: urlParameters,
                     encoder: encoder
                 )
 
-            case .JsonEncoding:
+            case .jsonEncoding:
                 guard let bodyParameters = parameters else { return }
-                try JSONParameterEncoder().encode(
+                try jSONParameterEncoder.encode(
                     urlRequest: &urlRequest,
                     with: bodyParameters,
                     encoder: encoder

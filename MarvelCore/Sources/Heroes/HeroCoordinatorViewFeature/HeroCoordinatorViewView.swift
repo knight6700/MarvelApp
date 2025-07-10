@@ -36,9 +36,7 @@ public struct HeroCoordinatorFeature {
     }
 
     public var body: some ReducerOf<Self> {
-        Reduce {
-            state,
-            action in
+        Reduce { state, action in
             switch action {
             case .goBackToScreen:
                 return .none
@@ -56,8 +54,14 @@ public struct HeroCoordinatorFeature {
                 return .none
             }
         }
-        .forEach(\.path, action: \.path)
-        Scope(state: \.root, action: \.root) {
+        .forEach(
+            \.path,
+             action: \.path
+        )
+        Scope(
+            state: \.root,
+            action: \.root
+        ) {
             HeroListFeature()
         }
     }

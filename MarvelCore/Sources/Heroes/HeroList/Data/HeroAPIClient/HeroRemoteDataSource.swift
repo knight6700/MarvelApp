@@ -15,7 +15,7 @@ extension HeroRemoteDataSource: DependencyKey {
                             method: .get,
                             path: "characters",
                             parameters: params,
-                            encoding: .UrlEncoding
+                            encoding: .urlEncoding
                         )
                     )
                 )
@@ -28,7 +28,15 @@ extension HeroRemoteDataSource: TestDependencyKey {
     static var testValue: Self {
         HeroRemoteDataSource(
             fetchHeroes: { _ in
-                Response<HeroesDTO>(code: 200, status: "Success", copyright: "", attributionText: "", attributionHTML: "", etag: "", data: .mock)
+                Response<HeroesDTO>(
+                    code: 200,
+                    status: "Success",
+                    copyright: "",
+                    attributionText: "",
+                    attributionHTML: "",
+                    etag: "",
+                    data: .mock
+                )
             }
         )
     }
@@ -42,7 +50,15 @@ extension HeroRemoteDataSource: TestDependencyKey {
     static var previewValue: Self {
         HeroRemoteDataSource(
             fetchHeroes: { _ in
-                Response<HeroesDTO>(code: 200, status: "Success", copyright: "", attributionText: "", attributionHTML: "", etag: "", data: .mock)
+                Response<HeroesDTO>(
+                    code: 200,
+                    status: "Success",
+                    copyright: "",
+                    attributionText: "",
+                    attributionHTML: "",
+                    etag: "",
+                    data: .mock
+                )
             }
         )
     }

@@ -13,7 +13,7 @@ private let packageDependancies: [Package.Dependency] = [
         from: "1.16.0"
     ),
     .package(url: "https://github.com/onevcat/Kingfisher", from: "8.1.1"),
-    .package(path: "../ArkanaKeys/HorizonKeys"),
+    .package(path: "../ArkanaKeys/HorizonKeys")
 ]
 
 private let products: [Product] = [
@@ -28,7 +28,7 @@ private let products: [Product] = [
     .library(
         name: "HorizonNetwork",
         targets: ["HorizonNetwork"]
-    ),
+    )
 ]
 
 private let horizonComponent: Target.Dependency = "HorizonComponent"
@@ -51,7 +51,7 @@ let package = Package(
     name: "MarvelCore",
     platforms: [
         .iOS(.v17),
-        .macOS(.v12),
+        .macOS(.v12)
     ],
     products: products,
     dependencies: packageDependancies,
@@ -61,7 +61,7 @@ let package = Package(
             dependencies: [
                 TCADependency,
                 horizonComponent,
-                NETWORK,
+                NETWORK
             ],
             resources: [],
             swiftSettings: [
@@ -72,18 +72,18 @@ let package = Package(
             name: "HorizonNetwork",
             dependencies: [
                 keys,
-                TCADependency,
+                TCADependency
             ],
             resources: []
         ),
         .target(
             name: "HorizonComponent",
             dependencies: [
-                kingFisher,
+                kingFisher
             ],
             resources: [
                 .copy("Resources/Icons/Images.xcassets"),
-                .copy("Resources/Colors/Colors.xcassets"),
+                .copy("Resources/Colors/Colors.xcassets")
             ]
         ),
         .testTarget(
@@ -95,7 +95,7 @@ let package = Package(
                 .product(
                     name: "SnapshotTesting",
                     package: "swift-snapshot-testing"
-                ),
+                )
             ]
         ),
         .testTarget(
@@ -103,9 +103,9 @@ let package = Package(
             dependencies: [
                 "Heroes",
                 TCADependency,
-                NETWORK,
+                NETWORK
             ]
-        ),
+        )
     ],
     swiftLanguageModes: [.v6]
 )

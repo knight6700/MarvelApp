@@ -31,8 +31,7 @@ public struct HeroListFeature {
         var errorMessage: String?
         var filteredSuggestions: [SearchSuggestions] = []
     }
-    
-    
+
     @Dependency(\.heroPreFetch) var preFetch
     @Dependency(\.paginationUseCase) var paginationUseCase
     @Dependency(\.heroDataProcessingUseCase) var dataProcessingUseCase
@@ -61,9 +60,7 @@ public struct HeroListFeature {
 
     public var body: some ReducerOf<Self> {
         BindingReducer()
-        Reduce<State, Action> {
-            state,
-            action in
+        Reduce<State, Action> { state, action in
             switch action {
             case .reload:
                 state.heroes.removeAll()

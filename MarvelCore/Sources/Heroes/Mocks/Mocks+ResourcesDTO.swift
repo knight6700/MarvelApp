@@ -67,7 +67,7 @@ extension URLElement {
 extension Series {
     static var mock: Series {
         Series(
-            resourceURI: "http://mock.series.uri",
+            resourceUrl: "http://mock.series.uri",
             name: "Mock Series Name"
         )
     }

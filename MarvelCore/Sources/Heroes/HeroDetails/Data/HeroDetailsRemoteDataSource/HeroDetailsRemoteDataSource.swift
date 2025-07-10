@@ -14,7 +14,7 @@ extension HeroDetailsRemoteDataSource: DependencyKey {
                         method: .get,
                         path: "characters/\(heroId)/\(type.rawValue)",
                         parameters: nil,
-                        encoding: .UrlEncoding
+                        encoding: .urlEncoding
                     )
                 )
             )

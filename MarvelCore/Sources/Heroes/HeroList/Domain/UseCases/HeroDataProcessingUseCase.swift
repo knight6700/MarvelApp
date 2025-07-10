@@ -20,8 +20,11 @@ extension HeroDataProcessingUseCase: DependencyKey {
                     HeroListRowFeature.State(hero: $0)
                 }
                 
-                let suggestions = heroes.map {
-                    hero in SearchSuggestions(id: hero.heroId, name: hero.name)
+                let suggestions = heroes.map { hero in
+                    SearchSuggestions(
+                        id: hero.heroId,
+                        name: hero.name
+                    )
                 }
                 return ProcessedHeroData(
                     heroStates: heroStates,
@@ -31,7 +34,10 @@ extension HeroDataProcessingUseCase: DependencyKey {
             generateSearchSuggestions: { heroes in
                 heroes.compactMap { hero in
                     guard !hero.name.isEmpty else { return nil }
-                    return SearchSuggestions(id: hero.heroId, name: hero.name)
+                    return SearchSuggestions(
+                        id: hero.heroId,
+                        name: hero.name
+                    )
                 }
             }
         )
@@ -53,7 +59,10 @@ extension HeroDataProcessingUseCase: TestDependencyKey {
             generateSearchSuggestions: { heroes in
                 heroes.compactMap { hero in
                     guard !hero.name.isEmpty else { return nil }
-                    return SearchSuggestions(id: hero.heroId, name: hero.name)
+                    return SearchSuggestions(
+                        id: hero.heroId,
+                        name: hero.name
+                    )
                 }
             }
         )

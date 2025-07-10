@@ -14,6 +14,6 @@ struct PriceResource: Equatable {
 }
 
 enum PriceResourceType: String, Equatable {
-    case digitalPurchasePrice = "digitalPurchasePrice"
-    case printPrice = "printPrice"
+    case digitalPurchasePrice
+    case printPrice
 }
