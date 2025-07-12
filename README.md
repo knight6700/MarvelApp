@@ -81,21 +81,86 @@ On selecting a hero from the list, a detail view is shown with the character's:
 2. **Install all dependancies with Gem**  
    - Open `Terminal`
    - ```cd project-path```
-   - ``` chmod +x onboarding.sh ```
-   - ``` \.onboarding.sh```
+   - ``` make onBoarding ```
    - Write private and public keys Api for `Debug` and `Release`
 
-3. **Open in Xcode**  
+3. **Install Dependencies**  
+   - make ```resolve``` .
+4. **Open in Xcode**  
    - Open the `.xcodeproj`
-
-4. **Install Dependencies**  
-   - Resolve Swift Package Manager (SPM) dependencies.
 
 5. **Run the App**  
    - Select a simulator or a connected device.
    - Click the **Run** button or press `⌘R`.
 - 🔐 Note: For production builds, you can update the API keys via GitHub Secrets or your CI/CD environment. 
 ---
+## Make File
+- To get help on available commands, run:
+    ``` make help ``` 
+Available targets:
+  onBoarding         - Run onboarding setup (should be run first)
+  lint               - Run SwiftLint with autofix
+  lintReport         - Generate SwiftLint HTML report
+  build              - Build the WallaMarvel app
+  test               - Run MarvelCoreTests
+  snapshotTest       - Run MarvelSnapshotTests
+  clean              - Clean build and cache artifacts
+  resolve            - Reset and resolve Swift packages in MarvelCore
+  generatePackage    - Inject Package.yaml into Package.swift
+  help               - Show this help message
+
+---
+
+## Package Configuration
+
+This project uses a `Package.yaml` file for package configuration. **Do not modify Package.swift directly** as it is auto-generated.
+
+### Workflow:
+1. Make changes in **`Package.yaml`**
+2. Run command:
+   ```bash
+   make generatePackage
+   ```
+   This will automatically generate the updated `Package.swift` file.
+
+### Example Modifications:
+
+#### Adding a New Target:
+```yaml
+- name: NewFeature
+  type: target
+  dependencies:
+    - ComposableArchitecture
+    - HorizonNetwork
+  resources:
+    - Resources/FeatureAssets.xcassets
+```
+
+#### Adding a Test Target:
+```yaml
+- name: NewFeatureTests
+  type: testTarget
+  dependencies:
+    - NewFeature
+    - SnapshotTesting
+```
+
+#### Available Dependencies Reference:
+```yaml
+dependencies:
+  - TCADependency      # ComposableArchitecture
+  - snapshotTesting    # SnapshotTesting
+  - kingFisher         # Kingfisher
+  - horizonKeys        # HorizonKeys
+  - horizonComponent   # HorizonComponent
+  - NETWORK            # HorizonNetwork
+```
+
+### Important Notes:
+- Maintain Swift version compatibility (6.0+)
+- Verify platform requirements (iOS 17+/macOS 12+)
+- The `make generatePackage` command must be run after any `Package.yaml` changes
+- Generated `Package.swift`
 
 ## **Architecture Overview**
 
@@ -295,6 +360,9 @@ Contributions are welcome! Follow these steps to contribute:
 ---
 
 ## **License**
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License.
 
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.
+You may not use the material for commercial purposes.
+
+[See the LICENSE file for full terms](https://creativecommons.org/licenses/by-nc/4.0/legalcode).
 ---
