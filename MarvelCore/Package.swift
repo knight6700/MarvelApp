@@ -3,7 +3,7 @@
 
 import PackageDescription
 
-private let packageDependancies: [Package.Dependency] = [
+private let packageDependencies: [Package.Dependency] = [
     .package(
         url: "https://github.com/pointfreeco/swift-composable-architecture",
         from: "1.17.1"
@@ -12,7 +12,10 @@ private let packageDependancies: [Package.Dependency] = [
         url: "https://github.com/pointfreeco/swift-snapshot-testing",
         from: "1.16.0"
     ),
-    .package(url: "https://github.com/onevcat/Kingfisher", from: "8.1.1"),
+    .package(
+        url: "https://github.com/onevcat/Kingfisher",
+        from: "8.1.1"
+    ),
     .package(path: "../ArkanaKeys/HorizonKeys")
 ]
 
@@ -31,20 +34,24 @@ private let products: [Product] = [
     )
 ]
 
-private let horizonComponent: Target.Dependency = "HorizonComponent"
 private let NETWORK: Target.Dependency = "HorizonNetwork"
-private let kingFisher: Target.Dependency = .product(
-    name: "Kingfisher",
-    package: "Kingfisher"
-)
 private let TCADependency: Target.Dependency = .product(
     name: "ComposableArchitecture",
     package: "swift-composable-architecture"
 )
-
-private let keys: Target.Dependency = .product(
+private let heroes: Target.Dependency = "Heroes"
+private let horizonComponent: Target.Dependency = "HorizonComponent"
+private let horizonKeys: Target.Dependency = .product(
     name: "HorizonKeys",
     package: "HorizonKeys"
+)
+private let kingFisher: Target.Dependency = .product(
+    name: "Kingfisher",
+    package: "Kingfisher"
+)
+private let snapshotTesting: Target.Dependency = .product(
+    name: "SnapshotTesting",
+    package: "swift-snapshot-testing"
 )
 
 let package = Package(
@@ -54,7 +61,7 @@ let package = Package(
         .macOS(.v12)
     ],
     products: products,
-    dependencies: packageDependancies,
+    dependencies: packageDependencies,
     targets: [
         .target(
             name: "Heroes",
@@ -63,18 +70,19 @@ let package = Package(
                 horizonComponent,
                 NETWORK
             ],
-            resources: [],
             swiftSettings: [
                 .define("DEBUG", .when(configuration: .debug))
-            ]
+            ],
         ),
         .target(
             name: "HorizonNetwork",
             dependencies: [
-                keys,
+                horizonKeys,
                 TCADependency
             ],
-            resources: []
+            swiftSettings: [
+                .define("DEBUG", .when(configuration: .debug))
+            ],
         ),
         .target(
             name: "HorizonComponent",
@@ -84,27 +92,27 @@ let package = Package(
             resources: [
                 .copy("Resources/Icons/Images.xcassets"),
                 .copy("Resources/Colors/Colors.xcassets")
-            ]
+            ],
+            swiftSettings: [
+                .define("DEBUG", .when(configuration: .debug))
+            ],
         ),
         .testTarget(
             name: "MarvelSnapshotTests",
             dependencies: [
-                "Heroes",
+                heroes,
                 horizonComponent,
                 TCADependency,
-                .product(
-                    name: "SnapshotTesting",
-                    package: "swift-snapshot-testing"
-                )
-            ]
+                snapshotTesting
+            ],
         ),
         .testTarget(
             name: "MarvelCoreTests",
             dependencies: [
-                "Heroes",
+                heroes,
                 TCADependency,
                 NETWORK
-            ]
+            ],
         )
     ],
     swiftLanguageModes: [.v6]
