@@ -77,6 +77,7 @@ clean:
 injectDependencies: $(PYTHON)
 	@echo "📥 Injecting dependencies from Dependencies.yaml into Package.swift..."
 	@python3 ./scripts/generate_package.py ./Package.yaml
+	@swiftlint --fix --config .swiftlint.yml
 	@echo "✅ Dependency injection completed."
 # Help target
 help:

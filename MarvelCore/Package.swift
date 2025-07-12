@@ -16,7 +16,7 @@ private let packageDependencies: [Package.Dependency] = [
         url: "https://github.com/onevcat/Kingfisher",
         from: "8.1.1"
     ),
-    .package(path: "../../ArkanaKeys/HorizonKeys"),
+    .package(path: "../../ArkanaKeys/HorizonKeys")
 ]
 
 private let products: [Product] = [
@@ -31,7 +31,7 @@ private let products: [Product] = [
     .library(
         name: "HorizonNetwork",
         targets: ["HorizonNetwork"]
-    ),
+    )
 ]
 
 private let NETWORK: Target.Dependency = "HorizonNetwork"
@@ -68,7 +68,7 @@ let package = Package(
             dependencies: [
                 TCADependency,
                 horizonComponent,
-                NETWORK,
+                NETWORK
             ],
             swiftSettings: [
                 .define("DEBUG", .when(configuration: .debug))
@@ -78,7 +78,7 @@ let package = Package(
             name: "HorizonNetwork",
             dependencies: [
                 horizonKeys,
-                TCADependency,
+                TCADependency
             ],
             swiftSettings: [
                 .define("DEBUG", .when(configuration: .debug))
@@ -87,11 +87,11 @@ let package = Package(
         .target(
             name: "HorizonComponent",
             dependencies: [
-                kingFisher,
+                kingFisher
             ],
             resources: [
                 .copy("Resources/Icons/Images.xcassets"),
-                .copy("Resources/Colors/Colors.xcassets"),
+                .copy("Resources/Colors/Colors.xcassets")
             ],
             swiftSettings: [
                 .define("DEBUG", .when(configuration: .debug))
@@ -103,7 +103,7 @@ let package = Package(
                 heroes,
                 horizonComponent,
                 TCADependency,
-                SnapshotTesting,
+                SnapshotTesting
             ],
         ),
         .testTarget(
@@ -111,9 +111,9 @@ let package = Package(
             dependencies: [
                 heroes,
                 TCADependency,
-                NETWORK,
+                NETWORK
             ],
-        ),
+        )
     ],
     swiftLanguageModes: [.v6]
 )
