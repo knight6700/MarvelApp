@@ -47,7 +47,7 @@ test:
 		-scheme MarvelCoreTests \
 		-configuration Debug \
 		-destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
-	@echo "🧪Unit tests completed.✅"
+	@echo "🧪 Unit tests completed. ✅"
 
 # Run snapshot tests
 snapshotTest:
@@ -57,7 +57,7 @@ snapshotTest:
 		-scheme MarvelSnapshotTests \
 		-configuration Debug \
 		-destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
-	@echo "🧪Snapshot tests completed.✅"
+	@echo "🧪 Snapshot tests completed. ✅"
 # Resolve Swift Package dependencies
 resolve:
 	@echo "Resolving Swift Package Manager dependencies..."
@@ -74,7 +74,7 @@ clean:
 	@rm -rf node_modules/.cache/
 	@echo "Clean completed."
 # Inject Dependencies
-injectDependencies: $(PYTHON)
+generatePackage: $(PYTHON)
 	@echo "📥 Injecting dependencies from Dependencies.yaml into Package.swift..."
 	@python3 ./scripts/generate_package.py ./Package.yaml
 	@swiftlint --fix --config .swiftlint.yml
@@ -90,5 +90,5 @@ help:
 	@echo "  snapshotTest       - Run MarvelSnapshotTests"
 	@echo "  clean              - Clean build and cache artifacts"
 	@echo "  resolve            - Reset and resolve Swift packages in MarvelCore"
-	@echo "  injectDependencies - Inject Dependencies.yaml into Package.swift"
+	@echo "  generatePackage    - Inject Package.yaml into Package.swift"
 	@echo "  help               - Show this help message"

@@ -35,10 +35,6 @@ private let products: [Product] = [
 ]
 
 private let NETWORK: Target.Dependency = "HorizonNetwork"
-private let SnapshotTesting: Target.Dependency = .product(
-    name: "SnapshotTesting",
-    package: "swift-snapshot-testing"
-)
 private let TCADependency: Target.Dependency = .product(
     name: "ComposableArchitecture",
     package: "swift-composable-architecture"
@@ -52,6 +48,10 @@ private let horizonKeys: Target.Dependency = .product(
 private let kingFisher: Target.Dependency = .product(
     name: "Kingfisher",
     package: "Kingfisher"
+)
+private let snapshotTesting: Target.Dependency = .product(
+    name: "SnapshotTesting",
+    package: "swift-snapshot-testing"
 )
 
 let package = Package(
@@ -103,7 +103,7 @@ let package = Package(
                 heroes,
                 horizonComponent,
                 TCADependency,
-                SnapshotTesting
+                snapshotTesting
             ],
         ),
         .testTarget(
