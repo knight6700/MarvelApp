@@ -47,7 +47,7 @@
 
 | **Heroes List**  | **Hereos Details**                                                                                                                                                              
 |------------------|----------------------------------------------------------------------------------------------------
-| <img src="https://github.com/user-attachments/assets/05d46ce5-0bed-41d9-a246-d383946bf28c" alt="hero List" width="400" height="500"> | <img src="https://github.com/user-attachments/assets/30b809a7-6908-40e0-b6b9-27a36c918520" alt="hero List" width="400" height="500">  
+| <img src="https://github.com/user-attachments/assets/a7937384-5fb8-4309-b297-49180fac14af" alt="hero List" width="400" height="500"> | <img src="https://github.com/user-attachments/assets/2c16bb37-3214-48da-becd-bbb4df7e4658" alt="hero List" width="400" height="500">  
 
 ---
 
