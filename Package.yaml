@@ -20,7 +20,7 @@ dependencies:
     var_name: kingFisher
     package_name: Kingfisher
   - name: HorizonKeys
-    path: ../ArkanaKeys/HorizonKeys
+    path: ArkanaKeys/HorizonKeys
     var_name: horizonKeys
     package_name: HorizonKeys
 
