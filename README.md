@@ -5,7 +5,7 @@
 
 # Heroes App 📱
 
-**Heros App** is a Swift-based iOS application built using TCA architecture. The app displays a list of Hereos with their details and allows search Heroes by their names.
+**Heroes App** is a Swift-based iOS application built using TCA architecture. The app displays a list of Heroes with their details and allows search Heroes by their names.
 
 ---
 
@@ -33,8 +33,8 @@
 ---
 
 ## **Features**
-- 📜 **List of Hereos**: Displays a List of all Hereos with their name, Image, and description.
-- 🔍 **Search**: Search Hereos by their names.
+- 📜 **List of Heroes**: Displays a List of all Heroes with their name, Image, and description.
+- 🔍 **Search**: Search Heroes by their names.
 - 🧍‍♂️ **Hero Details**: View detailed information about a selected hero, including:
   - Name
   - Image
@@ -45,7 +45,7 @@
 
 ## **App Screenshots**
 
-| **Heroes List**  | **Hereos Details**                                                                                                                                                              
+| **Heroes List**  | **Heroes Details**                                                                                                                                                              
 |------------------|----------------------------------------------------------------------------------------------------
 | <img src="https://github.com/user-attachments/assets/a7937384-5fb8-4309-b297-49180fac14af" alt="hero List" width="400" height="500"> | <img src="https://github.com/user-attachments/assets/2c16bb37-3214-48da-becd-bbb4df7e4658" alt="hero List" width="400" height="500">  
 
