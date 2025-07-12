@@ -5,6 +5,10 @@
 
 # Default target
 .DEFAULT_GOAL := help
+# Env
+VENV := .venv
+PYTHON := $(VENV)/bin/python
+PIP := $(VENV)/bin/pip
 
 # Onboarding - runs first setup
 onBoarding:
@@ -69,16 +73,21 @@ clean:
 	@rm -rf reports/
 	@rm -rf node_modules/.cache/
 	@echo "Clean completed."
-
+# Inject Dependencies
+injectDependencies: $(PYTHON)
+	@echo "📥 Injecting dependencies from Dependencies.yaml into Package.swift..."
+	@python3 ./scripts/generate_package.py ./Package.yaml
+	@echo "✅ Dependency injection completed."
 # Help target
 help:
 	@echo "Available targets:"
-	@echo "  onBoarding     - Run onboarding setup (should be run first)"
-	@echo "  lint           - Run SwiftLint with autofix"
-	@echo "  lintReport     - Generate SwiftLint HTML report"
-	@echo "  build          - Build the WallaMarvel app"
-	@echo "  test           - Run MarvelCoreTests"
-	@echo "  snapshotTest   - Run MarvelSnapshotTests"
-	@echo "  clean          - Clean build and cache artifacts"
-	@echo "  resolve        - Reset and resolve Swift packages in MarvelCore"
-	@echo "  help           - Show this help message"
+	@echo "  onBoarding         - Run onboarding setup (should be run first)"
+	@echo "  lint               - Run SwiftLint with autofix"
+	@echo "  lintReport         - Generate SwiftLint HTML report"
+	@echo "  build              - Build the WallaMarvel app"
+	@echo "  test               - Run MarvelCoreTests"
+	@echo "  snapshotTest       - Run MarvelSnapshotTests"
+	@echo "  clean              - Clean build and cache artifacts"
+	@echo "  resolve            - Reset and resolve Swift packages in MarvelCore"
+	@echo "  injectDependencies - Inject Dependencies.yaml into Package.swift"
+	@echo "  help               - Show this help message"
